@@ -50,7 +50,7 @@
 				<input type="text" name="email">
 			</fieldset>
 			
-			<button type="submit">JOIN</button>
+			<button type="submit">회원가입</button>
 			
 		</form>
 	</div>

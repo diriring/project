@@ -14,7 +14,7 @@ public class MemberDAOTest extends MyJunitTest{
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	@Test
+	//@Test
 	public void joinTest() throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setName("Tname");
@@ -28,6 +28,17 @@ public class MemberDAOTest extends MyJunitTest{
 		
 		assertEquals(1, result);
 		
+	}
+	
+	//@Test
+	public void loginTest() throws Exception {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("idtest");
+		memberDTO.setPw("1234");
+		
+		memberDTO = memberDAO.login(memberDTO);
+		
+		System.out.println(memberDTO.getName());
 	}
 
 }

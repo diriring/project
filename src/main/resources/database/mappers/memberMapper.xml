@@ -11,4 +11,14 @@
 		VALUES (#{id}, #{pw}, #{name}, SYSDATE, #{birth}, #{phone}, #{email}, 0, 0)
 	</insert>
 
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT ID, NAME FROM OMEMBER
+		WHERE ID=#{id} AND PW=#{pw}
+	</select>
+	
+	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT ID, NAME, PHONE, EMAIL, BIRTH, POINT FROM OMEMBER
+		WHERE ID=#{id}
+	</select>
+	
 </mapper>
