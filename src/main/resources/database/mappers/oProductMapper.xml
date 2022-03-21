@@ -27,17 +27,18 @@
 			 LIKE '%'||#{search}||'%')
 		</select>
 			
-		<select id="detail" resultMap="detailResult" parameterType="OproductDTO">
-			SELECT OP.*, OPF.*
+		<select id="detail" resultType="OproductDTO" parameterType="OproductDTO">
+			SELECT * FROM OPRODUCT WHERE PRODUCTNUM=#{productNum}
+<!-- 			SELECT OP.*, OPF.*
 			FROM 
 				OPRODUCT OP
 					LEFT OUTER JOIN
 				OPRODUCTFILE OPF
 				ON OP.PRODUCTNUM = OPF.PRODUCTNUM
-			WHERE OP.PRODUCTNUM = #{productNum}
+			WHERE OP.PRODUCTNUM = #{productNum} -->
 		</select>
 		
-			<resultMap type="OproductDTO" id="detailResult">
+<!-- 			<resultMap type="OproductDTO" id="detailResult">
 				<id column="productNum" property="productNum"/>
 				<result column="writer" property="writer"/>
 				<result column="productType" property="productType"/>
@@ -53,7 +54,7 @@
 					<result column="fileName" property="fileName"/>
 					<result column="oriName" property="oriName"/>
 				</collection>
-			</resultMap>
+			</resultMap> -->
 	
 		<insert id="add" parameterType="OproductDTO">
 <!-- 			<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
@@ -72,7 +73,7 @@
 			PRODUCTPRICE=#{productPrice}, PRODUCTDC=#{productDC}, PRODUCTSTOCK=#{productStock} WHERE PRODUCTNUM=#{productNum}
 		</update>
 	
-		<insert id="addFile" parameterType="OproductFileDTO">
+		<!-- <insert id="addFile" parameterType="OproductFileDTO">
 			INSERT INTO OPRODUCTFILE(FILENUM, PRODUCTNUM, FILENAME, ORINAME)
 			VALUES(OPFILE_SEQ.NEXTVAL, #{productNum}, #{fileName}, #{oriName})
 		</insert>
@@ -85,7 +86,7 @@
 		<select id="listFile" parameterType="OproductDTO" resultType="OproductFileDTO">
 			SELECT * FROM OPRODUCTFILE
 			WHERE PRODUCTNUM=#{productNum}
-		</select>
+		</select> -->
 	
 		
 

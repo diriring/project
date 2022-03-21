@@ -31,11 +31,11 @@
 	<h3>Detail : ${dto.productDetail}</h3>
 	<h3>Price : ${dto.productPrice}</h3>
 	
-	<div>
+<%-- 	<div>
 		<c:forEach items="${dto.fileDTOs}" var="f">
 			<img alt="" src="../resources/upload/member/${f.fileName}">
 		</c:forEach>
-	</div>
+	</div> --%>
 	
 	<a href="./update?productNum=${dto.productNum}">Update</a>
 	<a href="./delete?productNum=${dto.productNum}">Delete</a>

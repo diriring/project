@@ -45,21 +45,18 @@ public class OproductDAO {
 		return sqlSession.update(NAMESPACE+"update", oproductDTO);
 	}
 
-	//file add
-	public int addFile(OproductFileDTO oproductFileDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"addFile", oproductFileDTO);
-	}
-	
-	//file detail
-	public OproductFileDTO detailFile(OproductFileDTO oproductFileDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"detailFile", oproductFileDTO);
-	}
-	
-	//file list
-	public List<OproductFileDTO> listFile(OproductDTO oproductDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"listFile", oproductDTO);
-	}
-	
+	/*
+	 * //file add public int addFile(OproductFileDTO oproductFileDTO) throws
+	 * Exception{ return sqlSession.insert(NAMESPACE+"addFile", oproductFileDTO); }
+	 * 
+	 * //file detail public OproductFileDTO detailFile(OproductFileDTO
+	 * oproductFileDTO) throws Exception{ return
+	 * sqlSession.selectOne(NAMESPACE+"detailFile", oproductFileDTO); }
+	 * 
+	 * //file list public List<OproductFileDTO> listFile(OproductDTO oproductDTO)
+	 * throws Exception{ return sqlSession.selectOne(NAMESPACE+"listFile",
+	 * oproductDTO); }
+	 */
 	
 }
 

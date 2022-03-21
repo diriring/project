@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cgv.s1.util.Pager;
@@ -49,8 +48,8 @@ public class OproductController {
 	
 	//add DB
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public ModelAndView add(ModelAndView mv, OproductDTO oproductDTO, MultipartFile [] files) throws Exception{
-		int result = oproductService.add(oproductDTO, files);
+	public ModelAndView add(ModelAndView mv, OproductDTO oproductDTO) throws Exception{// MultipartFile [] files) throws Exception{
+		int result = oproductService.add(oproductDTO);//, files);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

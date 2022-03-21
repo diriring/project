@@ -27,7 +27,7 @@ public class OproductService {
 	}
 	
 	//oProduct add
-	public int add(OproductDTO oproductDTO, MultipartFile [] files) throws Exception{
+	public int add(OproductDTO oproductDTO)throws Exception{// MultipartFile [] files) throws Exception{
 		
 		int result = oproductDAO.add(oproductDTO);
 //		for(int i=0; i<files.length; i++) {
@@ -46,7 +46,7 @@ public class OproductService {
 	
 	//oProduct delete
 	public int delete(OproductDTO oproductDTO) throws Exception{
-		List<OproductFileDTO> ar = oproductDAO.listFile(oproductDTO);
+		//List<OproductFileDTO> ar = oproductDAO.listFile(oproductDTO);
 		int result = oproductDAO.delete(oproductDTO);
 //		if(result > 0) {
 //			for(OproductFileDTO dto: ar) {
@@ -61,11 +61,11 @@ public class OproductService {
 		return oproductDAO.update(oproductDTO);
 	}
 	
-	//oProduct detailFile
-	public OproductFileDTO detailFile(OproductFileDTO oproductFileDTO) throws Exception{
-		return oproductDAO.detailFile(oproductFileDTO);
-	}
-	
+	/*
+	 * //oProduct detailFile public OproductFileDTO detailFile(OproductFileDTO
+	 * oproductFileDTO) throws Exception{ return
+	 * oproductDAO.detailFile(oproductFileDTO); }
+	 */
 }
 
 
