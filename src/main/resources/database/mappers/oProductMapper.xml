@@ -83,12 +83,11 @@
 			WHERE FILENUM=#{fileNum}
 		</select>
 		
-		<!--	
 		<select id="listFile" parameterType="OproductDTO" resultType="OproductFileDTO">
 			SELECT * FROM OPRODUCTFILE
 			WHERE PRODUCTNUM=#{productNum}
 		</select>
-		 -->
+
 		
 
 	</mapper>

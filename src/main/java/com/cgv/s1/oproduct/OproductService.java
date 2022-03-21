@@ -50,13 +50,13 @@ public class OproductService {
 	
 	//oProduct delete
 	public int delete(OproductDTO oproductDTO) throws Exception{
-		//List<OproductFileDTO> ar = oproductDAO.listFile(oproductDTO);
+		List<OproductFileDTO> ar = oproductDAO.listFile(oproductDTO);
 		int result = oproductDAO.delete(oproductDTO);
-//		if(result > 0) {
-//			for(OproductFileDTO dto: ar) {
-//				boolean check= fileManager.remove("resources/upload/oproduct/", dto.getFileName());
-//			}
-//		}
+		if(result > 0) {
+			for(OproductFileDTO dto: ar) {
+				boolean check= fileManager.remove("resources/upload/oproduct/", dto.getFileName());
+			}
+		}
 		return result;
 	}
 	

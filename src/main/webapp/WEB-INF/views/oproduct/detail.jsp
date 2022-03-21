@@ -33,7 +33,7 @@
 	
  	<div>
 		<c:forEach items="${dto.fileDTOs}" var="f">
-			<img alt="" src="../resources/upload/member/${f.fileName}">
+			<img alt="" src="../resources/upload/oproduct/${f.fileName}">
 		</c:forEach>
 	</div>
 	
