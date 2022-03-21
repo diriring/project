@@ -13,7 +13,7 @@
 
 	<h1>OProduct Add Page</h1>
 	
-	<form action="./add" method="POST">
+	<form action="./add" method="POST" enctype="multipart/form-data">
 	
 		<fieldset>
 			<legend>ProductType</legend>
@@ -31,15 +31,16 @@
 		ProductPrice : <input type="number" name="productPrice">
 		ProductDC : <input type="number" step="0.01" name="productDC">
 		ProductStock : <input type="number" name="productStock">
-<!-- 
-		파일 ADD 시작
+
+		<!-- 파일 ADD 시작 -->
 		<div id="fileResult"></div>
 
 		<div>
 			<button type="button" id="fileAdd">FileAdd</button>
 		</div>
-		파일 ADD 끝
-		 -->
+		
+		<!-- 파일 ADD 끝	 -->
+	
 		<!-- id btn 왜 넣었지 생각 -->
 		<button type="submit" id="btn">ADD</button>
 		

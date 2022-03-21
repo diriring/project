@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.cgv.s1.util.FileManager;
 import com.cgv.s1.util.Pager;
 
 @Service
@@ -13,6 +15,8 @@ public class OproductService {
 	@Autowired
 	private OproductDAO oproductDAO;
 	
+	@Autowired
+	private FileManager fileManager;
 	
 	//oProduct list
 	public List<OproductDTO> list(Pager pager) throws Exception{
@@ -27,20 +31,20 @@ public class OproductService {
 	}
 	
 	//oProduct add
-	public int add(OproductDTO oproductDTO)throws Exception{// MultipartFile [] files) throws Exception{
+	public int add(OproductDTO oproductDTO, MultipartFile [] files) throws Exception{
 		
 		int result = oproductDAO.add(oproductDTO);
-//		for(int i=0; i<files.length; i++) {
-//			if(files[i].isEmpty()) {
-//				continue;
-//			}
-//			String fileName = fileManager.save(files[i], "resources/upload/oproduct/");
-//			OproductFileDTO oproductFileDTO = new OproductFileDTO();
-//			oproductFileDTO.setProductNum(oproductDTO.getProductNum());
-//			oproductFileDTO.setFileName(fileName);
-//			oproductFileDTO.setOriName(files[i].getOriginalFilename());
-//			result = oproductDAO.addFile(oproductFileDTO);
-//		}
+		for(int i=0; i<files.length; i++) {
+			if(files[i].isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.save(files[i], "resources/upload/oproduct/");
+			OproductFileDTO oproductFileDTO = new OproductFileDTO();
+			oproductFileDTO.setProductNum(oproductDTO.getProductNum());
+			oproductFileDTO.setFileName(fileName);
+			oproductFileDTO.setOriName(files[i].getOriginalFilename());
+			result = oproductDAO.addFile(oproductFileDTO);
+		}
 		return result;
 	}
 	
@@ -61,11 +65,12 @@ public class OproductService {
 		return oproductDAO.update(oproductDTO);
 	}
 	
-	/*
-	 * //oProduct detailFile public OproductFileDTO detailFile(OproductFileDTO
-	 * oproductFileDTO) throws Exception{ return
-	 * oproductDAO.detailFile(oproductFileDTO); }
-	 */
+	
+	//oProduct detailFile
+	public OproductFileDTO detailFile(OproductFileDTO oproductFileDTO) throws Exception{ 
+		return oproductDAO.detailFile(oproductFileDTO);
+	}
+	 
 }
 
 

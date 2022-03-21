@@ -27,18 +27,18 @@
 			 LIKE '%'||#{search}||'%')
 		</select>
 			
-		<select id="detail" resultType="OproductDTO" parameterType="OproductDTO">
-			SELECT * FROM OPRODUCT WHERE PRODUCTNUM=#{productNum}
-<!-- 			SELECT OP.*, OPF.*
+		<select id="detail" resultMap="detailResult" parameterType="OproductDTO">
+			<!-- SELECT * FROM OPRODUCT WHERE PRODUCTNUM=#{productNum} -->
+			SELECT OP.*, OPF.*
 			FROM 
 				OPRODUCT OP
 					LEFT OUTER JOIN
 				OPRODUCTFILE OPF
 				ON OP.PRODUCTNUM = OPF.PRODUCTNUM
-			WHERE OP.PRODUCTNUM = #{productNum} -->
+			WHERE OP.PRODUCTNUM = #{productNum} 
 		</select>
 		
-<!-- 			<resultMap type="OproductDTO" id="detailResult">
+ 			<resultMap type="OproductDTO" id="detailResult">
 				<id column="productNum" property="productNum"/>
 				<result column="writer" property="writer"/>
 				<result column="productType" property="productType"/>
@@ -54,13 +54,13 @@
 					<result column="fileName" property="fileName"/>
 					<result column="oriName" property="oriName"/>
 				</collection>
-			</resultMap> -->
+			</resultMap>
 	
 		<insert id="add" parameterType="OproductDTO">
-<!-- 			<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
+			<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
 				SELECT OPRODUCT_SEQ.NEXTVAL FROM DUAL
-			</selectKey> -->
-			INSERT INTO OPRODUCT VALUES(OPRODUCT_SEQ.NEXTVAL, #{writer}, #{productType}, #{productName}, #{productDetail}, 
+			</selectKey>
+			INSERT INTO OPRODUCT VALUES(#{productNum}, #{writer}, #{productType}, #{productName}, #{productDetail}, 
 			#{productPrice}, #{productDC}, #{productStock}, 0, SYSDATE)
 		</insert>
 		
@@ -73,21 +73,22 @@
 			PRODUCTPRICE=#{productPrice}, PRODUCTDC=#{productDC}, PRODUCTSTOCK=#{productStock} WHERE PRODUCTNUM=#{productNum}
 		</update>
 	
-		<!-- <insert id="addFile" parameterType="OproductFileDTO">
+		<insert id="addFile" parameterType="OproductFileDTO">
 			INSERT INTO OPRODUCTFILE(FILENUM, PRODUCTNUM, FILENAME, ORINAME)
 			VALUES(OPFILE_SEQ.NEXTVAL, #{productNum}, #{fileName}, #{oriName})
 		</insert>
-			
+		
 		<select id="detailFile" parameterType="OproductFileDTO" resultType="OproductFileDTO">
 			SELECT * FROM OPRODUCTFILE
 			WHERE FILENUM=#{fileNum}
 		</select>
-			
+		
+		<!--	
 		<select id="listFile" parameterType="OproductDTO" resultType="OproductFileDTO">
 			SELECT * FROM OPRODUCTFILE
 			WHERE PRODUCTNUM=#{productNum}
-		</select> -->
-	
+		</select>
+		 -->
 		
 
 	</mapper>

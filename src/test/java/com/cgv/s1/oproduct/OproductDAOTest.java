@@ -32,7 +32,7 @@ public class OproductDAOTest extends MyJunitTest {
 	}
 	
 	//add
-	@Test
+	//@Test
 	public void addTest() throws Exception{
 		OproductDTO oproductDTO = new OproductDTO();
 		oproductDTO.setWriter("W");
