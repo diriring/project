@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.olive.s1.oproduct.OproductDAO">
+
+	<select id="list" resultType="OproductDTO" parameterType="Pager">
+		SELECT * FROM
+		    (SELECT ROWNUM R, N.* FROM
+		    (SELECT * FROM OPRODUCT WHERE 
+		    PRODUCTNUM>0 
+		    AND
+			PRODUCTNAME		    
+		    LIKE '%'||#{search}||'%'
+		   ORDER BY PRODUCTNUM DESC) N)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="total" resultType="Long" parameterType="Pager">
+		SELECT COUNT(PRODUCTNUM) FROM
+		 (SELECT * FROM OPRODUCT WHERE
+		 PRODUCTNUM>0
+		 AND 
+		 PRODUCTNAME		  
+		 LIKE '%'||#{search}||'%')
+	</select>
+		
+	<select id="detail" resultType="OproductDTO" parameterType="OproductDTO">
+		SELECT * FROM OPRODUCT WHERE PRODUCTNUM=#{productNum}
+	</select>
+	
+	<insert id="add" parameterType="OproductDTO">
+		INSERT INTO OPRODUCT VALUES(OPRODUCT_SEQ.NEXTVAL, #{productType}, #{productName}, #{priductDetail}, 
+		#{productPrice}, #{productDC}, #{productStock}, 0, SYSDATE)
+	</insert>
+	
+	<delete id="delete" parameterType="OproductDTO">
+		DELETE OPRODUCT WHERE PRODUCTNUM=#{productNum}
+	</delete>
+	
+	<update id="update" parameterType="OproductDTO">
+		UPDATE OPRODUCT SET PRODUCTTYPE=#{productType}, PRODUCTNAME=#{productName}, PRIDUCTDETAIL=#{priductDetail},
+		PRODUCTPRICE=#{productPrice}, PRODUCTDC=#{productDC}, PRODUCTSTOCK=#{productStock} WHERE PRODUCTNUM=#{productNum}
+	</update>
+
+	
+
+</mapper>
