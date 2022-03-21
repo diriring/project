@@ -5,6 +5,6 @@
   
   <configuration>
   	<typeAliases>
-
+		<typeAlias type="com.cgv.s1.board.review.ReviewDAO" alias="ReviewDAO"/>
   	</typeAliases>
   </configuration>

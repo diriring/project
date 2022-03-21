@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+
 <html>
 <head>
 	<title>Home</title>
@@ -11,7 +12,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-
+<a href="./opay/oPayReady">kakao pay</a>
 <h1>aaa</h1>
 </body>
 </html>
