@@ -27,6 +27,7 @@ public class ReviewController {
 	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv)throws Exception{
 		List<BoardDTO> ar = reviewService.list();
+		
 		mv.addObject("list",ar);
 		mv.setViewName("board/list");
 	return mv;

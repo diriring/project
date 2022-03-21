@@ -14,7 +14,7 @@ public class ReviewDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private final String NAMESPACE = "com.cgv.s1.board.review.";
+	private final String NAMESPACE = "com.cgv.s1.board.review.ReviewDAO.";
 
 	@Override
 	public List<BoardDTO> list() throws Exception {

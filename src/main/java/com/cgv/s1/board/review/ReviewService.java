@@ -16,8 +16,8 @@ public class ReviewService implements BoardService {
 
 	@Override
 	public List<BoardDTO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return reviewDAO.list();
+		List<BoardDTO> ar = reviewDAO.list();
+		return ar;
 	}
 	
 }
