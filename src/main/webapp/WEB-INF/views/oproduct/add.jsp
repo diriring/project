@@ -23,20 +23,32 @@
 					<option value=3>클렌징</option>
 				</select>
 		</fieldset>	
-		
+		<!-- 나중에 member들어오면 -->
+		<%-- Writer : <input type="text" name="writer" id="writer" value="${member.id}" readonly> --%>
+		Writer : <input type="text" name="writer">
 		ProductName : <input type="text" name="productName">
-		ProductDetail : <textarea rows="10" cols="" name="priductDetail"></textarea>
+		ProductDetail : <textarea rows="10" cols="" name="productDetail"></textarea>
 		ProductPrice : <input type="number" name="productPrice">
 		ProductDC : <input type="number" step="0.01" name="productDC">
 		ProductStock : <input type="number" name="productStock">
+<!-- 
+		파일 ADD 시작
+		<div id="fileResult"></div>
 
-		<button type="submit">ADD</button>
+		<div>
+			<button type="button" id="fileAdd">FileAdd</button>
+		</div>
+		파일 ADD 끝
+		 -->
+		<!-- id btn 왜 넣었지 생각 -->
+		<button type="submit" id="btn">ADD</button>
 		
 	</form>
 	
 	
 	<a href="./list">List</a>
 	
+	<script src="../resources/js/file.js"></script>
 </body>
 </html>
 

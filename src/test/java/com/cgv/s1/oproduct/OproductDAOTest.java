@@ -6,11 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.cgv.s1.MyJunitTest;
-import com.olive.s1.oproduct.OproductDAO;
-import com.olive.s1.oproduct.OproductDTO;
-import com.olive.s1.util.Pager;
+import com.cgv.s1.util.Pager;
 
 public class OproductDAOTest extends MyJunitTest {
 
@@ -18,7 +15,7 @@ public class OproductDAOTest extends MyJunitTest {
 	private OproductDAO oproductDAO;
 	
 	//list
-	//@Test
+	@Test
 	public void listTest() throws Exception{
 		Pager pager = new Pager();
 		List<OproductDTO> ar = oproductDAO.list(pager);
@@ -37,28 +34,39 @@ public class OproductDAOTest extends MyJunitTest {
 	//add
 	//@Test
 	public void addTest() throws Exception{
+		OproductDTO oproductDTO = new OproductDTO();
+		oproductDTO.setWriter("W");
+		oproductDTO.setProductType(1);
+		oproductDTO.setProductName("N");
+		oproductDTO.setProductDetail("D");
+		oproductDTO.setProductPrice(1000);
+		oproductDTO.setProductDC(1.0);
+		oproductDTO.setProductStock(1);
+		int result = oproductDAO.add(oproductDTO);
+		assertEquals(1, result);
 		
-		for(int i=0; i<100; i++) {
-			OproductDTO oproductDTO = new OproductDTO();
-			oproductDTO.setProductType(1);
-			oproductDTO.setProductName("N"+i);
-			oproductDTO.setPriductDetail("D"+i);
-			oproductDTO.setProductPrice(1000);
-			
-			double rate = Math.random();
-			rate = rate*1000; 
-			int r = (int)rate; 
-			rate = r/100.0; 
-			oproductDTO.setProductDC(rate);
-			oproductDTO.setProductStock(1);
-			int result = oproductDAO.add(oproductDTO);
-			
-			if(i%10==0) {
-				Thread.sleep(1000);
-			}
-		}
+//		for(int i=0; i<100; i++) {
+//			OproductDTO oproductDTO = new OproductDTO();
+//			oproductDTO.setWriter("W"+i);
+//			oproductDTO.setProductType(1);
+//			oproductDTO.setProductName("N"+i);
+//			oproductDTO.setProductDetail("D"+i);
+//			oproductDTO.setProductPrice(1000);
+//			
+//			double rate = Math.random();
+//			rate = rate*1000; 
+//			int r = (int)rate; 
+//			rate = r/100.0; 
+//			oproductDTO.setProductDC(rate);
+//			oproductDTO.setProductStock(1);
+//			int result = oproductDAO.add(oproductDTO);
+//			
+//			if(i%10==0) {
+//				Thread.sleep(1000);
+//			}
+//		}
 
-		//assertEquals(1, result);
+		
 	}
 
 }

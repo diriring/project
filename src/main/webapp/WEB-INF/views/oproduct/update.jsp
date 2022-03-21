@@ -43,9 +43,9 @@
 					</c:otherwise>
 				</c:choose>
 		</fieldset>	
-		
+		Writer : <input type="text" name="writer" value="${dto.writer}" disabled>
 		ProductName : <input type="text" name="productName" value="${dto.productName}">
-		ProductDetail : <textarea rows="10" cols="" name="priductDetail">${dto.priductDetail}</textarea>
+		ProductDetail : <textarea rows="10" cols="" name="productDetail">${dto.productDetail}</textarea>
 		ProductPrice : <input type="number" name="productPrice" value="${dto.productPrice}">
 		ProductDC : <input type="number" step="0.01" name="productDC" value="${dto.productDC}">
 		ProductStock : <input type="number" name="productStock" value="${dto.productStock}">

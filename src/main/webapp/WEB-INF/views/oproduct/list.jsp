@@ -29,7 +29,7 @@
 		
 		<table class="table-basic">
 			<tr>
-				<th>상품번호</th><th>상품이름</th><th>상품가격</th>
+				<th>상품번호</th><th>상품이름</th><th>상품가격</th><th>작성자</th>
 			</tr>
 			
 			<c:forEach items="${list}" var="list">
@@ -37,6 +37,7 @@
 					<td>${list.productNum}</td>
 					<td><a href="./detail?productNum=${list.productNum}">${list.productName}</a></td>
 					<td>${list.productPrice}</td>
+					<td>${list.writer}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -56,6 +57,7 @@
 		
 		
 		<%-- admin이 들어왔들때 하기 --%>
+		<!-- 여기서 member id 랑 member type 같이 보는 방법생각 -->
 		<%-- <c:if test=""></c:if> --%>
 		<a href="./add">ADD</a>
 		
