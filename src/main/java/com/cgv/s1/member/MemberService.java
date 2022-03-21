@@ -21,4 +21,8 @@ public class MemberService {
 		return memberDAO.mypage(memberDTO);
 	}
 	
+	public int delete(MemberDTO memberDTO) throws Exception {
+		return memberDAO.delete(memberDTO);
+	}
+	
 }

@@ -23,4 +23,8 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"mypage", memberDTO);
 	}
 	
+	public int delete(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"delete", memberDTO);
+	}
+	
 }

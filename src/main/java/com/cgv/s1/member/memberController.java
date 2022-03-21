@@ -79,5 +79,15 @@ public class memberController {
 		
 		return mv;
 	}
+	
+	@PostMapping("delete")
+	public String delete(MemberDTO memberDTO) throws Exception {
+		int result = memberService.delete(memberDTO);
+		String path = "redirect:./mypage";
+		if(result == 1) {
+			path = "redirect:../";
+		}
+		return path;
+	}
 
 }
