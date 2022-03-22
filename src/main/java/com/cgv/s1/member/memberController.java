@@ -3,6 +3,7 @@ package com.cgv.s1.member;
 import java.net.http.HttpResponse;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -68,8 +69,21 @@ public class memberController {
 	}
 	
 	@GetMapping("join")
-	public void join() throws Exception {
+	public ModelAndView join(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		if(request.getParameter("type").equals("member")) {
+			mv.addObject("title", "회원가입");
+			mv.addObject("name", "이름");
+			mv.addObject("memberType", "0");
+		}else {
+			mv.addObject("title", "사업자 등록");
+			mv.addObject("name", "사업체명");
+			mv.addObject("memberType", "1");
+		}
 		
+		mv.setViewName("member/join");
+		
+		return mv;
 	}
 	
 	@PostMapping("join")

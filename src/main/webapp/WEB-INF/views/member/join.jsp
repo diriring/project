@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Join Page</h1>
-	
+	<h1>${title}</h1>
 	<div>
 		
 		<h3>기본정보</h3>
 		
 		<form action="./join" method="post" id="joinfrm">
-			
+			<input type="hidden" name="memberType" value="${memberType}">
 			<fieldset>
-				<legend>이름</legend>
+				<legend>${name}</legend>
 				<input id="name" type="text" name="name">
 				<div id="nameResult"></div>
 			</fieldset>

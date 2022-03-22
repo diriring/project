@@ -8,7 +8,7 @@
 
 	<insert id="join" parameterType="MemberDTO">
 		INSERT INTO OMEMBER (ID, PW, NAME, REGDATE, BIRTH, PHONE, EMAIL, POINT, MEMBERTYPE)
-		VALUES (#{id}, #{pw}, #{name}, SYSDATE, #{birth}, #{phone}, #{email}, 0, 0)
+		VALUES (#{id}, #{pw}, #{name}, SYSDATE, #{birth}, #{phone}, #{email}, 0, #{memberType})
 	</insert>
 
 	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">

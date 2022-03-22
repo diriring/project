@@ -64,7 +64,7 @@ joinbtn.addEventListener("click", function() {
     email.value = email1.value + "@" + email2.value;
     
     if(!nameconfirm) {
-        alert('이름을 입력해주세요.');
+        alert('필수입력 항목입니다.');
         name.focus();
         return;
     }
@@ -85,17 +85,14 @@ joinbtn.addEventListener("click", function() {
     }
     if(birth.value.length == 0) {
         alert('생년월일을 입력해주세요.');
-        birth.focus();
         return;
     }
     if(birth.value.length == 0) {
         alert('전화번호를 입력해주세요.');
-        phone.focus();
         return;
     }
     if(birth.value.length == 0) {
         alert('email을 입력하세요');
-        email.focus();
         return;
     }
     
