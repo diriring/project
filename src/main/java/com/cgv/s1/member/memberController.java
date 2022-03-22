@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -22,12 +23,20 @@ public class memberController {
 	private MemberService memberService;
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
-	public void login() throws Exception {
+	public String login(HttpSession session) throws Exception {
 		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String path = "member/login";
+		
+		if(memberDTO != null) {
+			path = "redirect:../";
+		}
+		
+		return path;
 	}
 	
 	@PostMapping("login")
-	public String login(MemberDTO memberDTO, String remember, HttpServletResponse response, HttpSession session) throws Exception {
+	public String login(MemberDTO memberDTO, String remember, RedirectAttributes result,HttpServletResponse response, HttpSession session) throws Exception {
 		
 		if(remember != null && remember.equals("1")) {
 			Cookie cookie = new Cookie("remember", memberDTO.getId());
@@ -41,8 +50,10 @@ public class memberController {
 		memberDTO = memberService.login(memberDTO);
 		
 		String path = "redirect:./login";
+		result.addFlashAttribute("result", "0");
 		if(memberDTO != null) {
 			session.setAttribute("member", memberDTO);
+			result.addFlashAttribute("result", "1");
 			path = "redirect:../";
 		}
 		
@@ -62,20 +73,35 @@ public class memberController {
 	}
 	
 	@PostMapping("join")
-	public String join(MemberDTO memberDTO) throws Exception {
+	public ModelAndView join(MemberDTO memberDTO) throws Exception {
 		int result = memberService.join(memberDTO);
-		return "redirect:../";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/result");
+		if(result == 1) {
+			mv.addObject("message", "회원가입을 축하드립니다!");
+			mv.addObject("path", "./login");
+		}else {
+			mv.addObject("message", "회원가입 실패");
+			mv.addObject("path", "./join");
+		}
+		return mv;
 	}
 	
 	@GetMapping("mypage")
 	public ModelAndView mypage(HttpSession session) throws Exception {
 		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		memberDTO = memberService.mypage(memberDTO);
-		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("dto", memberDTO);
-		mv.setViewName("member/mypage");
+
+		if(memberDTO == null) {
+			mv.setViewName("common/result");
+			mv.addObject("message", "로그인 후에 이용가능합니다.");
+			mv.addObject("path", "./login");
+		}else {
+			memberDTO = memberService.mypage(memberDTO);
+			mv.addObject("dto", memberDTO);
+			mv.setViewName("member/mypage");			
+		}
 		
 		return mv;
 	}
