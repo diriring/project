@@ -8,8 +8,11 @@
 </head>
 <body>
 	<h1>My page</h1>
-	${dto.id}
-	${dto.name}
+	<h3>${dto.name}님 반갑습니다.</h3>
+	<div>
+	보유하신 포인트 : ${dto.point}P
+	</div>
+	<a href="./address/list?id=${dto.id}">배송지 관리</a>
 	<!-- 버튼으로 해놓고 나중에 비밀번호 한 번 입력한다음에 회원탈퇴 창으로 넘어가도록 -->
 	<form action="./delete" method="post">
 		<input type="hidden" name="id" value="${dto.id}">

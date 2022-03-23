@@ -12,12 +12,12 @@
 	</insert>
 
 	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
-		SELECT ID, NAME FROM OMEMBER
+		SELECT ID, NAME, MEMBERTYPE FROM OMEMBER
 		WHERE ID=#{id} AND PW=#{pw}
 	</select>
 	
 	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
-		SELECT ID, NAME, PHONE, EMAIL, BIRTH, POINT FROM OMEMBER
+		SELECT ID, NAME, PHONE, EMAIL, BIRTH, POINT, MEMBERTYPE FROM OMEMBER
 		WHERE ID=#{id}
 	</select>
 	

@@ -6,5 +6,6 @@
   <configuration>
   	<typeAliases>
 		<typeAlias type="com.cgv.s1.member.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.cgv.s1.member.address.MemberAddressDTO" alias="MemberAddressDTO"/>
   	</typeAliases>
   </configuration>

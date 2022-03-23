@@ -129,5 +129,6 @@ public class memberController {
 		}
 		return path;
 	}
-
+	
+	
 }
