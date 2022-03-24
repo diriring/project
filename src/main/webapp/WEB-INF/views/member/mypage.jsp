@@ -12,12 +12,16 @@
 	<div>
 	보유하신 포인트 : ${dto.point}P
 	</div>
-	<a href="./address/list?id=${dto.id}">배송지 관리</a>
-	<!-- 버튼으로 해놓고 나중에 비밀번호 한 번 입력한다음에 회원탈퇴 창으로 넘어가도록 -->
-	<form action="./delete" method="post">
-		<input type="hidden" name="id" value="${dto.id}">
-		<button type="submit">회원탈퇴</button>
-	</form>
+	<div>
+		<h4>마이 정보</h4>
+		<ul>
+			<li><a href="./beforeUpdate">회원정보 수정</a></li>
+			<li><a href="./pwUpdate">비밀번호 수정</a></li>
+			<li><a href="./address/list">배송지 관리</a></li>
+			<li><a href="./beforeDelete">회원탈퇴</a></li>
+		</ul>
+	</div>
+	
 	
 </body>
 </html>

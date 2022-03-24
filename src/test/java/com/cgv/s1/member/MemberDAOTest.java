@@ -40,5 +40,15 @@ public class MemberDAOTest extends MyJunitTest{
 		
 		System.out.println(memberDTO.getName());
 	}
+	
+	//@Test
+	public void idCheckTest() throws Exception {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("jjang9");
+		
+		int result = memberDAO.idCheck(memberDTO);
+		
+		assertEquals(1, result);
+	}
 
 }

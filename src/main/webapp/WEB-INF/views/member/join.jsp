@@ -24,7 +24,7 @@
 			<fieldset>
 				<legend>아이디</legend>
 				<input type="text" id="id" name="id" placeholder="아이디를 입력해주세요.">
-				<button type="button">중복확인</button>
+				<button type="button" id="idCheckBtn">중복확인</button>
 				<div id="idResult"></div>
 			</fieldset>
 			
@@ -42,16 +42,24 @@
 			
 			<fieldset>
 				<legend>생년월일</legend>
-				<select id="year"></select>
-				<select id="month"></select>
-				<select id="day"></select>
+				<select id="year">
+					<option value="" selected disabled hidden>년도 선택</option>
+				</select>
+				<select id="month">
+					<option value="" selected disabled hidden>달 선택</option>
+				</select>
+				<select id="day">
+					<option value="" selected disabled hidden>일 선택</option>
+				</select>
 				<input type="hidden" id="birth" name="birth">
 				<div id="birthResult"></div>
 			</fieldset>
 			
 			<fieldset>
 				<legend>휴대전화</legend>
-				<select id="phone1"></select>
+				<select id="phone1">
+					<option value="" selected disabled hidden>선택해주세요</option>
+				</select>
 				-
 				<input type="text" id="phone2">
 				-
@@ -66,7 +74,7 @@
 				@
 				<input type="text" id="email2" placeholder="직접 입력">
 				<input type="hidden" id="email" name="email">
-				<button type="button">중복확인</button>
+				<button type="button" id="emailCheckBtn">중복확인</button>
 				<div id="emailResult"></div>
 			</fieldset>
 			

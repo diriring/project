@@ -25,4 +25,20 @@ public class MemberService {
 		return memberDAO.delete(memberDTO);
 	}
 	
+	public int update(MemberDTO memberDTO) throws Exception {
+		return memberDAO.update(memberDTO);
+	}
+	
+	public int pwUpdate(MemberDTO memberDTO) throws Exception {
+		return memberDAO.pwUpdate(memberDTO);
+	}
+	
+	public int idCheck(MemberDTO memberDTO) throws Exception {
+		return memberDAO.idCheck(memberDTO);
+	}
+	
+	public int emailCheck(MemberDTO memberDTO) throws Exception {
+		return memberDAO.emailCheck(memberDTO);
+	}
+	
 }

@@ -8,10 +8,15 @@ const birth = document.getElementById("birth");
 const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 
+const idCheckBtn = document.getElementById("idCheckBtn");
+const emailCheckBtn = document.getElementById("emailCheckBtn");
+
 let nameconfirm = false;
 let idconfirm = false;
+let uniqueId = false;
 let pwconfirm = false;
 let pcconfirm = false;
+let uniqueEmail = false;
 // let birthconfirm = false;
 // let phoneconfirm = false;
 // let emailconfirm = false;
@@ -59,10 +64,6 @@ const email2 = document.getElementById("email2");
 
 joinbtn.addEventListener("click", function() {
     
-    birth.value = year.value + "-" + month.value + "-" + day.value;
-    phone.value = phone1.value + "-" + phone2.value + "-" + phone3.value;
-    email.value = email1.value + "@" + email2.value;
-    
     if(!nameconfirm) {
         alert('필수입력 항목입니다.');
         name.focus();
@@ -73,8 +74,12 @@ joinbtn.addEventListener("click", function() {
         id.focus();
         return;
     }
+    if(!uniqueId) {
+        alert('아이디 중복 확인이 필요합니다.');
+        return;
+    }
     if(!pwconfirm) {
-        alert('비밀번호 자릿수가 틀립니다.');
+        alert('비밀번호를 확인해주세요.');
         pw.focus();
         return;
     }
@@ -83,18 +88,46 @@ joinbtn.addEventListener("click", function() {
         pwCheck.focus();
         return;
     }
-    if(birth.value.length == 0) {
+    if(year.value.length == 0) {
         alert('생년월일을 입력해주세요.');
         return;
     }
-    if(birth.value.length == 0) {
+    if(month.value.length == 0) {
+        alert('생년월일을 입력해주세요.');
+        return;
+    }
+    if(day.value.length == 0) {
+        alert('생년월일을 입력해주세요.');
+        return;
+    }
+    if(phone1.value.length == 0) {
         alert('전화번호를 입력해주세요.');
         return;
     }
-    if(birth.value.length == 0) {
+    if(phone2.value.length == 0) {
+        alert('전화번호를 입력해주세요.');
+        return;
+    }
+    if(phone3.value.length == 0) {
+        alert('전화번호를 입력해주세요.');
+        return;
+    }
+    if(email1.value.length == 0) {
         alert('email을 입력하세요');
         return;
     }
+    if(email2.value.length == 0) {
+        alert('email을 입력하세요');
+        return;
+    }
+    if(!uniqueEmail) {
+        alert('이메일 중복 확인이 필요합니다.');
+        return;
+    }
+
+    birth.value = year.value + "-" + month.value + "-" + day.value;
+    phone.value = phone1.value + "-" + phone2.value + "-" + phone3.value;
+    email.value = email1.value + "@" + email2.value;
     
     // console.log(phone.value);
     // console.log(birth.value);
@@ -117,6 +150,11 @@ id.addEventListener("blur", function() {
     }else {
         idconfirm = true;
     }
+});
+
+id.addEventListener("change", function() {
+    uniqueId=false;
+    idResult.innerHTML="아이디 중복 확인이 필요합니다."
 });
 
 pw.addEventListener("keyup", function() {
@@ -147,28 +185,63 @@ pwCheck.addEventListener("keyup", function() {
     }
 });
 
-// birth.addEventListener("blur", function() {
-//     if(birth.value == "") {
-//         birthResult.innerHTML="생년월일은 입력 필수 입니다."
-//     }else {
-//         birthconfirm = true;
-//     }
-// });
+email1.addEventListener("change", function() {
+    uniqueEmail=false;
+    emailResult.innerHTML="이메일 중복 확인이 필요합니다."
+})
 
-// phone.addEventListener("blur", function() {
-//     if(phone.value == "") {
-//         phoneResult.innerHTML="전화번호는 입력 필수 입니다."
-//     }else {
-//         phoneconfirm = true;
-//     }
-// });
+email2.addEventListener("change", function() {
+    uniqueEmail=false;
+    emailResult.innerHTML="이메일 중복 확인이 필요합니다."
+})
+//-----------------------------------------------------------------
+//중복 확인 ajax
+idCheckBtn.addEventListener("click", function() {
+    // console.log("아이디 중복 체크")
+    let xhttp = new XMLHttpRequest();
 
-// email.addEventListener("blur", function() {
-//     if(email.value.length == 0) {
-//         emailResult.innerHTML="이메일은 입력 필수 입니다."
-//     }else {
-//         emailconfirm = true;
-//     }
-// });
+    xhttp.open("POST", "./idCheck");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id="+id.value);
+
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            let result = this.responseText.trim();
+            if(result == '0') {
+                alert("사용 가능한 아이디입니다.");
+                idResult.innerHTML="사용 가능한 아이디입니다.";
+                uniqueId=true;
+            }else {
+                alert("사용하실 수 없는 아이디입니다.");
+                uniqueId=false;
+            }
+        }
+    }
+    
+});
+
+emailCheckBtn.addEventListener("click", function() {
+    // console.log("이메일 중복 체크");
+    email.value = email1.value + "@" + email2.value;
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", "./emailCheck");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("email="+email.value);
+
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            let result = this.responseText.trim();
+            if(result == '0') {
+                alert("사용 가능한 이메일입니다.");
+                emailResult.innerHTML="사용 가능한 이메일입니다.";
+                uniqueEmail=true;
+            }else {
+                alert("사용하실 수 없는 이메일입니다.");
+                uniqueEmail=false;
+            }
+        }
+    }
+});
 
 

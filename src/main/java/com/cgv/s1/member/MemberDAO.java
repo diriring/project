@@ -27,4 +27,20 @@ public class MemberDAO {
 		return sqlSession.delete(NAMESPACE+"delete", memberDTO);
 	}
 	
+	public int update(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"update", memberDTO);
+	}
+	
+	public int pwUpdate(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"pwUpdate", memberDTO);
+	}
+	
+	public int idCheck(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"idCheck", memberDTO);
+	}
+	
+	public int emailCheck(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"emailCheck", memberDTO);
+	}
+	
 }

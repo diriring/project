@@ -12,7 +12,7 @@
 	</insert>
 
 	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
-		SELECT ID, NAME, MEMBERTYPE FROM OMEMBER
+		SELECT ID, PW, NAME, MEMBERTYPE FROM OMEMBER
 		WHERE ID=#{id} AND PW=#{pw}
 	</select>
 	
@@ -24,5 +24,22 @@
 	<delete id="delete" parameterType="MemberDTO">
 		DELETE OMEMBER WHERE ID=#{id}
 	</delete>
+	
+	<update id="update" parameterType="MemberDTO">
+		UPDATE OMEMBER SET NAME=#{name}, BIRTH=#{birth}, PHONE=#{phone}
+		WHERE ID=#{id}
+	</update>
+	
+	<update id="pwUpdate" parameterType="MemberDTO">
+		UPDATE OMEMBER SET PW=#{pw} WHERE ID=#{id}
+	</update>
+	
+	<select id="idCheck" parameterType="MemberDTO" resultType="int">
+		SELECT COUNT(ID) FROM OMEMBER WHERE ID=#{id}
+	</select>
+	
+	<select id="emailCheck" parameterType="MemberDTO" resultType="int">
+		SELECT COUNT(EMAIL) FROM OMEMBER WHERE EMAIL=#{email}
+	</select>
 	
 </mapper>
