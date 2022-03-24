@@ -15,7 +15,7 @@ public class OproductDAOTest extends MyJunitTest {
 	private OproductDAO oproductDAO;
 	
 	//list
-	//@Test
+	@Test
 	public void listTest() throws Exception{
 		Pager pager = new Pager();
 		List<OproductDTO> ar = oproductDAO.list(pager);
