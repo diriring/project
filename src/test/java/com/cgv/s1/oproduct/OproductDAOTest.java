@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.web.WebAppConfiguration;
+
 import com.cgv.s1.MyJunitTest;
 import com.cgv.s1.util.Pager;
-
+@WebAppConfiguration
 public class OproductDAOTest extends MyJunitTest {
 
 	@Autowired
@@ -23,10 +25,10 @@ public class OproductDAOTest extends MyJunitTest {
 	}
 	
 	//detail
-	//@Test
+	@Test
 	public void detailTest() throws Exception{
 		OproductDTO oproductDTO = new OproductDTO();
-		oproductDTO.setProductNum(1L);
+		oproductDTO.setProductNum(296L);
 		oproductDTO = oproductDAO.detail(oproductDTO);
 		assertNotNull(oproductDTO);
 	}
