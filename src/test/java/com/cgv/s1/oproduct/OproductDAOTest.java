@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.web.WebAppConfiguration;
+
 import com.cgv.s1.MyJunitTest;
 import com.cgv.s1.util.Pager;
-
+//@WebAppConfiguration
 public class OproductDAOTest extends MyJunitTest {
 
 	@Autowired

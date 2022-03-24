@@ -25,30 +25,30 @@ public class OcartDAO {
 		return sqlSession.selectOne(NAMESPACE + "total", pager);
 	}
 	
-//	//카트 추가
-//	public int addCart(OcartDTO ocartDTO) throws Exception{
-//		return sqlSession.insert(NAMESPACE+"addCart", ocartDTO);
-//	}
-//	
-//	//카트 삭제
-//	public int deleteCart(OcartDTO ocartDTO) throws Exception{
-//		return sqlSession.delete(NAMESPACE+"deleteCart", ocartDTO);
-//	}
-//	
-//	//카트 수량 수정
-//	public int modifyCount(OcartDTO ocartDTO) throws Exception{
-//		return sqlSession.update(NAMESPACE+"modifyCount", ocartDTO);
-//	}
+	//카트 추가
+	public int addCart(OcartDTO ocartDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCart", ocartDTO);
+	}
 	
-//	//카트 목록
-//	public List<OcartDTO> getCart(OcartDTO ocartDTO) throws Exception{
-//		return sqlSession.selectList(NAMESPACE+"getCart", ocartDTO);
-//	}
-//	
-//	//카트 확인
-//	public OcartDTO checkCart(OcartDTO ocartDTO) throws Exception{
-//		return sqlSession.selectOne(NAMESPACE+"checkCart", ocartDTO);
-//	}
+	//카트 삭제
+	public int deleteCart(OcartDTO ocartDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteCart", ocartDTO);
+	}
+	
+	//카트 수량 수정
+	public int modifyCount(OcartDTO ocartDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"modifyCount", ocartDTO);
+	}
+	
+	//카트 목록
+	public List<OcartDTO> getCart(OcartDTO ocartDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCart", ocartDTO);
+	}
+	
+	//카트 확인
+	public OcartDTO checkCart(OcartDTO ocartDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"checkCart", ocartDTO);
+	}
 	
 }
 
