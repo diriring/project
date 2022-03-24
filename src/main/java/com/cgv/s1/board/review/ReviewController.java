@@ -30,9 +30,9 @@ public class ReviewController {
 	}
 	
 	@PostMapping("reply")
-	public ModelAndView reply(BoardDTO boardDTO)throws Exception{
+	public ModelAndView reply(ReviewDTO reviewDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = reviewService.reply(boardDTO);
+		int result = reviewService.reply(reviewDTO);
 		mv.setViewName("redirect:./list");
 		
 		return mv;

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cgv.s1.board.BoardDAO;
 import com.cgv.s1.board.BoardService;
+import com.cgv.s1.board.qna.QnaDTO;
 import com.cgv.s1.util.FileManager;
 import com.cgv.s1.util.Pager;
 import com.cgv.s1.board.BoardDTO;
@@ -30,21 +31,21 @@ public class ReviewService implements BoardService {
 	
 	
 	
-	@Override
-	public int reply(BoardDTO boardDTO) throws Exception {
+	
+	public int reply(ReviewDTO reviewDTO) throws Exception {
 		// TODO Auto-generated method stub
-		boardDTO = reviewDAO.detail(boardDTO);
-		BoardDTO parent = boardDTO;
+		BoardDTO boardDTO = reviewDAO.detail(reviewDTO);
+		ReviewDTO parent = (ReviewDTO)boardDTO;
 		
-		boardDTO.setRef(parent.getRef());
+		reviewDTO.setRef(parent.getRef());
 		
-		boardDTO.setStep(parent.getStep()+1);
+		reviewDTO.setStep(parent.getStep()+1);
 		
-		boardDTO.setDepth(parent.getDepth()+1);
+		reviewDTO.setDepth(parent.getDepth()+1);
 		
 		int result = reviewDAO.stepUpdate(parent);
 		
-		result = reviewDAO.reply(boardDTO);
+		result = reviewDAO.reply(reviewDTO);
 		
 		return result;
 	}

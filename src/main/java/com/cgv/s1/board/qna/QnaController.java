@@ -31,9 +31,9 @@ public class QnaController {
 	}
 	
 	@PostMapping("reply")
-	public ModelAndView reply(BoardDTO boardDTO)throws Exception{
+	public ModelAndView reply(QnaDTO qnaDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = qnaService.reply(boardDTO);
+		int result = qnaService.reply(qnaDTO);
 		mv.setViewName("redirect:./list");
 		
 		return mv;

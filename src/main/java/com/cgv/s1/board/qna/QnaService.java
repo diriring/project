@@ -37,22 +37,21 @@ public class QnaService implements BoardService {
 		return ar;
 	}
 
-	@Override
-	public int reply(BoardDTO boardDTO) throws Exception {
+	
+	public int reply(QnaDTO qnaDTO) throws Exception {
 		// TODO Auto-generated method stub
-		boardDTO = qnaDAO.detail(boardDTO);
+		BoardDTO boardDTO = qnaDAO.detail(qnaDTO);
+		QnaDTO parent = (QnaDTO)boardDTO;
 		
-		BoardDTO parent = boardDTO;
+		qnaDTO.setRef(parent.getRef());
 		
-		boardDTO.setRef(parent.getRef());
+		qnaDTO.setStep(parent.getStep()+1);
 		
-		boardDTO.setStep(parent.getStep()+1);
+		qnaDTO.setDepth(parent.getDepth()+1);
 		
-		boardDTO.setDepth(parent.getDepth()+1);
+		int result = qnaDAO.stepUpdate(parent);
 		
-		int result = qnaDAO.stepUpdate(boardDTO);
-		
-		result = qnaDAO.reply(boardDTO);
+		result = qnaDAO.reply(qnaDTO);
 		return result;
 	}
 
