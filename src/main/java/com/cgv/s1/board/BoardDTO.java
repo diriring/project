@@ -1,6 +1,7 @@
 package com.cgv.s1.board;
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardDTO {
 	
@@ -14,7 +15,16 @@ public class BoardDTO {
 	private Long step;
 	private Long depth;
 	
+	private List<BoardDTO> fileDTOs;
 	
+	
+	
+	public List<BoardDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<BoardDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public long getNum() {
 		return num;
 	}

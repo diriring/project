@@ -3,39 +3,39 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.cgv.s1.board.review.ReviewDAO">
-	
-	<select id="listFile" parameterType="BoardDTO" resultType="ReviewFileDTO">
-		SELECT * FROM OREVIEWFILE
+    
+    <mapper namespace="com.cgv.s1.board.qna.QnaDAO">
+    
+    <select id="listFile" parameterType="BoardDTO" resultType="QnaFileDTO">
+		SELECT * FROM OQNA
 		WHERE NUM=#{num}
 	</select>
 	
 	
-	<select id="detailFile" parameterType="ReviewFileDTO" resultType="ReviewFileDTO">
-		SELECT * FROM OREVIEWFILE
+	<select id="detailFile" parameterType="QnaFileDTO" resultType="QnaFileDTO">
+		SELECT * FROM OQNAFILE
 		WHERE FILENUM=#{fileNum}
 	</select>
 	
 	<select id="addFile" parameterType="BoardFileDTO">
-		INSERT INTO OREVIEWFILE(FILENUM, NUM, FILENAME, ORINAME)
+		INSERT INTO OQNAFILE(FILENUM, NUM, FILENAME, ORINAME)
 		VALUES (opfile_seq.nextval,#{num}, #{fileName}, #{oriName})
 	</select>
 	
 	<insert id="reply" parameterType="BoardDTO">
- 		insert into oreview (num, writer, title, contents, regDate, hit, ref, step, depth)
- 		values (oreview_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
+ 		insert into OQNA (num, writer, title, contents, regDate, hit, ref, step, depth)
+ 		values (oqna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
  	</insert>
 	
 	<update id="stepUpdate" parameterType="BoardDTO">
- 		update oreview set step=step+1
+ 		update OQNA set step=step+1
  		where ref=#{ref} and step>#{step}
  	</update>
 	
-	<select id="list" resultType="ReviewDTO" parameterType="Pager">
+	<select id="list" resultType="QnaDTO" parameterType="Pager">
 	select * from
 		(SELECT rownum R ,B.* from
-			(select * from oreview where 
+			(select * from OQNA where 
 			num>0 
 			and
 			
@@ -57,7 +57,7 @@
 	</select>
 	
 	<select id="total" resultType="Long" parameterType="Pager">
-		SELECT COUNT(NUM) FROM OREVIEW
+		SELECT COUNT(NUM) FROM OQNA
 		WHERE
 			NUM>0
 			AND
@@ -76,18 +76,18 @@
 			LIKE '%' || #{search} || '%'
 	</select>
 	
-	<select id="detail" resultType="ReviewDTO" parameterType="ReviewDTO" resultMap="detailResult">
+	<select id="detail" resultType="QnaDTO" parameterType="QnaDTO" resultMap="detailResult">
 	
 	SELECT O.*, OFILE.*
 		FROM
-	        OREVIEW O
+	        OQNA O
 	            LEFT OUTER JOIN
-	         OREVIEWFILE OFILE 
+	         OQNAFILE OFILE 
 	        	ON O.NUM=OFILE.NUM
 		WHERE   O.NUM=#{num} 
 	</select>
 	
-	<resultMap type="ReviewDTO" id="detailResult">
+	<resultMap type="QnaDTO" id="detailResult">
  		<id column="num" property="num"/>
  		<result column="title" property="title"/>
  		<result column="writer" property="writer"/>
@@ -97,29 +97,34 @@
  		<result column="ref" property="ref"/>
  		<result column="step" property="step"/>
  		<result column="depth" property="depth"/>
- 		<collection property="fileDTOs" javaType="List" ofType="ReviewFileDTO">
+ 		<collection property="fileDTOs" javaType="List" ofType="QnaFileDTO">
  			<id column="fileNum" property="fileNum"/>
  			<result column="fileName" property="fileName"/>
  			<result column="oriName" property="oriName"/>
  		</collection>
  	</resultMap>
 	
-	<insert id="add" parameterType="ReviewDTO">
+	<insert id="add" parameterType="QnaDTO">
 	<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
- 			SELECT oreview_seq.nextval from dual
+ 			SELECT oqna_seq.nextval from dual
  		</selectKey>
 	
-	insert into oreview (num, title, writer, contents, regDate, hit, ref, step, depth )
+	insert into OQNA (num, title, writer, contents, regDate, hit, ref, step, depth )
 	values(#{num}, #{title}, #{writer}, #{contents}, sysdate,0 ,#{num}, 0, 0)
 	
 	</insert>
 	
-	<delete id="delete" parameterType="ReviewDTO">
-	delete oreview where num = #{num}
+	<delete id="delete" parameterType="QnaDTO">
+	delete OQNA where num = #{num}
 	</delete>
 	
-	<update id="update" parameterType="ReviewDTO">
-	update oreview set title=#{title}, contents=#{contents} where num=#{num}
+	<update id="update" parameterType="QnaDTO">
+	update OQNA set title=#{title}, contents=#{contents} where num=#{num}
 	</update>
-	
-</mapper>
+    
+    
+    
+    
+    
+    
+    </mapper>

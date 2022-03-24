@@ -6,5 +6,12 @@
   <configuration>
   	<typeAliases>
 		<typeAlias type="com.cgv.s1.board.review.ReviewDTO" alias="ReviewDTO"/>
+		<typeAlias type="com.cgv.s1.board.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.cgv.s1.board.review.ReviewFileDTO" alias="ReviewFileDTO"/>
+		<typeAlias type="com.cgv.s1.board.qna.QnaFileDTO" alias="QnaFileDTO"/>
+		<typeAlias type="com.cgv.s1.board.BoardFileDTO" alias="BoardFileDTO"/>
+		<typeAlias type="com.cgv.s1.board.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.cgv.s1.util.Pager" alias="Pager"/>
+  		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>
   </configuration>

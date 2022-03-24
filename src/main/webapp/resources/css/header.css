@@ -2,13 +2,31 @@
     width: 80%;
     margin: 0 auto;
     background-color: red;
-    height: 90px;
+    height: 100px;
     overflow: hidden;
 }
 
 
+    div {
+        display: block;
+    }
+
+
+.header_inner {
+    display: inline-flex;
+    
+}
+.search_box{
+    
+    margin-left: 50px;
+    
+    display: inline-flex;
+    
+}
+
+
 .menu_list{
-        font-size: 13px;
+        font-size: 12px;
        letter-spacing: 2px;
        margin-top: 2px;
        margin-bottom: 10px;
@@ -20,10 +38,12 @@
 }
 
 .store_list{
-    font-size: 10;
     display: inline;
 }
+.category{
+    display: inline;
+}
+
 .sm{
     display: inline;
-    font-size: 10;
 }
