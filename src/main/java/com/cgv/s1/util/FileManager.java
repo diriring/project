@@ -29,12 +29,8 @@ public class FileManager {
 			file.mkdirs();
 		}
 		
-		Calendar ca = Calendar.getInstance();
-		long l = ca.getTimeInMillis();
 		String oriName = multipartFile.getOriginalFilename();
-		String fileName = l+"_"+oriName;
-		
-		fileName = UUID.randomUUID().toString();
+		String fileName = UUID.randomUUID().toString();
 		fileName = fileName + "_" + oriName;
 		
 		file = new File(file, fileName);
