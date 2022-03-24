@@ -10,14 +10,14 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgv.s1.MyJunitTest;
 import com.cgv.s1.util.Pager;
-@WebAppConfiguration
+
 public class OproductDAOTest extends MyJunitTest {
 
 	@Autowired
 	private OproductDAO oproductDAO;
 	
 	//list
-	//@Test
+	@Test
 	public void listTest() throws Exception{
 		Pager pager = new Pager();
 		List<OproductDTO> ar = oproductDAO.list(pager);

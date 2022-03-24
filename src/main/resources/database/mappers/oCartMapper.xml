@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.cgv.s1.ocart.OcartDAO">
+
+		<!-- 카트 총 리스트 검색용도 -->
+		<select id="list" resultType="OcartDTO" parameterType="Pager">
+			SELECT * FROM
+			    (SELECT ROWNUM R, N.* FROM
+			    (SELECT * FROM OCART WHERE 
+			    CARTID>0 
+			    AND
+				PRODUCTNUM		    
+			    LIKE '%'||#{search}||'%'
+			   ORDER BY CARTID DESC) N)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
+		</select>
+		
+		<!-- 검색용도 활용 total -->
+		<select id="total" resultType="Long" parameterType="Pager">
+			SELECT COUNT(CARTID) FROM
+			 (SELECT * FROM OCART WHERE
+			 CARTID>0
+			 AND 
+			 PRODUCTNUM		  
+			 LIKE '%'||#{search}||'%')
+		</select>
+		
+ 
+		<!-- 카트 추가 -->
+ 		<insert id="addCart">		
+			INSERT INTO OCART(ID, PRODUCTNUM, PRODUCTAMOUNT)
+			VALUES(#{id}, #{productNum}, #{productAmount}) 
+		</insert> 
+	
+		<!-- 카트 삭제 -->
+ 		<delete id="deleteCart">
+			DELETE FROM OCART WHERE CARTID = #{cartId}
+		</delete>
+		
+		<!-- 카트 수량 수정 -->
+ 		<update id="modifyCount">
+			UPDATE OCART SET PRODUCTAMOUNT=#{productAmount} WHERE ID = #{id}
+		</update> 
+
+		<!-- 카트 목록 -->
+ 		<select id="getCart" resultType="OcartDTO" parameterType="OcartDTO">
+			SELECT O.CARTID, O.ID, O.PRODUCTNUM, O.PRODUCTAMOUNT, OP.PRODUCTNAME, OP.PRODUCTPRICE, OP.PRODUCTDC
+			FROM
+				OCART O
+					LEFT OUTER JOIN
+				OPRODUCT OP
+				ON O.PRODUCTNUM = OP.PRODUCTNUM
+			WHERE id=#{id}
+		</select>
+		
+		<!-- 카트 확인 -->
+		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">
+			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum}
+		</select>
+	</mapper>
+
+
+
+
+
+
+

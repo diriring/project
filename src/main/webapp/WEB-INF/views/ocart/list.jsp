@@ -16,7 +16,7 @@
 	
 	<div class="table-container">
 	
-		<h1> OProduct Page</h1>
+		<h1> oCart List Page</h1>
 		
 		<!-- paging 처리 -->
 		<form action="./list" class="search" method="get">
@@ -29,15 +29,15 @@
 		
 		<table class="table-basic">
 			<tr>
-				<th>상품번호</th><th>상품이름</th><th>상품가격</th><th>작성자</th>
+				<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
 			</tr>
 			
 			<c:forEach items="${list}" var="list">
 				<tr>
-					<td>${list.productNum}</td>
-					<td><a href="./detail?productNum=${list.productNum}">${list.productName}</a></td>
-					<td>${list.productPrice}</td>
-					<td>${list.writer}</td>
+					<td>${list.cartId}</td>
+					<td>${list.id}</td>
+					<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productNum}</a></td>
+					<td>${list.productAmount}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -59,7 +59,6 @@
 		<%-- admin이 들어왔들때 하기 --%>
 		<!-- 여기서 member id 랑 member type 같이 보는 방법생각 -->
 		<%-- <c:if test="${not empty member}">
-			c:if 새로 넣고 eq member.type
 			<a href="./add">ADD</a>
 		</c:if> --%>
 		<a href="./add">ADD</a>
