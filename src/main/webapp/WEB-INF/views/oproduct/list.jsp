@@ -58,7 +58,9 @@
 		
 		<%-- admin이 들어왔들때 하기 --%>
 		<!-- 여기서 member id 랑 member type 같이 보는 방법생각 -->
-		<%-- <c:if test=""></c:if> --%>
+		<%-- <c:if test="${not empty member}">
+			<a href="./add">ADD</a>
+		</c:if> --%>
 		<a href="./add">ADD</a>
 		
 	</div>

@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
+<style type="text/css">
+	#img{
+		width: 200px;
+		height: 200px;
+	}
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -33,7 +39,8 @@
 	
  	<div>
 		<c:forEach items="${dto.fileDTOs}" var="f">
-			<img alt="" src="../resources/upload/oproduct/${f.fileName}">
+			<img alt="" src="../resources/upload/oproduct/${f.fileName}" id="img">
+			<a href="./fileDown?fileNum=${f.fileNum}">${f.oriName}</a>
 		</c:forEach>
 	</div>
 	
@@ -41,14 +48,13 @@
 	<a href="./delete?productNum=${dto.productNum}">Delete</a>
 	
 	<!-- 나중에 member 생기면 연동 -->
-	<%-- <c:if test="${member.id eq dto.writer}">
+	<%-- 
+	<c:if test="${member.id eq dto.writer}">
 		<a href="./update?productNum=${dto.productNum}">Update</a>
 		<a href="./delete?productNum=${dto.productNum}">Delete</a>
 	</c:if>
-	<c:if test="${board ne 'notice'}">
-		<a href="./reply?productNum=${dto.productNum}">Reply</a>
-	</c:if> --%>
-	<!-- ------------------ -->
+	--%>
+	<!------------------------>
 	
 	<a href="./list">List</a>
 	

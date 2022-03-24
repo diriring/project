@@ -61,8 +61,20 @@ public class OproductService {
 	}
 	
 	//oProduct update
-	public int update(OproductDTO oproductDTO) throws Exception{
-		return oproductDAO.update(oproductDTO);
+	public int update(OproductDTO oproductDTO, MultipartFile [] files) throws Exception{
+		int result = oproductDAO.update(oproductDTO);
+		for(int i=0; i<files.length; i++) {
+			if(files[i].isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.save(files[i], "resources/upload/oproduct/");
+			OproductFileDTO oproductFileDTO = new OproductFileDTO();
+			oproductFileDTO.setProductNum(oproductDTO.getProductNum());
+			oproductFileDTO.setFileName(fileName);
+			oproductFileDTO.setOriName(files[i].getOriginalFilename());
+			result = oproductDAO.addFile(oproductFileDTO);
+		}
+		return result;
 	}
 	
 	
@@ -71,6 +83,25 @@ public class OproductService {
 		return oproductDAO.detailFile(oproductFileDTO);
 	}
 	 
+	//oProduct deleteFile
+	public int deleteFile(OproductFileDTO oproductFileDTO, OproductDTO oproductDTO) throws Exception{
+		//HDD에서 없애기 ++
+		List<OproductFileDTO> ar = oproductDAO.listFile(oproductDTO);
+		//System.out.println(oproductFileDTO.getFileName());
+		int result = oproductDAO.deleteFile(oproductFileDTO);
+		if(result > 0) {
+			for(OproductFileDTO dto: ar) {
+				//System.out.println(dto.getFileName());
+				//System.out.println(oproductFileDTO.getFileName());
+				if(dto.getFileName().equals(oproductFileDTO.getFileName())) {
+					boolean check= fileManager.remove("resources/upload/oproduct/", dto.getFileName());
+				}
+			}
+		}
+		return result;
+	}
+	
+	
 }
 
 

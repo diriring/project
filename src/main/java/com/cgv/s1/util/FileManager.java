@@ -17,6 +17,7 @@ public class FileManager {
 	@Autowired
 	private ServletContext servletContext;
 	
+	//저장
 	public String save(MultipartFile multipartFile, String path) throws Exception{
 		
 		String realPath = servletContext.getRealPath(path);
@@ -42,6 +43,7 @@ public class FileManager {
 		return fileName;
 	}
 	
+	//제거
 	public boolean remove(String path, String fileName) throws Exception{
 		path = servletContext.getRealPath(path);
 		File file = new File(path, fileName);

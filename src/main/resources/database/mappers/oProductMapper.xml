@@ -51,6 +51,8 @@
 				<result column="regDate" property="regDate"/>
 				<collection property="fileDTOs" javaType="List" ofType="OproductFileDTO">
 					<id column="fileNum" property="fileNum"/>
+					<!-- <result column="productNum" property="productNum"/> -->
+					<!-- 새로추가해봄 productNum 찍고싶어서 빼도될듯-->
 					<result column="fileName" property="fileName"/>
 					<result column="oriName" property="oriName"/>
 				</collection>
@@ -88,6 +90,14 @@
 			WHERE PRODUCTNUM=#{productNum}
 		</select>
 
+		<delete id="deleteFile" parameterType="OproductFileDTO">
+			DELETE OPRODUCTFILE WHERE FILENUM=#{fileNum}
+		</delete>
+		
+		<!-- <select id="listFileDelete" parameterType="OproductFileDTO" resultType="OproductFileDTO">
+			SELECT * FROM OPRODUCTFILE
+			WHERE PRODUCTNUM=#{productNum}
+		</select> -->
 		
 
 	</mapper>

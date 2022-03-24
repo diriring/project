@@ -11,6 +11,7 @@
 						<li><a href="/s1/oproduct/list">PRODUCT</a></li>
 						<li><a href="/s1/oreview/list">REVIEW</a></li>
 						<li><a href="/s1/oqna/list">QNA</a></li>
+						<li><a href="/s1/ocart/list">CART</a></li>
 					</ul>
 				</div>
 				<div class="login">

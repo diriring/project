@@ -60,4 +60,14 @@ public class OproductDAO {
     	return sqlSession.selectList(NAMESPACE+"listFile", oproductDTO); 
     }	 
 
+    //file Delete
+    public int deleteFile(OproductFileDTO oproductFileDTO) throws Exception{
+    	return sqlSession.delete(NAMESPACE+"deleteFile", oproductFileDTO);
+    }
+    
+    //file Deletelist(새로만든것 fileupdate 때문에)
+    //public List<OproductFileDTO> listFileDelete(OproductFileDTO oproductFileDTO) throws Exception{
+    //	return sqlSession.selectList(NAMESPACE+"listFileDelete", oproductFileDTO);
+    //}
+    
 }

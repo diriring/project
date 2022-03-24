@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +22,22 @@ public class OproductController {
 
 	@Autowired
 	private OproductService oproductService;
+	
+	//수정해야할듯 합치게되면 filedown에 경로부분!
+	@ModelAttribute("oproduct")
+	public String oproduct() {
+		return "oproduct";
+	}
+	
+	//fileDown
+	@RequestMapping(value="fileDown", method = RequestMethod.GET)
+	public ModelAndView fileDown(OproductFileDTO oproductFileDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		oproductFileDTO = oproductService.detailFile(oproductFileDTO);
+		mv.addObject("file", oproductFileDTO);
+		mv.setViewName("fileDown");
+		return mv;
+	}
 	
 	//list
 	@RequestMapping(value="list", method = RequestMethod.GET)
@@ -84,11 +103,25 @@ public class OproductController {
 	
 	//update DB
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String update(OproductDTO oproductDTO) throws Exception{
-		int result = oproductService.update(oproductDTO);
-		return "redirect:./list";
+	public String update(OproductDTO oproductDTO, MultipartFile [] files) throws Exception{
+		int result = oproductService.update(oproductDTO, files);
+		//이런식으로 redirect해도 보안상 문제가 없는지?
+		return "redirect:./detail?productNum="+oproductDTO.getProductNum();
+		//return "redirect:./list";
 	}
 	
+	
+	//productFile DELETE
+	@PostMapping("deleteFile")
+	public ModelAndView fileDelete(OproductFileDTO oproductFileDTO, OproductDTO oproductDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		//System.out.println(oproductDTO.getProductNum());
+		//System.out.println(oproductFileDTO.getFileNum());
+		int result = oproductService.deleteFile(oproductFileDTO, oproductDTO);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
 
 	
 	

@@ -13,7 +13,7 @@
 
 	<h1>OProduct Add Page</h1>
 	
-	<form action="./add" method="POST" enctype="multipart/form-data">
+	<form action="./add" method="POST" id="frm" enctype="multipart/form-data">
 	
 		<fieldset>
 			<legend>ProductType</legend>
@@ -25,12 +25,12 @@
 		</fieldset>	
 		<!-- 나중에 member들어오면 -->
 		<%-- Writer : <input type="text" name="writer" id="writer" value="${member.id}" readonly> --%>
-		Writer : <input type="text" name="writer">
-		ProductName : <input type="text" name="productName">
-		ProductDetail : <textarea rows="10" cols="" name="productDetail"></textarea>
-		ProductPrice : <input type="number" name="productPrice">
-		ProductDC : <input type="number" step="0.01" name="productDC">
-		ProductStock : <input type="number" name="productStock">
+		Writer : <input type="text" name="writer" id="writer">
+		ProductName : <input type="text" name="productName" id="productName">
+		ProductDetail : <textarea rows="10" cols="" name="productDetail" id="productDetail"></textarea>
+		ProductPrice : <input type="number" name="productPrice" id="productPrice">
+		ProductDC : <input type="number" step="0.01" name="productDC" id="productDC">
+		ProductStock : <input type="number" name="productStock" id="productStock">
 
 		<!-- 파일 ADD 시작 -->
 		<div id="fileResult"></div>
@@ -42,7 +42,9 @@
 		<!-- 파일 ADD 끝	 -->
 	
 		<!-- id btn 왜 넣었지 생각 -->
-		<button type="submit" id="btn">ADD</button>
+		<!-- js넣으면 button으로 바꾸려고 넣었네-->
+		<!-- member들어와서 자동입력 되면 그때 js에서 writer빼는거 생각-->
+		<button type="button" id="btn">ADD</button>
 		
 	</form>
 	
@@ -50,6 +52,7 @@
 	<a href="./list">List</a>
 	
 	<script src="../resources/js/file.js"></script>
+	<script src="../resources/js/oproductAdd.js"></script>
 </body>
 </html>
 
