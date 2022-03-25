@@ -49,8 +49,16 @@
 		<!-- 카트 목록 -->
  		<select id="getCart" resultType="OcartDTO" parameterType="OcartDTO">
 			SELECT O.CARTID, O.ID, O.PRODUCTNUM, O.PRODUCTAMOUNT, OP.PRODUCTNAME, OP.PRODUCTPRICE, OP.PRODUCTDC
-			FROM
-				OCART O
+			FROM 
+				(SELECT * FROM
+			    (SELECT ROWNUM R, N.* FROM
+			    (SELECT * FROM OCART WHERE 
+			    CARTID>0 
+			    AND
+				PRODUCTNUM		    
+			    LIKE '%'||#{search}||'%'
+			    ORDER BY CARTID DESC) N)
+				WHERE R BETWEEN #{startRow} AND #{lastRow}) O
 					LEFT OUTER JOIN
 				OPRODUCT OP
 				ON O.PRODUCTNUM = OP.PRODUCTNUM

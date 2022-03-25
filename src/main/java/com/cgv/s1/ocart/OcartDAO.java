@@ -16,14 +16,20 @@ public class OcartDAO {
 	private final String NAMESPACE ="com.cgv.s1.ocart.OcartDAO.";
 	
 	//카트 총 리스트(검색 용도)
-	public List<OcartDTO> list(Pager pager) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"list", pager);
+	public List<OcartDTO> totalList(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"totalList", pager);
 	}
 	
 	//total(검색 용도)
 	public Long total(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "total", pager);
 	}
+	
+	//total oCartPager(검색 용도)
+	public Long total(OcartDTO ocartDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "total", ocartDTO);
+	}
+	
 	
 	//카트 추가
 	public int addCart(OcartDTO ocartDTO) throws Exception{

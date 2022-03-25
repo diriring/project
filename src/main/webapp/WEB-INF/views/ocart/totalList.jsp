@@ -13,46 +13,47 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	
+	<!-- 필요없을수도 있음 -->
+	<!-- 용도 모든 id에 포함된 장바구니 list 출력 -->
 	
 	<div class="table-container">
 	
 		<h1> oCart List Page</h1>
 		
 		<!-- paging 처리 -->
- 		<form action="./list" class="search" method="get">
+		<form action="./list" class="search" method="get">
 			<fieldset>
-				<input type="text" name="search" value="${ocartDTO.search}">
+				<input type="text" name="search" value="${pager.search}">
 				<button type="submit">검색</button>
 			</fieldset>
-		</form> 
+		</form>
 		
 		
- 		<table class="table-basic">
+		<table class="table-basic">
 			<tr>
-				<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품이름</th><th>제품수량</th>
+				<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
 			</tr>
 			
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td>${list.cartId}</td>
 					<td>${list.id}</td>
-					<td>${list.productNum}</td>
-					<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productName}</a></td>
+					<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productNum}</a></td>
 					<td>${list.productAmount}</td>
 				</tr>
 			</c:forEach>
 		</table>
 		
 		<!-- paging 처리 -->
- 		<div>
-			<c:if test="${ocartDTO.pre}">
-				<a href="./list?page=${ocartDTO.startNum-1}">PREVIEW</a>
+		<div>
+			<c:if test="${pager.pre}">
+				<a href="./list?page=${pager.startNum-1}">PREVIEW</a>
 			</c:if>
-			<c:forEach begin="${ocartDTO.startNum}" end="${ocartDTO.lastNum}" var="i">
-				<a href="./list?page=${i}&kind=${ocartDTO.kind} &search=${ocartDTO.search}">${i}</a>
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<a href="./list?page=${i}&kind=${pager.kind} &search=${pager.search}">${i}</a>
 			</c:forEach>
-			<c:if test="${ocartDTO.next}">
-				<a href="./list?page=${ocartDTO.lastNum+1}">NEXT</a>
+			<c:if test="${pager.next}">
+				<a href="./list?page=${pager.lastNum+1}">NEXT</a>
 			</c:if>
 		</div>
 		

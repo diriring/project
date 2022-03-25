@@ -17,13 +17,25 @@ public class OcartController {
 	@Autowired
 	private OcartService ocartService;
 	
-	//oCart list
+	//getCart(member로 확인)
 	@GetMapping("list")
-	public ModelAndView list(Pager pager) throws Exception{
+	public ModelAndView getCart(OcartDTO ocartDTO) throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
-		List<OcartDTO> ar = ocartService.list(pager);
+		List<OcartDTO> ar = ocartService.getCart(ocartDTO);	
 		mv.addObject("list", ar);
 		mv.setViewName("ocart/list");
+
+		return mv;
+	}
+	
+	//oCart totalList - 필요없을거같음
+	@GetMapping("totalList")
+	public ModelAndView totalList(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OcartDTO> ar = ocartService.totalList(pager);
+		mv.addObject("list", ar);
+		mv.setViewName("ocart/totalList");
 		return mv;
 	}
 	

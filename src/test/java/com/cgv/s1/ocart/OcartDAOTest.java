@@ -18,11 +18,11 @@ public class OcartDAOTest extends MyJunitTest {
 	
 	//카트리스트
 	//@Test
-	public void list() throws Exception{
-		Pager pager = new Pager();
-		List<OcartDTO> ar = ocartDAO.list(pager);
-		assertNotNull(ar);
-	}
+//	public void list() throws Exception{
+//		Pager pager = new Pager();
+//		List<OcartDTO> ar = ocartDAO.list(pager);
+//		assertNotNull(ar);
+//	}
 	
 
 	
