@@ -1,0 +1,49 @@
+.header{
+    width: 80%;
+    margin: 0 auto;
+    background-color: red;
+    height: 100px;
+    overflow: hidden;
+}
+
+
+    div {
+        display: block;
+    }
+
+
+.header_inner {
+    display: inline-flex;
+    
+}
+.search_box{
+    
+    margin-left: 50px;
+    
+    display: inline-flex;
+    
+}
+
+
+.menu_list{
+        font-size: 12px;
+       letter-spacing: 2px;
+       margin-top: 2px;
+       margin-bottom: 10px;
+       text-align: right;
+}
+
+.m{
+    display: inline;
+}
+
+.store_list{
+    display: inline;
+}
+.category{
+    display: inline;
+}
+
+.sm{
+    display: inline;
+}

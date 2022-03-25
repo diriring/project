@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.s1.member.MemberDAO">
+
+	<insert id="join" parameterType="MemberDTO">
+		INSERT INTO OMEMBER (ID, PW, NAME, REGDATE, BIRTH, PHONE, EMAIL, POINT, MEMBERTYPE)
+		VALUES (#{id}, #{pw}, #{name}, SYSDATE, #{birth}, #{phone}, #{email}, 0, #{memberType})
+	</insert>
+
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT ID, PW, NAME, MEMBERTYPE FROM OMEMBER
+		WHERE ID=#{id} AND PW=#{pw}
+	</select>
+	
+	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT ID, NAME, PHONE, EMAIL, BIRTH, POINT, MEMBERTYPE FROM OMEMBER
+		WHERE ID=#{id}
+	</select>
+	
+	<delete id="delete" parameterType="MemberDTO">
+		DELETE OMEMBER WHERE ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="MemberDTO">
+		UPDATE OMEMBER SET NAME=#{name}, BIRTH=#{birth}, PHONE=#{phone}
+		WHERE ID=#{id}
+	</update>
+	
+	<update id="pwUpdate" parameterType="MemberDTO">
+		UPDATE OMEMBER SET PW=#{pw} WHERE ID=#{id}
+	</update>
+	
+	<select id="idCheck" parameterType="MemberDTO" resultType="int">
+		SELECT COUNT(ID) FROM OMEMBER WHERE ID=#{id}
+	</select>
+	
+	<select id="emailCheck" parameterType="MemberDTO" resultType="int">
+		SELECT COUNT(EMAIL) FROM OMEMBER WHERE EMAIL=#{email}
+	</select>
+	
+</mapper>
