@@ -20,7 +20,7 @@ public class OcartController {
 	//getCart(member로 확인)
 	@GetMapping("list")
 	public ModelAndView getCart(OcartDTO ocartDTO) throws Exception{
-		
+		//System.out.println(ocartDTO.pager.);
 		ModelAndView mv = new ModelAndView();
 		List<OcartDTO> ar = ocartService.getCart(ocartDTO);	
 		mv.addObject("list", ar);
@@ -30,13 +30,13 @@ public class OcartController {
 	}
 	
 	//oCart totalList - 필요없을거같음
-	@GetMapping("totalList")
-	public ModelAndView totalList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<OcartDTO> ar = ocartService.totalList(pager);
-		mv.addObject("list", ar);
-		mv.setViewName("ocart/totalList");
-		return mv;
-	}
-	
+//	@GetMapping("totalList")
+//	public ModelAndView totalList(Pager pager) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		List<OcartDTO> ar = ocartService.totalList(pager);
+//		mv.addObject("list", ar);
+//		mv.setViewName("ocart/totalList");
+//		return mv;
+//	}
+//	
 }

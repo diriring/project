@@ -19,13 +19,13 @@
 		<h1> oCart List Page</h1>
 		
 		<!-- paging 처리 -->
- 		<form action="./list" class="search" method="get">
+<%--  		<form action="./list" class="search" method="get">
 			<fieldset>
-				<input type="text" name="search" value="${ocartDTO.search}">
+				<input type="text" name="search" value="${ocartDTO.Pager.search}">
 				<button type="submit">검색</button>
 			</fieldset>
 		</form> 
-		
+		 --%>
 		
  		<table class="table-basic">
 			<tr>
@@ -39,12 +39,13 @@
 					<td>${list.productNum}</td>
 					<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productName}</a></td>
 					<td>${list.productAmount}</td>
+					<%-- <td>${list.search} --%>
 				</tr>
 			</c:forEach>
 		</table>
 		
 		<!-- paging 처리 -->
- 		<div>
+ 		<%-- <div>
 			<c:if test="${ocartDTO.pre}">
 				<a href="./list?page=${ocartDTO.startNum-1}">PREVIEW</a>
 			</c:if>
@@ -54,7 +55,7 @@
 			<c:if test="${ocartDTO.next}">
 				<a href="./list?page=${ocartDTO.lastNum+1}">NEXT</a>
 			</c:if>
-		</div>
+		</div> --%>
 		
 		
 		<%-- admin이 들어왔들때 하기 --%>

@@ -1,5 +1,7 @@
 package com.cgv.s1.ocart;
 
+//import com.cgv.s1.util.Pager;
+
 public class OcartDTO {
 
 	//장바구니
@@ -87,6 +89,24 @@ public class OcartDTO {
 				+ productPrice + ", productDC=" + productDC + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice
 				+ "]";
 	}
+	
+	//-----------------해보는것 시작----------------------
+	//Pager pager = new Pager();
+//	
+//	static class Pager extends com.cgv.s1.util.Pager {
+//		
+//		 private int value = 0;
+//	        public int getValue(){
+//	            return value;
+//	        }
+//
+//	        public void setValue(int value){
+//	            this.value = value;
+//	        }
+//	}
+	
+	//-----------------해보는것 끝----------------------
+	
 	
 	//페이지당 보여줄 row 갯수
 	private Long perPage;

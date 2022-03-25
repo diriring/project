@@ -14,13 +14,13 @@ public class OcartService {
 	private OcartDAO ocartDAO;
 	
 	//카트 총 리스트(검색 용도)
-	public List<OcartDTO> totalList(Pager pager) throws Exception{
-		pager.makeRow();
-		pager.makeNum(ocartDAO.total(pager));
-		return ocartDAO.totalList(pager);
-	}
+	//public List<OcartDTO> totalList(Pager pager) throws Exception{
+//		pager.makeRow();
+//		pager.makeNum(ocartDAO.total(pager));
+//		return ocartDAO.totalList(pager);
+	//}
 	
-	//카트 추가
+	//카트 추가(RESULT 조정필요)
 	public int addCart(OcartDTO ocartDTO) throws Exception{
 		int result = 1;
 		return result;
@@ -29,8 +29,11 @@ public class OcartService {
 	
 	//카트 목록(getCart)
 	public List<OcartDTO> getCart(OcartDTO ocartDTO) throws Exception{
+		
+		//이전
 		ocartDTO.makeRow();
 		ocartDTO.makeNum(ocartDAO.total(ocartDTO));
+		
 		return ocartDAO.getCart(ocartDTO);
 	}
 
