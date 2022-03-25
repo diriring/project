@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.s1.board.review.ReviewDAO">
+	
+	<select id="listFile" parameterType="BoardDTO" resultType="ReviewFileDTO">
+		SELECT * FROM OREVIEWFILE
+		WHERE NUM=#{num}
+	</select>
+	
+	
+	<select id="detailFile" parameterType="ReviewFileDTO" resultType="ReviewFileDTO">
+		SELECT * FROM OREVIEWFILE
+		WHERE FILENUM=#{fileNum}
+	</select>
+	
+	<select id="addFile" parameterType="BoardFileDTO">
+		INSERT INTO OREVIEWFILE(FILENUM, NUM, FILENAME, ORINAME)
+		VALUES (opfile_seq.nextval,#{num}, #{fileName}, #{oriName})
+	</select>
+	
+	<insert id="reply" parameterType="BoardDTO">
+ 		insert into oreview (num, writer, title, contents, regDate, hit, ref, step, depth)
+ 		values (oreview_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
+ 	</insert>
+	
+	<update id="stepUpdate" parameterType="BoardDTO">
+ 		update oreview set step=step+1
+ 		where ref=#{ref} and step>#{step}
+ 	</update>
+	
+	<select id="list" resultType="ReviewDTO" parameterType="Pager">
+	select * from
+		(SELECT rownum R ,B.* from
+			(select * from oreview where 
+			num>0 
+			and
+			
+			<choose>
+				<when test="kind=='col1'">
+					TITLE
+				</when>
+				 <when test="kind=='col2'">
+				 	WRITER
+				 </when>
+				 <otherwise>
+				 	CONTENTS
+				 </otherwise>
+			
+			</choose>
+				LIKE '%' || #{search} || '%'
+			order by num desc) B)
+    where r between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="total" resultType="Long" parameterType="Pager">
+		SELECT COUNT(NUM) FROM OREVIEW
+		WHERE
+			NUM>0
+			AND
+			<choose>
+				<when test="kind=='col1'">
+					TITLE
+				</when>
+				 <when test="kind=='col2'">
+				 	WRITER
+				 </when>
+				 <otherwise>
+				 	CONTENTS
+				 </otherwise>
+			
+			</choose>
+			LIKE '%' || #{search} || '%'
+	</select>
+	
+	<select id="detail" resultType="ReviewDTO" parameterType="ReviewDTO" resultMap="detailResult">
+	
+	SELECT O.*, OFILE.*
+		FROM
+	        OREVIEW O
+	            LEFT OUTER JOIN
+	         OREVIEWFILE OFILE 
+	        	ON O.NUM=OFILE.NUM
+		WHERE   O.NUM=#{num} 
+	</select>
+	
+	<resultMap type="ReviewDTO" id="detailResult">
+ 		<id column="num" property="num"/>
+ 		<result column="title" property="title"/>
+ 		<result column="writer" property="writer"/>
+ 		<result column="contents" property="contents"/>
+ 		<result column="regDate" property="regDate"/>
+ 		<result column="hit" property="hit"/>
+ 		<result column="ref" property="ref"/>
+ 		<result column="step" property="step"/>
+ 		<result column="depth" property="depth"/>
+ 		<collection property="fileDTOs" javaType="List" ofType="ReviewFileDTO">
+ 			<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+ 		</collection>
+ 	</resultMap>
+	
+	<insert id="add" parameterType="ReviewDTO">
+	<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
+ 			SELECT oreview_seq.nextval from dual
+ 		</selectKey>
+	
+	insert into oreview (num, title, writer, contents, regDate, hit, ref, step, depth )
+	values(#{num}, #{title}, #{writer}, #{contents}, sysdate,0 ,#{num}, 0, 0)
+	
+	</insert>
+	
+	<delete id="delete" parameterType="ReviewDTO">
+	delete oreview where num = #{num}
+	</delete>
+	
+	<update id="update" parameterType="ReviewDTO">
+	update oreview set title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+</mapper>

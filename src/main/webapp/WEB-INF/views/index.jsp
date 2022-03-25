@@ -15,6 +15,8 @@
 	
 	
 	<h1>aaa</h1>
+	<a href="/s1/review/list" >Review List</a>
+	<a href="/s1/qna/list"> Qna List</a>
 	
 	<a href="./member/join?type=member">회원가입</a>
 	<a href="./member/login">로그인</a>
