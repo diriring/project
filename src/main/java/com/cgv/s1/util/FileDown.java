@@ -22,6 +22,7 @@ public class FileDown extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+
 		// TODO Auto-generated method stub
 		
 		System.out.println("File Down실행");
@@ -33,13 +34,15 @@ public class FileDown extends AbstractView {
 		String board = (String)model.get("board");
 		
 		String path = "resources/upload/"+board+"/";
+
 		
 		ServletContext sc = request.getSession().getServletContext();
 		
 		path = sc.getRealPath(path);
 		
 		File file = new File(path, fileDTO.getFileName());
-		
+
+
 		System.out.println(file.exists());
 		System.out.println(file.isFile());
 		
@@ -49,8 +52,10 @@ public class FileDown extends AbstractView {
 		//총 파일의 크기
 		response.setContentLength((int)file.length());
 
+
 		//다운시 파일의 이름을 인코딩
 		String fileName = URLEncoder.encode(fileDTO.getOriName(), "UTF-8");
+
 		
 		//Hearder 설정
 		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\"");
@@ -67,15 +72,8 @@ public class FileDown extends AbstractView {
 		os.close();
 		f1.close();
 		
-		
-		
-		
-		
-		
-		
 	}
 		
 	
 
-		
 }

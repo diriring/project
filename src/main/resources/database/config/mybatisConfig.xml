@@ -9,7 +9,6 @@
 
 		<typeAlias type="com.cgv.s1.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.cgv.s1.member.address.MemberAddressDTO" alias="MemberAddressDTO"/>
-
 		<typeAlias type="com.cgv.s1.board.review.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.cgv.s1.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.cgv.s1.board.review.ReviewFileDTO" alias="ReviewFileDTO"/>
@@ -18,6 +17,9 @@
 		<typeAlias type="com.cgv.s1.board.BoardDTO" alias="BoardDTO"/>
   		<typeAlias type="com.cgv.s1.util.Pager" alias="Pager"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="com.cgv.s1.oproduct.OproductDTO" alias="OproductDTO"/>
+		<typeAlias type="com.cgv.s1.oproduct.OproductFileDTO" alias="OproductFileDTO"/>
+		<typeAlias type="com.cgv.s1.ocart.OcartDTO" alias="OcartDTO"/>
 
 
   	</typeAliases>

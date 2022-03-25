@@ -1,6 +1,7 @@
 package com.cgv.s1.util;
 
 public class Pager {
+
 	//페이지당 보여줄 row의 갯수
 	private Long perPage;
 	
@@ -17,15 +18,15 @@ public class Pager {
 	private String search;
 	private String kind;
 	
-	
 	//-----------JSP 사용 변수----------------
+
 	private Long startNum;
 	private Long lastNum;
 	
 	private boolean pre;
 	private boolean next;
 	
-	
+
 	public void makeRow() {
 		this.startRow = (this.getPage()-1)*this.getPerPage()+1;
 		this.lastRow = this.getPage()*this.getPerPage();
@@ -82,12 +83,9 @@ public class Pager {
 
 
 	public Long getPerPage() {
-		
 		if(this.perPage == null|| this.perPage<0){
 			this.perPage=10L;
 		}
-		
-		 
 		return perPage;
 	}
 
@@ -131,6 +129,7 @@ public class Pager {
 		this.lastRow = lastRow;
 	}
 
+
 	public String getSearch() {
 		
 		if(this.search == null) {
@@ -151,6 +150,7 @@ public class Pager {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
+
 
 	public Long getStartNum() {
 		return startNum;
@@ -183,8 +183,7 @@ public class Pager {
 	public void setNext(boolean next) {
 		this.next = next;
 	}
-	
-	
-	
-	
+
+
+
 }

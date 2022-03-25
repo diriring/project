@@ -1,6 +1,7 @@
 package com.cgv.s1.file;
 
 public class FileDTO {
+
 	private Long fileNum;
 	private String fileName;
 	private String oriName;
@@ -11,6 +12,7 @@ public class FileDTO {
 	public void setFileNum(Long fileNum) {
 		this.fileNum = fileNum;
 	}
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -23,6 +25,5 @@ public class FileDTO {
 	public void setOriName(String oriName) {
 		this.oriName = oriName;
 	}
-	
 	
 }

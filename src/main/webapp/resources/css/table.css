@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+
+.table-basic{
+	width:100%;
+	border-collapse: collapse;
+	table-layout:fixed;
+	word-break:break-all;
+}
+
+.table-basic td, .table-basic th{
+	border: 1px solid #000036;
+	border-collapse: collapse;
+	border-spacing: 0;
+	height: 40px;
+	table-layout:fixed;
+}
+
+.table-basic tr:first-child{
+	background-color: #42288f;
+	height:60px;
+	color:white;
+	table-layout:fixed;
+}
+
+.table-basic td {
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+

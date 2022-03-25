@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.cgv.s1.oproduct.OproductDAO">
+
+		<select id="list" resultType="OproductDTO" parameterType="Pager">
+			SELECT * FROM
+			    (SELECT ROWNUM R, N.* FROM
+			    (SELECT * FROM OPRODUCT WHERE 
+			    PRODUCTNUM>0 
+			    AND
+				PRODUCTNAME		    
+			    LIKE '%'||#{search}||'%'
+			   ORDER BY PRODUCTNUM DESC) N)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
+		</select>
+		
+		<select id="total" resultType="Long" parameterType="Pager">
+			SELECT COUNT(PRODUCTNUM) FROM
+			 (SELECT * FROM OPRODUCT WHERE
+			 PRODUCTNUM>0
+			 AND 
+			 PRODUCTNAME		  
+			 LIKE '%'||#{search}||'%')
+		</select>
+			
+		<select id="detail" resultMap="detailResult" parameterType="OproductDTO">
+			<!-- SELECT * FROM OPRODUCT WHERE PRODUCTNUM=#{productNum} -->
+			SELECT OP.*, OPF.*
+			FROM 
+				OPRODUCT OP
+					LEFT OUTER JOIN
+				OPRODUCTFILE OPF
+				ON OP.PRODUCTNUM = OPF.PRODUCTNUM
+			WHERE OP.PRODUCTNUM = #{productNum} 
+		</select>
+		
+ 			<resultMap type="OproductDTO" id="detailResult">
+				<id column="productNum" property="productNum"/>
+				<result column="writer" property="writer"/>
+				<result column="productType" property="productType"/>
+				<result column="productName" property="productName"/>
+				<result column="productDetail" property="productDetail"/>
+				<result column="productPrice" property="productPrice"/>
+				<result column="productDC" property="productDC"/>
+				<result column="productStock" property="productStock"/>
+				<result column="productSale" property="productSale"/>
+				<result column="regDate" property="regDate"/>
+				<collection property="fileDTOs" javaType="List" ofType="OproductFileDTO">
+					<id column="fileNum" property="fileNum"/>
+					<!-- <result column="productNum" property="productNum"/> -->
+					<!-- 새로추가해봄 productNum 찍고싶어서 빼도될듯-->
+					<result column="fileName" property="fileName"/>
+					<result column="oriName" property="oriName"/>
+				</collection>
+			</resultMap>
+	
+		<insert id="add" parameterType="OproductDTO">
+			<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
+				SELECT OPRODUCT_SEQ.NEXTVAL FROM DUAL
+			</selectKey>
+			INSERT INTO OPRODUCT VALUES(#{productNum}, #{writer}, #{productType}, #{productName}, #{productDetail}, 
+			#{productPrice}, #{productDC}, #{productStock}, 0, SYSDATE)
+		</insert>
+		
+		<delete id="delete" parameterType="OproductDTO">
+			DELETE OPRODUCT WHERE PRODUCTNUM=#{productNum}
+		</delete>
+		
+		<update id="update" parameterType="OproductDTO">
+			UPDATE OPRODUCT SET PRODUCTTYPE=#{productType}, PRODUCTNAME=#{productName}, PRODUCTDETAIL=#{productDetail},
+			PRODUCTPRICE=#{productPrice}, PRODUCTDC=#{productDC}, PRODUCTSTOCK=#{productStock} WHERE PRODUCTNUM=#{productNum}
+		</update>
+	
+		<insert id="addFile" parameterType="OproductFileDTO">
+			INSERT INTO OPRODUCTFILE(FILENUM, PRODUCTNUM, FILENAME, ORINAME)
+			VALUES(OPFILE_SEQ.NEXTVAL, #{productNum}, #{fileName}, #{oriName})
+		</insert>
+		
+		<select id="detailFile" parameterType="OproductFileDTO" resultType="OproductFileDTO">
+			SELECT * FROM OPRODUCTFILE
+			WHERE FILENUM=#{fileNum}
+		</select>
+		
+		<select id="listFile" parameterType="OproductDTO" resultType="OproductFileDTO">
+			SELECT * FROM OPRODUCTFILE
+			WHERE PRODUCTNUM=#{productNum}
+		</select>
+
+		<delete id="deleteFile" parameterType="OproductFileDTO">
+			DELETE OPRODUCTFILE WHERE FILENUM=#{fileNum}
+		</delete>
+		
+		<!-- <select id="listFileDelete" parameterType="OproductFileDTO" resultType="OproductFileDTO">
+			SELECT * FROM OPRODUCTFILE
+			WHERE PRODUCTNUM=#{productNum}
+		</select> -->
+		
+
+	</mapper>
