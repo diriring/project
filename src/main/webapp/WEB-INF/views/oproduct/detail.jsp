@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../template/header_css.jsp"></c:import>
+<c:import url="../template/header_css.jsp"></c:import> --%>
 <style type="text/css">
 	#img{
 		width: 200px;
@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import> 
 
 	<h1>OProduct Detail Page</h1>
 	

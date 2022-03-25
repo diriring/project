@@ -12,10 +12,10 @@
 		width: 200px;
 		height: 200px;
 	}
-</style>
+</style> 
 </head>
 <body>
-<c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import> 
 
 	<h1>OProduct Update Page</h1>
 	
