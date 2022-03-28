@@ -1,6 +1,7 @@
 package com.cgv.s1.member;
 
 import java.net.http.HttpResponse;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -298,6 +299,12 @@ public class memberController {
 			mv.setViewName("common/result");
 		}
 		return mv;
+	}
+	
+	//주문/배송 조회 페이지
+	@GetMapping("orderList")
+	public void orderList() throws Exception {
+
 	}
 	
 }

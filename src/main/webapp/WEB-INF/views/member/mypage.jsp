@@ -13,6 +13,10 @@
 	보유하신 포인트 : ${dto.point}P
 	</div>
 	<div>
+		<h4>마이 쇼핑</h4>
+		<ul>
+			<li><a href="./orderList">주문/배송 조회</a></li>
+		</ul>
 		<h4>마이 정보</h4>
 		<ul>
 			<li><a href="./beforeUpdate">회원정보 수정</a></li>
