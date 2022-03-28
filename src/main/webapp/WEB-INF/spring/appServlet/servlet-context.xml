@@ -26,6 +26,32 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	
+	<beans:bean class="com.cgv.s1.interceptor.LoginInterceptor" id="loginInterceptor"/>
+	<beans:bean class="com.cgv.s1.interceptor.NotLoginInterceptor" id="notLoginInterceptor"/>
+	
+	<interceptors>
+	
+		<interceptor>
+			<mapping path="/member/*"/>
+			<mapping path="/member/address/*"/>
+			<exclude-mapping path="/member/join"/>
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/idCheck"/>
+			<exclude-mapping path="/member/emailCheck"/>
+			<exclude-mapping path="/member/idFind"/>
+			<exclude-mapping path="/member/pwFind"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/member/login"/>
+			<mapping path="/member/join"/>
+			<beans:ref bean="notLoginInterceptor"/>
+		</interceptor>
+		
+	</interceptors>
+	
+	
 	<context:component-scan base-package="com.cgv.s1" />
 	
 	

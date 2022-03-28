@@ -26,15 +26,8 @@ public class memberController {
 	
 	//로그인 페이지 이동
 	@RequestMapping(value="login", method=RequestMethod.GET)
-	public String login(HttpSession session) throws Exception {
-		
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+	public String login() throws Exception {
 		String path = "member/login";
-		
-		if(memberDTO != null) {
-			path = "redirect:../";
-		}
-		
 		return path;
 	}
 	
@@ -110,20 +103,13 @@ public class memberController {
 	//마이페이지 이동
 	@GetMapping("mypage")
 	public ModelAndView mypage(HttpSession session) throws Exception {
-		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 
-		if(memberDTO == null) {
-			mv.setViewName("common/result");
-			mv.addObject("message", "로그인 후에 이용가능합니다.");
-			mv.addObject("path", "./login");
-		}else {
-			memberDTO = memberService.mypage(memberDTO);
-			mv.addObject("dto", memberDTO);
-			mv.setViewName("member/mypage");			
-		}
-		
+		memberDTO = memberService.mypage(memberDTO);
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/mypage");			
+
 		return mv;
 	}
 	
@@ -261,6 +247,56 @@ public class memberController {
 			mv.addObject("path", "./pwUpdate");
 		}
 		
+		return mv;
+	}
+	
+	//아이디 찾기 페이지
+	@GetMapping("idFind")
+	public void idFind() throws Exception {
+		
+	}
+	
+	//아이디 찾기 폼 전송
+	@PostMapping("idFind")
+	public ModelAndView idFind(MemberDTO memberDTO) throws Exception {
+		memberDTO = memberService.idFind(memberDTO);
+		ModelAndView mv = new ModelAndView();
+		if(memberDTO != null) {
+			mv.setViewName("member/idFindResult");
+			mv.addObject("dto", memberDTO);
+		}else {
+			mv.setViewName("common/result");
+			mv.addObject("message", "입력하신 정보와 일치하는 가입 정보가 없습니다.");
+			mv.addObject("path", "../");
+		}
+		
+		return mv;
+	}
+	
+	//비밀번호 찾기 페이지
+	@GetMapping("pwFind")
+	public void pwFind() throws Exception {
+		
+	}
+	
+	//비밀번호 찾기 폼 전송
+	@PostMapping("pwFind")
+	public ModelAndView pwFind(MemberDTO memberDTO, HttpServletRequest request) throws Exception {
+		int result = memberService.pwFind(memberDTO);
+		ModelAndView mv = new ModelAndView();
+		if(result == 1) {
+			String newPw = request.getParameter("newPw");
+			memberDTO.setPw(newPw);
+			memberService.pwUpdate(memberDTO);
+			
+			mv.addObject("message", "새로운 비밀번호가 설정되었습니다.");
+			mv.addObject("path", "../");
+			mv.setViewName("common/result");
+		}else {
+			mv.addObject("message", "입력하신 아이디, 이메일과 일치하는 가입정보가 없습니다.");
+			mv.addObject("path", "../");
+			mv.setViewName("common/result");
+		}
 		return mv;
 	}
 	
