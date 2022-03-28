@@ -18,12 +18,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cgv.s1.order.OrderDTO;
+import com.cgv.s1.order.OrderService;
+
 @Controller
 @RequestMapping(value="/member/**")
 public class memberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private OrderService orderService;
 	
 	//로그인 페이지 이동
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -303,8 +308,15 @@ public class memberController {
 	
 	//주문/배송 조회 페이지
 	@GetMapping("orderList")
-	public void orderList() throws Exception {
-
+	public ModelAndView orderList(HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<OrderDTO> ar = orderService.list(memberDTO);
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("orderList", ar);
+		mv.setViewName("member/orderList");
+		
+		return mv;
 	}
 	
 }
