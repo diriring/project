@@ -52,7 +52,7 @@ public class ReviewDAO implements BoardDAO {
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("DAO 퍼페이지"+pager.getPerPage());
+		
 		return sqlSession.selectList(NAMESPACE+"list", pager);
 	}
 	
