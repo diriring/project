@@ -13,9 +13,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	
-	
 	<div class="table-container">
-	
 		<h1> oCart List Page</h1>
 		
 		<!-- paging 처리 -->
@@ -26,21 +24,29 @@
 			</fieldset>
 		</form>
 		
-		
-		<table class="table-basic">
-			<tr>
-				<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
-			</tr>
-			
-			<c:forEach items="${list}" var="list">
+		<form action="../pay/payForm" method="post">
+			<input type="hidden" name="id" value="${member.id}">
+			<table class="table-basic">
 				<tr>
-					<td>${list.cartId}</td>
-					<td>${list.id}</td>
-					<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productNum}</a></td>
-					<td>${list.productAmount}</td>
+					<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
 				</tr>
-			</c:forEach>
-		</table>
+				
+					<c:forEach items="${list}" var="list">
+						<tr>
+							<td>${list.cartId}</td>
+							<td>${list.id}</td>
+							<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productNum}</a></td>
+							<td>${list.productAmount}</td>
+							<td>
+								<input type="checkbox" name="idList" value="${list.cartId}">
+							</td>
+						</tr>
+					</c:forEach>
+			</table>
+			
+			<button type="submit" id="btn">선택한 상품 구매</button>
+		</form>
+		
 		
 		<!-- paging 처리 -->
 		<div>
@@ -53,8 +59,8 @@
 			<c:if test="${pager.next}">
 				<a href="./list?page=${pager.lastNum+1}">NEXT</a>
 			</c:if>
-		</div>
 		
+		</div>
 		
 		<%-- admin이 들어왔들때 하기 --%>
 		<!-- 여기서 member id 랑 member type 같이 보는 방법생각 -->
@@ -62,8 +68,7 @@
 			<a href="./add">ADD</a>
 		</c:if> --%>
 		<a href="./add">ADD</a>
-		
 	</div>
-
+	
 </body>
 </html>

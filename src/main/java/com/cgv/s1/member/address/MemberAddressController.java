@@ -95,5 +95,19 @@ public class MemberAddressController {
 		
 		return mv;
 	}
+	
+	//pay 페이지에서 주소 고르면 바뀌는 ajax 요청 처리
+	@GetMapping("addressChoice")
+	public ModelAndView addressChoice(MemberAddressDTO memberAddressDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		if(memberAddressDTO.getMaNum() != 0) {
+			memberAddressDTO = memberAddressService.addressDetail(memberAddressDTO);
+			mv.addObject("dto", memberAddressDTO);
+			mv.setViewName("common/addressResult");			
+		}else {
+			mv.setViewName("common/addressResult2");
+		}
+		return mv;
+	}
 
 }

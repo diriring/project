@@ -20,6 +20,7 @@
 		<typeAlias type="com.cgv.s1.oproduct.OproductDTO" alias="OproductDTO"/>
 		<typeAlias type="com.cgv.s1.oproduct.OproductFileDTO" alias="OproductFileDTO"/>
 		<typeAlias type="com.cgv.s1.ocart.OcartDTO" alias="OcartDTO"/>
+		<typeAlias type="com.cgv.s1.cartList.CartListDTO" alias="CartListDTO"/>
 
 
   	</typeAliases>

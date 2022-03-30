@@ -61,6 +61,12 @@
 		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">
 			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum}
 		</select>
+		
+		<!-- 결제페이지 관련 주영 추가 -->
+		<select id="detailCart" parameterType="OcartDTO" resultType="OcartDTO">
+			SELECT * FROM OCART WHERE CARTID=#{cartId}
+		</select>
+		
 	</mapper>
 
 

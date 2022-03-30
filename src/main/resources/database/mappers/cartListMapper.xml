@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.s1.cartList.CartListDAO">
+	<insert id="add" parameterType="CartListDTO">
+		INSERT INTO OCARTLIST (NUM, CARTID, GROUPNUM)
+		VALUES (OCLIST_SEQ.NEXTVAL, #{cartId}, #{groupNum})
+	</insert>
+	
+	<select id="getCartList" parameterType="CartListDTO" resultType="CartListDTO">
+		SELECT * FROM OCARTLIST WHERE GROUPNUM=#{groupNum}
+	</select>
+</mapper>
