@@ -154,9 +154,10 @@ public class OcartDTO {
 //	        }
 //	}
 	
+	//안해봤지만 생각해보면 private list<Pager> pager; 선언하면 가능할듯?
 	//-----------------해보는것 끝----------------------
 	
-	//PAGER 추가
+	//PAGER 추가(일단 때려박음 리스트 가져올때 ocartDTO로 가져오기 위해)
 	//페이지당 보여줄 row 갯수
 	private Long perPage;
 
