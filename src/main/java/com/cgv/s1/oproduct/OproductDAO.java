@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import com.cgv.s1.util.Pager;
 
 @Repository
@@ -15,6 +16,12 @@ public class OproductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.cgv.s1.oproduct.OproductDAO.";
 
+	
+	//oProductType List
+	public List<OproductTypeDTO> typeList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"typeList");
+	}
+	
 	// oProduct list
 	public List<OproductDTO> list(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "list", pager);
@@ -62,8 +69,35 @@ public class OproductDAO {
 
     //file Delete
     public int deleteFile(OproductFileDTO oproductFileDTO) throws Exception{
+    	//System.out.println("oproductfile : " + oproductFileDTO.getFileNum());
     	return sqlSession.delete(NAMESPACE+"deleteFile", oproductFileDTO);
     }
+    
+    
+	//fileThumb add 
+	public int addThumbFile(OproductFileThumbDTO oproductFileThumbDTO) throws Exception{
+    	 return sqlSession.insert(NAMESPACE+"addThumbFile", oproductFileThumbDTO);
+	}
+	 
+	//fileThumb detail 
+	public OproductFileThumbDTO detailThumbFile(OproductFileThumbDTO oproductFileThumbDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailThumbFile", oproductFileThumbDTO);
+	}
+	  
+	//fileThumb list 
+    public List<OproductFileThumbDTO> listThumbFile(OproductDTO oproductDTO) throws Exception{ 
+    	return sqlSession.selectList(NAMESPACE+"listThumbFile", oproductDTO); 
+    }	 
+
+    //fileThumb Delete
+    public int deleteThumbFile(OproductFileThumbDTO oproductFileThumbDTO) throws Exception{
+    	//System.out.println("oproductfileDTO : " + oproductFileThumbDTO.getFileNumThumb());
+    	return sqlSession.delete(NAMESPACE+"deleteThumbFile", oproductFileThumbDTO);
+    }
+    
+    
+    
+    
     
     //file Deletelist(새로만든것 fileupdate 때문에)
     //public List<OproductFileDTO> listFileDelete(OproductFileDTO oproductFileDTO) throws Exception{

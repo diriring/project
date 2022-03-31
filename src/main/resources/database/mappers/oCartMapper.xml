@@ -6,7 +6,7 @@
 
 	<mapper namespace="com.cgv.s1.ocart.OcartDAO">
 
-		<!-- 카트 총 리스트 검색용도 -->
+		<!-- 카트 총 리스트(모든항목) 검색용도 필요없을수 있음 -->
 		<select id="list" resultType="OcartDTO" parameterType="Pager">
 			SELECT * FROM
 			    (SELECT ROWNUM R, N.* FROM
@@ -31,24 +31,28 @@
 		
  
 		<!-- 카트 추가 -->
- 		<insert id="addCart">		
-			INSERT INTO OCART(ID, PRODUCTNUM, PRODUCTAMOUNT)
-			VALUES(#{id}, #{productNum}, #{productAmount}) 
+ 		<insert id="addCart" parameterType="OcartDTO">	
+ 			<selectKey keyProperty="cartId" order="BEFORE" resultType="Long">
+				SELECT OCART_SEQ.NEXTVAL FROM DUAL
+			</selectKey>	
+			<!-- payCheck는 default 0 -->
+			INSERT INTO OCART(CARTID, ID, PRODUCTNUM, PRODUCTAMOUNT)
+			VALUES(#{cartId}, #{id}, #{productNum}, #{productAmount})
 		</insert> 
 	
 		<!-- 카트 삭제 -->
- 		<delete id="deleteCart">
+ 		<delete id="deleteCart" parameterType="OcartDTO">
 			DELETE FROM OCART WHERE CARTID = #{cartId}
 		</delete>
 		
 		<!-- 카트 수량 수정 -->
- 		<update id="modifyCount">
+ 		<update id="modifyCount" parameterType="OcartDTO">
 			UPDATE OCART SET PRODUCTAMOUNT=#{productAmount} WHERE ID = #{id}
 		</update> 
 
 		<!-- 카트 목록 -->
- 		<select id="getCart" resultType="OcartDTO" parameterType="OcartDTO">
-			SELECT O.CARTID, O.ID, O.PRODUCTNUM, O.PRODUCTAMOUNT, OP.PRODUCTNAME, OP.PRODUCTPRICE, OP.PRODUCTDC
+ 		<select id="getCart" resultType ="OcartDTO" parameterType="OcartDTO">
+			SELECT O.CARTID, O.ID, O.PRODUCTNUM, O.PRODUCTAMOUNT, OP.PRODUCTNAME, OP.PRODUCTPRICE, OP.PRODUCTDC, OPFT.FILENAMETHUMB, OPFT.ORINAMETHUMB
 			FROM 
 				(SELECT * FROM
 			    (SELECT ROWNUM R, N.* FROM
@@ -62,8 +66,28 @@
 					LEFT OUTER JOIN
 				OPRODUCT OP
 				ON O.PRODUCTNUM = OP.PRODUCTNUM
+					LEFT OUTER JOIN
+			    OPRODUCTFILETHUMB OPFT
+			    ON O.PRODUCTNUM = OPFT.PRODUCTNUM  
 			WHERE id=#{id}
 		</select>
+		
+		<!-- 이거 실패 -->
+		<!-- pk가 cartid가 들어가는데 productNum으로 참조가 안되서 그런가?
+		<resultMap type="OcartDTO" id="detailResult">
+			<id column="cartId" property="cartId"/>
+			<result column="id" property="id"/>
+			<result column="productNum" property="productNum"/>
+			<result column="productAmount" property="productAmount"/>
+			<result column="payCheck" property="payCheck"/>
+			썸네일 가져오기
+			<collection property="thumbFilesDTOs" javaType="List" ofType="OproductFileThumbDTO">
+				<id column="fileNumThumb" property="fileNumThumb"/>
+				<result column="fileNameThumb" property="fileNameThumb"/>
+				<result column="oriNameThumb" property="oriNameThumb"/>
+			</collection>
+		</resultMap>
+		-->
 		
 		<!-- 카트 확인 -->
 		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">

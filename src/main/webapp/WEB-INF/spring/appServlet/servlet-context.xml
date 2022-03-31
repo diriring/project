@@ -7,6 +7,8 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+	
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -26,8 +28,42 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	
+	<interceptors>
+	
+		<!-- ocart interceptor -->
+		<interceptor>
+			<mapping path="/ocart/**"/>
+			<exclude-mapping path="/ocart/add"/>
+			<beans:ref bean="oCartInterceptor"/>
+		</interceptor>
+	
+		<interceptor>
+			<mapping path="/oproduct/**"/>
+			<exclude-mapping path="/oproduct/list"/>
+			<exclude-mapping path="/oproduct/detail"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+
+	</interceptors>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<context:component-scan base-package="com.cgv.s1" />
 	
 	
+
 	
 </beans:beans>

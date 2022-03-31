@@ -1,30 +1,72 @@
 package com.cgv.s1.ocart;
 
+import java.util.List;
+
+import com.cgv.s1.oproduct.OproductFileThumbDTO;
+
 //import com.cgv.s1.util.Pager;
 
 public class OcartDTO {
 
-	//장바구니
+	//장바구니내 변수
 	private Long cartId;
 	private String id;
 	private Long productNum;
 	private Integer productAmount;
 	private Integer payCheck;
 	
-	//상품
+	//상품 담는 변수
 	private String productName;
 	private	Integer productPrice;
 	private Double productDC;
+
+	//썸네일 파일 담기(여러개라 리스트로)
+	private List<OproductFileThumbDTO> thumbFilesDTOs;
+	public List<OproductFileThumbDTO> getThumbFilesDTOs() {
+		return thumbFilesDTOs;
+	}
+	public void setThumbFilesDTOs(List<OproductFileThumbDTO> thumbFilesDTOs) {
+		this.thumbFilesDTOs = thumbFilesDTOs;
+	}
 	
+	//썸네일 파일담기(하나씩해보자)ㄴㄴ
+//	private OproductFileThumbDTO oproductFileThumbDTO;
+//	public OproductFileThumbDTO getOproductFileThumbDTO() {
+//		return oproductFileThumbDTO;
+//	}
+//	public void setOproductFileThumbDTO(OproductFileThumbDTO oproductFileThumbDTO) {
+//		this.oproductFileThumbDTO = oproductFileThumbDTO;
+//	}
+
+	//일단 이거로 안담기면 위에꺼
+//	private List<OcartDTO> thumbFilesDTOs;
+//	public List<OcartDTO> getThumbFilesDTOs() {
+//		return thumbFilesDTOs;
+//	}
+//	public void setThumbFilesDTOs(List<OcartDTO> thumbFilesDTOs) {
+//		this.thumbFilesDTOs = thumbFilesDTOs;
+//	}
+
+	
+	//=========계산식 변수========
 	//추가 - setter 미구현
     private Integer salePrice;
     private Integer totalPrice;
+    //포인트 담기
+    private Integer point;
+    private Integer totalPoint;
     
     //변수값 초기화 - product변화시 구현
 	public void initSaleTotal() {
-		this.salePrice = (int)(this.productPrice * (1-this.productDC));
+		//productDC % 0.01곱하는거로 처리
+		this.salePrice = (int)(this.productPrice * (1-this.productDC*0.01));
 		this.totalPrice = this.salePrice*this.productAmount;
+		//각각 포인트 0.05 포인트 구현
+		this.point = (int)(Math.floor(this.salePrice*0.05));
+		//총 포인트
+		this.totalPoint =this.point * this.productAmount;
 	}
+	//=========계산식 변수 끝=========
 
 	public Long getCartId() {
 		return cartId;
@@ -81,14 +123,21 @@ public class OcartDTO {
 		return totalPrice;
 	}
 
-	//toString
-	@Override
-	public String toString() {
-		return "OcartDTO [cartId=" + cartId + ", id=" + id + ", productNum=" + productNum + ", productAmount="
-				+ productAmount + ", payCheck=" + payCheck + ", productName=" + productName + ", productPrice="
-				+ productPrice + ", productDC=" + productDC + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice
-				+ "]";
+	public Integer getPoint() {
+		return point;
 	}
+
+	public Integer getTotalPoint() {
+		return totalPoint;
+	}
+
+	
+	
+
+	//toString(할지?) 미구현
+	
+
+	
 	
 	//-----------------해보는것 시작----------------------
 	//Pager pager = new Pager();
@@ -107,7 +156,7 @@ public class OcartDTO {
 	
 	//-----------------해보는것 끝----------------------
 	
-	
+	//PAGER 추가
 	//페이지당 보여줄 row 갯수
 	private Long perPage;
 

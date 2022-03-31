@@ -5,19 +5,34 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.cgv.s1.oproduct.OproductDAO">
-
-		<select id="list" resultType="OproductDTO" parameterType="Pager">
-			SELECT * FROM
+	
+		<!-- 타입 리스트 가져오기 -->
+		<select id="typeList" resultType="OproductTypeDTO">
+			SELECT * FROM OPRODUCTTYPE ORDER BY PRODUCTTYPE
+		</select>
+	
+		<!-- 전체 리스트 출력 -->
+		<select id="list" resultMap="detailResult" parameterType="Pager">
+			SELECT OP.*, OT.typeName, OPFT.* FROM
 			    (SELECT ROWNUM R, N.* FROM
 			    (SELECT * FROM OPRODUCT WHERE 
 			    PRODUCTNUM>0 
 			    AND
 				PRODUCTNAME		    
 			    LIKE '%'||#{search}||'%'
-			   ORDER BY PRODUCTNUM DESC) N)
+			   ORDER BY PRODUCTNUM DESC) N) OP
+			   		LEFT OUTER JOIN
+		       OPRODUCTTYPE OT
+    		   ON OP.PRODUCTTYPE = OT.PRODUCTTYPE
+			  	   LEFT OUTER JOIN
+			   OPRODUCTFILETHUMB OPFT
+			   ON OP.PRODUCTNUM = OPFT.PRODUCTNUM  
 			WHERE R BETWEEN #{startRow} AND #{lastRow}
+			ORDER BY OP.PRODUCTNUM DESC
+			
 		</select>
 		
+		<!-- 페이징 처리시 숫자 가져오기 -->
 		<select id="total" resultType="Long" parameterType="Pager">
 			SELECT COUNT(PRODUCTNUM) FROM
 			 (SELECT * FROM OPRODUCT WHERE
@@ -27,21 +42,28 @@
 			 LIKE '%'||#{search}||'%')
 		</select>
 			
+		<!-- 상품 세부 내용 출력 -->
 		<select id="detail" resultMap="detailResult" parameterType="OproductDTO">
-			<!-- SELECT * FROM OPRODUCT WHERE PRODUCTNUM=#{productNum} -->
-			SELECT OP.*, OPF.*
+			SELECT OP.*, OPF.*, OT.*, OPFT.*
 			FROM 
-				OPRODUCT OP
-					LEFT OUTER JOIN
-				OPRODUCTFILE OPF
-				ON OP.PRODUCTNUM = OPF.PRODUCTNUM
-			WHERE OP.PRODUCTNUM = #{productNum} 
+			    OPRODUCT OP
+			        LEFT OUTER JOIN
+			    OPRODUCTFILE OPF
+			    ON OP.PRODUCTNUM = OPF.PRODUCTNUM
+			    	LEFT OUTER JOIN
+			    OPRODUCTFILETHUMB OPFT
+			    ON OP.PRODUCTNUM = OPFT.PRODUCTNUM  
+			        LEFT OUTER JOIN
+			    OPRODUCTTYPE OT
+			    ON OP.PRODUCTTYPE = OT.PRODUCTTYPE
+			WHERE OP.PRODUCTNUM = #{productNum}
 		</select>
-		
+			<!-- column은 위 select문에서 가져온것을 넣고, property는 DTO에 그 값을 넣는 변수명을 뜻함 -->
  			<resultMap type="OproductDTO" id="detailResult">
 				<id column="productNum" property="productNum"/>
 				<result column="writer" property="writer"/>
 				<result column="productType" property="productType"/>
+				<result column="typeName" property="typeName"/>
 				<result column="productName" property="productName"/>
 				<result column="productDetail" property="productDetail"/>
 				<result column="productPrice" property="productPrice"/>
@@ -49,6 +71,14 @@
 				<result column="productStock" property="productStock"/>
 				<result column="productSale" property="productSale"/>
 				<result column="regDate" property="regDate"/>
+				<!-- thumbFile -->
+				<!-- 같은 id(fileNum)으로 받아서 꼬여서 새로(fileNumThumb) 추가 -->
+				<association property="oproductFileThumbDTO" javaType="OproductFileThumbDTO"> 
+					<id column="fileNumThumb" property="fileNumThumb"/>
+					<result column="fileNameThumb" property="fileNameThumb"/>
+					<result column="oriNameThumb" property="oriNameThumb"/>
+				</association>
+				<!-- detailFile -->
 				<collection property="fileDTOs" javaType="List" ofType="OproductFileDTO">
 					<id column="fileNum" property="fileNum"/>
 					<!-- <result column="productNum" property="productNum"/> -->
@@ -58,6 +88,7 @@
 				</collection>
 			</resultMap>
 	
+		<!-- 상품 추가 -->
 		<insert id="add" parameterType="OproductDTO">
 			<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
 				SELECT OPRODUCT_SEQ.NEXTVAL FROM DUAL
@@ -66,15 +97,19 @@
 			#{productPrice}, #{productDC}, #{productStock}, 0, SYSDATE)
 		</insert>
 		
+		<!-- 상품 삭제 -->
 		<delete id="delete" parameterType="OproductDTO">
 			DELETE OPRODUCT WHERE PRODUCTNUM=#{productNum}
 		</delete>
 		
+		<!-- 상품 수정 -->
 		<update id="update" parameterType="OproductDTO">
 			UPDATE OPRODUCT SET PRODUCTTYPE=#{productType}, PRODUCTNAME=#{productName}, PRODUCTDETAIL=#{productDetail},
 			PRODUCTPRICE=#{productPrice}, PRODUCTDC=#{productDC}, PRODUCTSTOCK=#{productStock} WHERE PRODUCTNUM=#{productNum}
 		</update>
-	
+		
+		
+		<!-- detail file 관리 -->
 		<insert id="addFile" parameterType="OproductFileDTO">
 			INSERT INTO OPRODUCTFILE(FILENUM, PRODUCTNUM, FILENAME, ORINAME)
 			VALUES(OPFILE_SEQ.NEXTVAL, #{productNum}, #{fileName}, #{oriName})
@@ -94,6 +129,35 @@
 			DELETE OPRODUCTFILE WHERE FILENUM=#{fileNum}
 		</delete>
 		
+		
+		<!-- thumbNail file 관리 -->
+		<!-- OPFILE과 SEQ 공유함 -->
+		<insert id="addThumbFile" parameterType="OproductFileThumbDTO">
+			INSERT INTO OPRODUCTFILETHUMB(FILENUMTHUMB, PRODUCTNUM, FILENAMETHUMB, ORINAMETHUMB)
+			VALUES(OPFILE_SEQ.NEXTVAL, #{productNum}, #{fileNameThumb}, #{oriNameThumb})
+		</insert>
+		
+		<select id="detailThumbFile" parameterType="OproductFileThumbDTO" resultType="OproductFileThumbDTO">
+			SELECT * FROM OPRODUCTFILETHUMB
+			WHERE FILENUMTHUMB=#{fileNumThumb}
+		</select>
+		
+		<select id="listThumbFile" parameterType="OproductDTO" resultType="OproductFileThumbDTO">
+			SELECT * FROM OPRODUCTFILETHUMB
+			WHERE PRODUCTNUM=#{productNum}
+		</select>
+
+		<delete id="deleteThumbFile" parameterType="OproductFileThumbDTO">
+			DELETE OPRODUCTFILETHUMB WHERE FILENUMTHUMB=#{fileNumThumb}
+		</delete>
+		
+		
+		
+		
+		
+		
+		
+		<!-- 필요 없을거 같음 -->
 		<!-- <select id="listFileDelete" parameterType="OproductFileDTO" resultType="OproductFileDTO">
 			SELECT * FROM OPRODUCTFILE
 			WHERE PRODUCTNUM=#{productNum}

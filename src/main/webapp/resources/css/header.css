@@ -1,19 +1,17 @@
 
-.header{
+/* .header{
     width: 80%;
     margin: 0 auto;
     background-color: red;
     height: 100px;
     overflow: hidden;
 }
+ */
 
 
-    div {
-        display: block;
-    }
 
 
-.header_inner {
+/* .header_inner {
     display: inline-flex;
     
 }
@@ -48,10 +46,9 @@
 .sm{
     display: inline;
 }
+ */
 
-
-/* @charset "UTF-8";
-
+@charset "UTF-8";
 
 .header{
     width: 100%;
@@ -65,6 +62,7 @@
     background-size: cover;
     font-size: larger;
 }
+
 
 .menu{
     width: 600px;
@@ -113,7 +111,7 @@
 .icon{
 	vertical-align: bottom;
 }
- */
+
 
 
 

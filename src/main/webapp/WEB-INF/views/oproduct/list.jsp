@@ -8,7 +8,14 @@
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <link href="../resources/css/table.css" rel="styleSheet"/>
-<link href="../resources/css/list.css" rel="styleSheet"/> 
+<link href="../resources/css/list.css" rel="styleSheet"/>
+<style type="text/css">
+	#img{
+			margin-left: 10px;
+			width: 100px;
+			height: 100px;
+		}
+</style> 
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import> 
@@ -19,6 +26,7 @@
 		<h1> OProduct Page</h1>
 		
 		<!-- paging 처리 -->
+		<!-- 아직 미완성 카테고리, 이름 별 검색 만들기 -->
 		<form action="./list" class="search" method="get">
 			<fieldset>
 				<input type="text" name="search" value="${pager.search}">
@@ -29,15 +37,20 @@
 		
 		<table class="table-basic">
 			<tr>
-				<th>상품번호</th><th>상품이름</th><th>상품가격</th><th>작성자</th>
+				<th>이미지</th><th>상품번호</th><th>상품이름</th><th>카테고리</th><th>상품가격</th><th>등록날짜</th><th>재고</th>
 			</tr>
 			
 			<c:forEach items="${list}" var="list">
 				<tr>
+					<td>
+						<img alt="" src="../resources/upload/oproduct/thumbnail/${list.oproductFileThumbDTO.fileNameThumb}" id="img">
+					</td>															
 					<td>${list.productNum}</td>
 					<td><a href="./detail?productNum=${list.productNum}">${list.productName}</a></td>
+					<td>${list.typeName}</td>
 					<td>${list.productPrice}</td>
-					<td>${list.writer}</td>
+					<td>${list.regDate}</td>
+					<td>${list.productStock}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -55,15 +68,10 @@
 			</c:if>
 		</div>
 		
-		
-		<%-- admin이 들어왔들때 하기 --%>
-		<!-- 여기서 member id 랑 member type 같이 보는 방법생각 -->
-		<%-- <c:if test="${not empty member}">
-			c:if 새로 넣고 eq member.type
+		<c:if test="${not empty member}">
 			<a href="./add">ADD</a>
-		</c:if> --%>
-		<a href="./add">ADD</a>
-		
+		</c:if>
+	
 	</div>
 
 </body>

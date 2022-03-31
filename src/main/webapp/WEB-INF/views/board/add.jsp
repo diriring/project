@@ -6,8 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 내가추가 -->
+<c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
+<!-- -- 기존 --
+</head>
+<body> -->
 	${Board} ADD Page
 	<form action="./add" method="post" enctype="multipart/form-data">
 		Title<input type="text" name="title">

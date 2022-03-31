@@ -38,7 +38,7 @@ public class OproductDAOTest extends MyJunitTest {
 	public void addTest() throws Exception{
 		OproductDTO oproductDTO = new OproductDTO();
 		oproductDTO.setWriter("W");
-		oproductDTO.setProductType(1);
+		oproductDTO.setProductType("1");
 		oproductDTO.setProductName("N");
 		oproductDTO.setProductDetail("D");
 		oproductDTO.setProductPrice(1000);

@@ -1,19 +1,15 @@
 
-
+/* 
 *{
     margin: 0;
     padding: 0;
 
 }
 
-a{
-    
-    color: black;
-}
+ */
 
-
-/* @charset "UTF-8"; */
-/* *{
+ @charset "UTF-8"; 
+ *{
     list-style: none;
     text-decoration: none;
     border-collapse: collapse;
@@ -23,5 +19,9 @@ a{
 
     font-family: 'Noto Sans', sans-serif;
     font-family: 'Noto Sans KR', sans-serif;
-} */
+} 
 
+
+a{
+    text-decoration: none;
+}

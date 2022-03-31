@@ -6,9 +6,10 @@ import java.util.List;
 
 public class OproductDTO {
 
+	//상품내 변수
 	private Long productNum;
 	private String writer;
-	private Integer productType;
+	private String productType;
 	private String productName;
 	private String productDetail;
 	private Integer productPrice;
@@ -16,7 +17,37 @@ public class OproductDTO {
 	private Integer productStock;
 	private Integer productSale;
 	private Date regDate;
+	
+	//디테일 파일 담기 
 	private List<OproductDTO> fileDTOs;
+	
+	public List<OproductDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<OproductDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
+	
+	//썸네일 파일 담기
+	private OproductFileThumbDTO oproductFileThumbDTO;
+
+	public OproductFileThumbDTO getOproductFileThumbDTO() {
+		return oproductFileThumbDTO;
+	}
+	public void setOproductFileThumbDTO(OproductFileThumbDTO oproductFileThumbDTO) {
+		this.oproductFileThumbDTO = oproductFileThumbDTO;
+	}
+	
+	//타입
+	private String typeName;
+	
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+	
 	
 	public Long getProductNum() {
 		return productNum;
@@ -30,10 +61,10 @@ public class OproductDTO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Integer getProductType() {
+	public String getProductType() {
 		return productType;
 	}
-	public void setProductType(Integer productType) {
+	public void setProductType(String productType) {
 		this.productType = productType;
 	}
 	public String getProductName() {
@@ -79,12 +110,7 @@ public class OproductDTO {
 		this.regDate = regDate;
 	}
 	
-	public List<OproductDTO> getFileDTOs() {
-		return fileDTOs;
-	}
-	public void setFileDTOs(List<OproductDTO> fileDTOs) {
-		this.fileDTOs = fileDTOs;
-	}
+	
 	
 	
 }

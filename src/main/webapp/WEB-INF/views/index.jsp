@@ -7,8 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 내꺼 -->
+<c:import url="./template/header_css.jsp"></c:import>
 </head>
 <body>
+<c:import url="./template/header.jsp"></c:import>
+
+
+<%--
+</head>
+<body>
+ 기존 
 	<h1>
 		new project 
 	</h1>
@@ -26,12 +35,8 @@
 	<a href="./member/logout">로그아웃</a>
 	<a href="./member/mypage">마이페이지</a>
 	<a href="./member/join?type=seller">사업자등록</a>
-
-<%-- <c:import url="./template/header_css.jsp"></c:import>
-</head>
-<body>
-<c:import url="./template/header.jsp"></c:import>
  --%>
+
 
 
 </body>

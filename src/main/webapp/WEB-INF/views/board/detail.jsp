@@ -6,8 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 내가추가 -->
+<c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
+<!-- -- 기존 --
+</head>
+<body> -->
 	<h1>${board} 짜잔 Detail</h1>
 	
 	<h3>제목 : ${dto.title}</h3>
