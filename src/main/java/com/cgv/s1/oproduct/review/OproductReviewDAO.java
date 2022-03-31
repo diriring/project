@@ -14,12 +14,22 @@ public class OproductReviewDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private String NAMESPACE = "com.cgv.s1.opoduct.review.OproductReviewDAO.";
+	private String NAMESPACE = "com.cgv.s1.oproduct.review.OproductReviewDAO.";
 	
-	public List<OproductReviewDTO> list(Pager pager)throws Exception{
+	public List<OproductReviewDTO> list(OproductReviewDTO oproductReviewDTO)throws Exception{
 		
 		
-		return sqlSession.selectList(NAMESPACE+"list", pager);
+		return sqlSession.selectList(NAMESPACE+"list", oproductReviewDTO);
+	}
+	
+	public int add(OproductReviewDTO oproductReviewDTO)throws Exception{
+		
+		return sqlSession.insert(NAMESPACE+"add", oproductReviewDTO);
+	}
+	
+	public int update(OproductReviewDTO oproductReviewDTO)throws Exception{
+		
+		return sqlSession.update(NAMESPACE+"update", oproductReviewDTO);
 	}
 	
 }

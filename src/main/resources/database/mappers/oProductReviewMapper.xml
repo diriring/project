@@ -6,8 +6,22 @@
 
 <mapper namespace="com.cgv.s1.oproduct.review.OproductReviewDAO">
 
-	<select id="list" resultType="OproductReviewDTO" parameterType="Pager">
+	<select id="list" resultType="OproductReviewDTO" parameterType="OproductReviewDTO">
 		SELECT * FROM OPRODUCTREVIEW
+    	WHERE NUM=#{num}
+    	ORDER BY REPLYNUM DESC
 	</select>
+	
+	<insert id="add" parameterType="OproductReviewDTO">
+	
+	insert into OPRODUCTREVIEW(REPLYNUM, NUM, WRITER, CONTENTS, REGDATE)
+	VALUES (OPRODUCTREVIEW_SEQ.nextval, #{num}, #{writer}, #{contents}, sysdate)
+	
+	</insert>
+	
+	<update id="update" parameterType="OproductReviewDTO">
+		update OPRODUCTREVIEW SEY CONTENTS = #{contents}
+		WHERE REPLYNUM =#{replyNum}
+	</update>
 
 </mapper>
