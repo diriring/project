@@ -33,5 +33,9 @@
 	
 	<a href="./delete?num=${dto.num}">Delete</a>
 	<a href="./update?num=${dto.num}">Update</a>
+	
+<!-- 내가추가 -->
+<c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/header_js.jsp"></c:import>	
 </body>
 </html>

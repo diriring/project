@@ -24,5 +24,9 @@
 		<button type="submit">Reply</button>
 	
 	</form>
+	
+<!-- 내가추가 -->
+<c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/header_js.jsp"></c:import>	
 </body>
 </html>

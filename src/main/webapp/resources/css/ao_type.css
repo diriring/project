@@ -15,7 +15,8 @@
     margin-top: 20px;
 }
 
-/* 관리자 컨텐츠 메인 영역 */
+/* 메인 */
+
 .form_section{
 	width: 95%;
     margin-left: 2%;
@@ -23,6 +24,7 @@
     border: 1px solid #dbdde2;
     background-color: #efefef;	
 }
+
 .form_section_title{
 	padding: 20px 35px;	
 }

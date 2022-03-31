@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
-<link rel="stylesheet" href="../resources/css/type.css">
+<link rel="stylesheet" href="../resources/css/ao_type.css">
 <style type="text/css">
 	.img{
 		width: 200px;
@@ -358,6 +358,21 @@
 	
 	<script src="../resources/js/fileUpdate.js"></script>
 	<script src="../resources/js/oproductUpdate.js"></script>
+	
+	<c:import url="../template/footer.jsp"></c:import>
+	<%-- <c:import url="../template/header_js.jsp"></c:import> --%>
+		<!-- jquery 작동안해서 임시로 -->
+	<!-- Js Plugins -->
+		<!-- <script src="/s1/resources/js/jquery.nice-select.min.js"></script> -->
+		<!-- 이 부분때문에 작동안함 -->
+	 <script src="/s1/resources/js/jquery-3.3.1.min.js"></script>
+	 <script src="/s1/resources/js/bootstrap.min.js"></script>
+	 <script src="/s1/resources/js/jquery-ui.min.js"></script>
+	 <script src="/s1/resources/js/jquery.slicknav.js"></script>
+	 <script src="/s1/resources/js/mixitup.min.js"></script>
+	 <script src="/s1/resources/js/owl.carousel.min.js"></script>
+	 <script src="/s1/resources/js/main.js"></script>
+
 </body>
 </html>
 

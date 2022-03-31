@@ -234,5 +234,7 @@
 	
 	<script src="../resources/js/ocartTotalCount.js"></script>
 
+<c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/header_js.jsp"></c:import>	
 </body>
 </html>

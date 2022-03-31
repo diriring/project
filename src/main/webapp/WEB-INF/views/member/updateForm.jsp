@@ -7,8 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 내가추가 -->
+<c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
+<!-- -- 기존 --
+</head>
+<body> -->
 	<h1>회원정보 수정</h1>
 	
 	<c:set var="fullBirth" value="${dto.birth}"></c:set>
@@ -73,5 +79,9 @@
 	</form>
 
 	<script src="../resources/js/update.js"></script>
+	
+<!-- 내가추가 -->
+<c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/header_js.jsp"></c:import>	
 </body>
 </html>
