@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
-<link rel="stylesheet" href="../resources/css/ocart.css">
+<link rel="stylesheet" href="../resources/css/ao_ocart.css">
 <style type="text/css">
 	#img{
 			margin-left: 10px;

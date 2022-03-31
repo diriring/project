@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
-<link href="../resources/css/table.css" rel="styleSheet"/>
-<link href="../resources/css/list.css" rel="styleSheet"/>
+<link href="../resources/css/ao_table.css" rel="styleSheet"/>
+<link href="../resources/css/ao_list.css" rel="styleSheet"/>
+
 <style type="text/css">
 	#img{
 			margin-left: 10px;
@@ -73,6 +74,9 @@
 		</c:if>
 	
 	</div>
-
+<c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/header_js.jsp"></c:import>
 </body>
+
+
 </html>

@@ -1,10 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"  rel="stylesheet">
-<link rel="stylesheet" href="/s1/resources/css/reset.css">
-<link rel="stylesheet" href="/s1/resources/css/header.css">
 
+ 	<meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/s1/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/s1/resources/css/style.css" type="text/css">
 

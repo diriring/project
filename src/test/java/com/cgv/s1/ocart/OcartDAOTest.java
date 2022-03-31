@@ -34,8 +34,8 @@ public class OcartDAOTest extends MyJunitTest {
 		List<OcartDTO> ar = ocartDAO.getCart(ocartDTO);
 		for(OcartDTO cart : ar) {
 			System.out.println(cart);
-			cart.initSaleTotal();
-			System.out.println("init cart : " + cart);
+			cart.Cal();
+			System.out.println("Cal cart : " + cart);
 		}
 	}
 

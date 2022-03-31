@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
-<link rel="stylesheet" href="../resources/css/type.css">
+<link rel="stylesheet" href="../resources/css/ao_type.css">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -230,6 +230,8 @@
 	<!-- 나중에 javascript에서 처리-->
 	<!-- <script src="../resources/js/oproductType.js"></script> -->
 	
+	<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/header_js.jsp"></c:import>
 
 </body>
 </html>

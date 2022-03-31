@@ -55,7 +55,7 @@ public class OcartService {
 		
 		for(OcartDTO dto : cart){
 			//함수 가지고 와서 각각 적용
-			dto.initSaleTotal();
+			dto.Cal();
 			
 //			//썸네일 이미지 가지고오기
 			//oproduct 생성해서

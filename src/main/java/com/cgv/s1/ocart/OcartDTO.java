@@ -57,7 +57,7 @@ public class OcartDTO {
     private Integer totalPoint;
     
     //변수값 초기화 - product변화시 구현
-	public void initSaleTotal() {
+	public void Cal() {
 		//productDC % 0.01곱하는거로 처리
 		this.salePrice = (int)(this.productPrice * (1-this.productDC*0.01));
 		this.totalPrice = this.salePrice*this.productAmount;

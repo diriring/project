@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/detail.css">
+<link rel="stylesheet" href="../resources/css/ao_detail.css">
 <c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
@@ -109,5 +109,10 @@
 		</div>
 		
 		<script src="../resources/js/detail.js"></script>
+
+<c:import url="../template/footer.jsp"></c:import>
+<c:import url="../template/header_js.jsp"></c:import>
+
 </body>
+
 </html>
