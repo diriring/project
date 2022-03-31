@@ -93,8 +93,10 @@
 			</tr>
 			<tr>
 				<td>최종 결제금액</td>
-				<input id="totalPrice" type="hidden" value="${totalPrice + 2500}" readonly>
-				<td><div id="totalPriceResult">${totalPrice + 2500}원</div></td>
+				<td>
+					<input id="totalPrice" type="hidden" value="${totalPrice + 2500}" readonly>
+					<div id="totalPriceResult">${totalPrice + 2500}원</div>
+				</td>
 			</tr>
 		</table>
 	</div>
