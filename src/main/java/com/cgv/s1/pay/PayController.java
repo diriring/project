@@ -2,8 +2,6 @@ package com.cgv.s1.pay;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +22,8 @@ import com.cgv.s1.oproduct.OproductService;
 @RequestMapping(value="/pay/**")
 public class PayController {
 	
+	@Autowired
+	private PayService payService;
 	@Autowired
 	private OcartService ocartService;
 	@Autowired
@@ -53,7 +53,7 @@ public class PayController {
 			productDTO = oproductService.detail(productDTO);
 			productList.add(productDTO);
 			//가격
-			double price = productDTO.getProductPrice() - productDTO.getProductDC();
+			double price = productDTO.getProductPrice() * (1 - productDTO.getProductDC() / 100);
 			totalPrice = totalPrice + price;
 		}
 		

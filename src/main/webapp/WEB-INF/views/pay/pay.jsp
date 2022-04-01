@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>주문/결제</h1>
-	<form action="">
+	<form action="./add" method="post" id="payFrm">
 	<div>
 		<h3>배송지 정보</h3>
 		<table>
@@ -36,7 +36,7 @@
 					<input type="text" id="address" placeholder="주소" readonly><br>
 					<input type="text" id="detailAddress" placeholder="상세주소">
 					<input type="text" id="extraAddress" placeholder="참고항목">
-					<input type="hidden" name="mAddress2" id="mAddress2">
+					<input type="hidden" name="arrive" id="mAddress2">
 				</td>
 			</tr>
 		</table>
@@ -58,7 +58,7 @@
 					<td>${product.productName}</td>
 					<td>${product.productPrice}원</td>
 					<td>${cartList[status.index].productAmount}개</td>
-					<td>${product.productPrice - product.productDC}원</td>
+					<td>${product.productPrice * (1 - product.productDC / 100)}원</td>
 				</tr>
 			</c:forEach>
 			
@@ -94,7 +94,8 @@
 			<tr>
 				<td>최종 결제금액</td>
 				<td>
-					<input id="totalPrice" type="hidden" value="${totalPrice + 2500}" readonly>
+					<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice}" readonly="readonly">
+					<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice + 2500}" readonly>
 					<div id="totalPriceResult">${totalPrice + 2500}원</div>
 				</td>
 			</tr>
@@ -102,7 +103,7 @@
 	</div>
 	</form>
 	<a href="../ocart/list">취소</a>
-	<button type="button">결제</button>
+	<button type="button" id="payBtn">결제</button>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="../resources/js/pay.js"></script>
 </body>
