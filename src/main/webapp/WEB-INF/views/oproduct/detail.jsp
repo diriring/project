@@ -15,6 +15,7 @@
 	<!-- 중요 잊지말고 구매가 진행되면 재고에서 없어지고 판매량 늘어나는 코드 작성할것 -->
 	<h1>OProduct Detail Page</h1>
 	
+
 		<div class="content_area">
 			<div class="line">
 			</div>			
@@ -94,6 +95,27 @@
 			</div>
 			<div class="line">
 			</div>
+		<!-- product Review -->	
+		<hr>
+		
+		<h3>Review 작성</h3>
+		<input type="hidden" name="num" value="${dto.productNum}" id="num">
+		<input type="text" name="writer" id="writer" value="${member.id}" readonly><!-- value="${member.id}" readonly 멤버 추가되면 추가할것 -->
+		<textarea rows="" cols="" name="contents" id="contents"></textarea>
+		<button type="button" id="ok">OK</button>
+	
+		<hr>
+
+		<table id="productReview">
+	
+	
+		</table>
+
+		<hr>
+			
+		<!-- product Review 끝 -->		
+			
+			
 			<div class="content_bottom">
 				<c:if test="${member.id eq dto.writer}">
 					<a href="./update?productNum=${dto.productNum}">Update</a>
@@ -108,10 +130,16 @@
 			
 		</div>
 		
-		<script src="../resources/js/detail.js"></script>
 
-<c:import url="../template/footer.jsp"></c:import>
-<c:import url="../template/header_js.jsp"></c:import>
+
+
+	
+	
+	
+	<script src="../resources/js/detail.js"></script>
+	<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/header_js.jsp"></c:import>
+	<script src="../resources/js/oproductReview.js"></script>
 
 </body>
 

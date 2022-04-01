@@ -65,7 +65,7 @@ public class ReviewController {
 		mv.addObject("pager", pager);
 		
 		mv.setViewName("board/list");
-		System.out.println("퍼페이지 콘트롤러"+pager.getPerPage());
+		
 	return mv;
 	}
 	

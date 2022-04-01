@@ -56,14 +56,14 @@ public class ReviewService implements BoardService {
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
-		System.out.println("makerow 전");
+		
 		pager.makeRow();
-		System.out.println("makerow 후");
+		
 		Long totalCount = reviewDAO.total(pager);
 		pager.makeNum(totalCount);
 		
 		List<BoardDTO> ar = reviewDAO.list(pager);
-		System.out.println("perpage Service"+pager.getPerPage());
+		
 		return ar;
 	}
 
