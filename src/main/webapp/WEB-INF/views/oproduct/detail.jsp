@@ -68,7 +68,7 @@
 								<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
 							</c:otherwise>
 						</c:choose>
-						</div>
+				
 							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
 							[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
 							<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]</div>							

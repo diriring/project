@@ -11,6 +11,26 @@ const mAddress2 = document.querySelector("#mAddress2");
 const pointBtn = document.querySelector("#pointBtn");
 const totalPrice = document.querySelector("#totalPrice");
 
+const payBtn = document.querySelector("#payBtn");
+const payFrm = document.querySelector("#payFrm");
+
+payBtn.addEventListener("click", function() {
+    // console.log("click");
+    arrive.value = address.value + extraAddress.value + detailAddress.value;
+    totalPrice.value
+    if(mAddress1.value.length == 0) {
+        alert("우편번호는 필수입니다.")
+        return;
+    }
+    if(detailAddress.value.length == 0) {
+        alert("상세주소를 입력해주세요.")
+        detailAddress.focus();
+        return;
+    }
+
+    console.log(document.querySelector("#arrive").value);
+})
+
 pointBtn.addEventListener("click", function() {
     
     let point = document.querySelector("#point").value;

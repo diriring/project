@@ -36,7 +36,7 @@
 					<input type="text" id="address" placeholder="주소" readonly><br>
 					<input type="text" id="detailAddress" placeholder="상세주소">
 					<input type="text" id="extraAddress" placeholder="참고항목">
-					<input type="hidden" name="arrive" id="mAddress2">
+					<input type="hidden" name="arrive" id="arrive">
 				</td>
 			</tr>
 		</table>
