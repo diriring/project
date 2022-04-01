@@ -22,6 +22,10 @@
 		<typeAlias type="com.cgv.s1.oproduct.OproductFileThumbDTO" alias="OproductFileThumbDTO"/>
 		<typeAlias type="com.cgv.s1.oproduct.OproductTypeDTO" alias="OproductTypeDTO"/>
 		<typeAlias type="com.cgv.s1.ocart.OcartDTO" alias="OcartDTO"/>
+		<typeAlias type="com.cgv.s1.board.review.reviewReply.ReviewReplyDTO" alias="ReviewReplyDTO"/>
+		<typeAlias type="com.cgv.s1.oproduct.review.OproductReviewDTO" alias="OproductReviewDTO"/>
+		<typeAlias type="com.cgv.s1.pay.PayDTO" alias="payDTO"/>
+
 
 
   	</typeAliases>

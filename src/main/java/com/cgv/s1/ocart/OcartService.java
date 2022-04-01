@@ -77,6 +77,12 @@ public class OcartService {
 		return cart;
 	}
 
+	//결제 페이지 관련 주영 추가
+	public OcartDTO detailCart(OcartDTO ocartDTO) throws Exception {
+		return ocartDAO.detailCart(ocartDTO);
+
+	}
+
 
 	
 }

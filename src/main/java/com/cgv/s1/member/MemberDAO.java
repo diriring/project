@@ -43,4 +43,12 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"emailCheck", memberDTO);
 	}
 	
+	public MemberDTO idFind(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"idFind", memberDTO);
+	}
+	
+	public int pwFind(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"pwFind", memberDTO);
+	}
+	
 }

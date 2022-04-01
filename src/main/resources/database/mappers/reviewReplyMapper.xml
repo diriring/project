@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.cgv.s1.board.review.reviewReply.ReviewReplyDAO">
+    
+    <!-- list -->
+    <select id="list" parameterType="ReviewReplyDTO" resultType="ReviewReplyDTO">
+    	SELECT * FROM OREVIEWREPLY
+    	WHERE NUM=#{num}
+    	ORDER BY REPLYNUM DESC
+    </select>
+    	
+    	<insert id="add" parameterType="ReviewReplyDTO">
+    	 INSERT INTO OREVIEWREPLY(REPLYNUM, NUM, WRITER, CONTENTS, REGDATE)
+    	 VALUES (OREVIEW_SEQ.NEXTVAL, #{num}, #{writer}, #{contents}, sysdate)
+    	</insert>
+    
+    	<update id="update" parameterType="ReviewReplyDTO">
+    	UPDATE OREVIEWREPLY SET CONTENTS = #{contents} 
+    	WHERE REPLYNUM=#{replyNum}
+    	
+    	</update>
+    	
+    	<delete id="delete" parameterType="ReviewReplyDTO">
+    		DELETE OREVIEWREPLY WHERE REPLYNUM =#{replyNum}
+    	</delete>
+    
+    
+    </mapper>

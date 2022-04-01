@@ -41,4 +41,12 @@ public class MemberService {
 		return memberDAO.emailCheck(memberDTO);
 	}
 	
+	public MemberDTO idFind(MemberDTO memberDTO) throws Exception {
+		return memberDAO.idFind(memberDTO);
+	}
+	
+	public int pwFind(MemberDTO memberDTO) throws Exception {
+		return memberDAO.pwFind(memberDTO);
+	}
+	
 }

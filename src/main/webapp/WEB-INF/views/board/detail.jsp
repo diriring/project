@@ -23,6 +23,21 @@
 	<h3>작성일자 :${dto.regDate}</h3>
 	<h3>조회수 :${dto.hit}</h3>
 	
+	<hr>
+	
+		<input type="hidden" name="num" value="${dto.num}" id="num">
+		<input type="text" name="writer" id="writer" value="${member.id}" readonly><!-- value="${member.id}" readonly 멤버 추가되면 추가할것 -->
+		<textarea rows="" cols="" name="contents" id="contents"></textarea>
+		<button type="button" id="reply">Reply</button>
+	
+	<hr>
+	
+	<table id="replyResult">
+	
+	
+	</table>
+	
+	
 	<div>
 		<c:forEach items="${dto.fileDTOs}" var="f">
 			<a href="./fileDown?fileNum=${f.fileNum}">${f.oriName}</a>		
@@ -34,8 +49,12 @@
 	<a href="./delete?num=${dto.num}">Delete</a>
 	<a href="./update?num=${dto.num}">Update</a>
 	
-<!-- 내가추가 -->
+
+
 <c:import url="../template/footer.jsp"></c:import>
 <c:import url="../template/header_js.jsp"></c:import>	
+
+	<script src="../resources/js/reviewReply.js"></script>
+
 </body>
 </html>
