@@ -25,6 +25,7 @@
 				<input type="text" id="address" placeholder="주소" value="${fn:split(fullAddress, '&&')[0]}" readonly><br>
 				<input type="text" id="detailAddress" value="${fn:split(fullAddress, '&&')[2]}" placeholder="상세주소">
 				<input type="text" id="extraAddress" value="${fn:split(fullAddress, '&&')[1]}" placeholder="참고항목">
+				<input type="hidden" name="arrive" id="arrive">
 			</td>
 		</tr>
 

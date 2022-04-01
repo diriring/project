@@ -31,7 +31,7 @@
 			<tr>
 				<td>우편번호/주소</td>
 				<td>
-					<input type="text" id="mAddress1" name="mAddress1" placeholder="우편번호" readonly>
+					<input type="text" id="mAddress1" placeholder="우편번호" disabled="disabled">
 					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" id="address" placeholder="주소" readonly><br>
 					<input type="text" id="detailAddress" placeholder="상세주소">
@@ -55,7 +55,10 @@
 			
 			<c:forEach items="${productList}" var="product" varStatus="status">
 				<tr>
-					<td>${product.productName}</td>
+					<td>
+						<input type="hidden" name="idList" value="${cartList[status.index].cartId}">
+						${product.productName}
+					</td>
 					<td>${product.productPrice}원</td>
 					<td>${cartList[status.index].productAmount}개</td>
 					<td>${product.productPrice * (1 - product.productDC / 100)}원</td>
@@ -94,8 +97,8 @@
 			<tr>
 				<td>최종 결제금액</td>
 				<td>
-					<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice}" readonly="readonly">
-					<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice + 2500}" readonly>
+					<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice}" readonly="readonly">
+					<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice + 2500}" readonly>
 					<div id="totalPriceResult">${totalPrice + 2500}원</div>
 				</td>
 			</tr>

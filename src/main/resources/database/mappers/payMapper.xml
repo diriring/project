@@ -6,7 +6,12 @@
 
 <mapper namespace="com.cgv.s1.pay.PayDAO">
 	<insert id="add" parameterType="payDTO">
+		
+		<selectKey resultType="Long" keyProperty="payNum" order="BEFORE">
+			SELECT OPAY_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+
 		INSERT INTO OPAY (PAYNUM, PAYDATE, PAYMONEY, TOTALPRICE, ARRIVE, PAYCHECK)
-		VALUES (OPAY_SEQ.NEXTVAL, SYSDATE, #{payMoney}, #{totalPrice}, #{arrive}, 1)
+		VALUES (#{payNum}, SYSDATE, #{payMoney}, #{totalPrice}, #{arrive}, 1)
 	</insert>
 </mapper>

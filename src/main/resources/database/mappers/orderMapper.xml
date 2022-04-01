@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.s1.order.OrderDAO">
+	<insert id="add" parameterType="OrderDTO">
+		INSERT INTO OORDER (ORDERNUM, PAYNUM, ORDERNAME, SHIPSTATE, ORDERDATE, REFUND, ID)
+		VALUES (OORDER_SEQ.NEXTVAL, #{payNum}, #{orderName}, 0, SYSDATE, 0, #{id})
+	</insert>
+</mapper>

@@ -2,6 +2,10 @@ package com.cgv.s1.pay;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cgv.s1.cartPay.CartPayDTO;
+import com.cgv.s1.cartPay.CartPayService;
 import com.cgv.s1.member.MemberDTO;
 import com.cgv.s1.member.MemberService;
 import com.cgv.s1.member.address.MemberAddressDTO;
@@ -17,6 +23,8 @@ import com.cgv.s1.ocart.OcartDTO;
 import com.cgv.s1.ocart.OcartService;
 import com.cgv.s1.oproduct.OproductDTO;
 import com.cgv.s1.oproduct.OproductService;
+import com.cgv.s1.order.OrderDTO;
+import com.cgv.s1.order.OrderService;
 
 @Controller
 @RequestMapping(value="/pay/**")
@@ -32,6 +40,10 @@ public class PayController {
 	private MemberAddressService memberAddressService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CartPayService cartPayService;
+	@Autowired
+	private OrderService orderService;
 	
 	@PostMapping("payForm")
 	public ModelAndView payForm(@RequestParam List<String> idList, MemberDTO memberDTO) throws Exception {
@@ -72,6 +84,33 @@ public class PayController {
 		mv.setViewName("pay/pay");
 		
 		return mv;
+	}
+	
+	@PostMapping("add")
+	public String add(@RequestParam List<String> idList, PayDTO payDTO, HttpSession session) throws Exception {
+		//pay 테이블 db insert
+		payService.add(payDTO);
+		
+		//cartPay 테이블 db insert
+		for(int i=0; i<idList.size(); i++) {
+			Long cartId = Long.parseLong(idList.get(i));
+			CartPayDTO cartPayDTO = new CartPayDTO();
+			cartPayDTO.setCartId(cartId);
+			cartPayDTO.setPayNum(payDTO.getPayNum());
+			cartPayService.add(cartPayDTO);
+		}
+		
+		//order 테이블 db insert
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setPayNum(payDTO.getPayNum());
+		orderDTO.setOrderName(memberDTO.getName());
+		orderDTO.setId(memberDTO.getId());
+		
+		orderService.add(orderDTO);
+		
+		return "redirect:../";
+		
 	}
 
 }
