@@ -22,12 +22,6 @@
    
    
    <div class="table-container">
-
-      
-      <%-- <h1>"${ocartDTO.startNum}"</h1> --%>
-      <%-- <h1>HI ${oCartDTO.thumbFilesDTOs.fileNameThumb} </h1> --%>
-      
-
       
       <!----------------------------------------------------------------------------->
       
@@ -77,8 +71,11 @@
                <caption>표 내용 부분</caption>
                <tbody>
                   <c:forEach items="${list}" var="list">
+                  
+                  
                      <tr>
                         <!-- 체크박스 태그 추가 부분 -->
+                        
                         <td class="td_width_1" id="cartInput">
                            <!-- 넘기는 값 -->
                            <!-- id로 가지고와서 javascript 처리후 출력? -->
@@ -214,21 +211,34 @@
             </div>
          </div>
          <!-- 구매 버튼 영역 -->
-         <div class="content_btn_section">
+<!--          <div class="content_btn_section">
             <a>주문하기</a>
-         </div>
-      
+         </div> -->
+      	
+      	<form action="../pay/payForm" method="post">
+			<input type="hidden" name="id" value="${member.id}">
+			<table class="table-basic">
+				<tr>
+					<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
+				</tr>
+				
+					<c:forEach items="${list}" var="list">
+						<tr>
+							<td>${list.cartId}</td>
+							<td>${list.id}</td>
+							<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productNum}</a></td>
+							<td>${list.productAmount}</td>
+							<td>
+								<input type="checkbox" name="idList" value="${list.cartId}">
+							</td>
+						</tr>
+					</c:forEach>
+			</table> 
+			
+			<button type="submit" id="btn">주문하기</button> 
+			</form>
       </div>
       <!----------------------------------------------------------------------------->
-      
-
-   
-      <%-- admin이 들어왔들때 하기 애초에 필요 없을듯 타입 다른것만 생각--%>
-      <!-- 여기서 member id 랑 member type 같이 보는 방법생각 -->
-      <%-- <c:if test="${not empty member}">
-         <a href="./add">ADD</a>
-      </c:if> --%>
-      <!-- <a href="./add">ADD</a> -->
       
    </div>
    
@@ -238,3 +248,38 @@
 <c:import url="../template/header_js.jsp"></c:import>   
 </body>
 </html>
+
+
+
+
+
+			<!--  이 값을 넘겨주고 -->
+                  <!-- 구매를 누르면 add가 되야지 -->
+                  <%-- <input type="checkbox" name="idList" value="${list.cartId}"> --%>
+                  <!-- 보니까 form을 사용함 -->
+                  
+ 			<%-- <form action="../pay/payForm" method="post">
+			<input type="hidden" name="id" value="${member.id}">
+			<table class="table-basic">
+				<tr>
+					<th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
+				</tr>
+				
+					<c:forEach items="${list}" var="list">
+						<tr>
+							<td>${list.cartId}</td>
+							<td>${list.id}</td>
+							<td><a href="../oproduct/detail?productNum=${list.productNum}">${list.productNum}</a></td>
+							<td>${list.productAmount}</td>
+							<td>
+								<input type="checkbox" name="idList" value="${list.cartId}">
+							</td>
+						</tr>
+					</c:forEach>
+			</table> --%>
+			
+			<!-- <button type="submit" id="btn">선택한 상품 구매</button> -->
+			<!--  그러면 opay에서 controller가 작동됨 -->
+			<!-- 나는 js를 통해서 값을 넘겨주는것을 만들면 됨 -->
+			<!-- 마일리지는 어케할까 -->
+		<!-- </form> -->                 

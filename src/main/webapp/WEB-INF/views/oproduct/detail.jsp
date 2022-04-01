@@ -55,26 +55,14 @@
 					</div>	
 					<div class="price">
 						<div class="sale_price">정가 : <fmt:formatNumber value="${dto.productPrice}" pattern="#,### 원" /></div>
+						<!-- 생각해보니 여기 건드릴 필요없어서 다시 C:CHOOSE 지움 / OCARTDTO만 처리 -->
 						<div class="discount_price">
-						<c:choose>
-							<c:when test="${dto.productDC eq 0}">
-								판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice}" pattern="#,### 원" /></span> 
-								[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
-								<fmt:formatNumber value="${dto.productDC}" pattern="#,### 원" /> 할인]
-							</c:when>
-							<c:otherwise>
 								판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
 								[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
 								<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
-							</c:otherwise>
-						</c:choose>
-						</div>
-							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
-							[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
-							<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
-						</div>							
+						</div>						
 						<div>
-							<!-- 포인트 판매가의 0.05 적립으로 성정 -->
+							<!-- 포인트 판매가의 0.05 적립으로 설정 -->
 							적립 포인트 : <span class="point"></span>
 							<fmt:formatNumber value="${(dto.productPrice - (dto.productPrice)*(dto.productDC*0.01))*0.05}" pattern="#,### 원"/>
 						</div>
