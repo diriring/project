@@ -58,8 +58,14 @@ public class OcartDTO {
     
     //변수값 초기화 - product변화시 구현
 	public void Cal() {
+		if(this.productDC == 0) {
+			this.salePrice = (int)(this.productPrice);
+		}else {
+			this.salePrice = (int)(this.productPrice * (1-this.productDC*0.01));
+		}
+
 		//productDC % 0.01곱하는거로 처리
-		this.salePrice = (int)(this.productPrice * (1-this.productDC*0.01));
+//		this.salePrice = (int)(this.productPrice * (1-this.productDC*0.01));
 		this.totalPrice = this.salePrice*this.productAmount;
 		//각각 포인트 0.05 포인트 구현
 		this.point = (int)(Math.floor(this.salePrice*0.05));

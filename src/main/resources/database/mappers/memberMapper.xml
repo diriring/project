@@ -42,4 +42,12 @@
 		SELECT COUNT(EMAIL) FROM OMEMBER WHERE EMAIL=#{email}
 	</select>
 	
+	<select id="idFind" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT ID, NAME FROM OMEMBER WHERE EMAIL=#{email}
+	</select>
+	
+	<select id="pwFind" parameterType="MemberDTO" resultType="int">
+		SELECT COUNT(*) FROM OMEMBER WHERE ID=#{id} AND EMAIL=#{email}
+	</select>
+	
 </mapper>

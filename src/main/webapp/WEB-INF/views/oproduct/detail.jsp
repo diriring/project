@@ -56,6 +56,19 @@
 					<div class="price">
 						<div class="sale_price">정가 : <fmt:formatNumber value="${dto.productPrice}" pattern="#,### 원" /></div>
 						<div class="discount_price">
+						<c:choose>
+							<c:when test="${dto.productDC eq 0}">
+								판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice}" pattern="#,### 원" /></span> 
+								[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
+								<fmt:formatNumber value="${dto.productDC}" pattern="#,### 원" /> 할인]
+							</c:when>
+							<c:otherwise>
+								판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
+								[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
+								<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
+							</c:otherwise>
+						</c:choose>
+						</div>
 							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
 							[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
 							<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]</div>							
