@@ -20,8 +20,12 @@
 	</insert>
 	
 	<update id="update" parameterType="OproductReviewDTO">
-		update OPRODUCTREVIEW SEY CONTENTS = #{contents}
+		update OPRODUCTREVIEW SET CONTENTS = #{contents}
 		WHERE REPLYNUM =#{replyNum}
 	</update>
+	
+	<delete id="delete" parameterType="OproductReviewDTO">
+		delete OPRODUCTREVIEW where REPLYNUM =#{replyNum}
+	</delete>
 
 </mapper>

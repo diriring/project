@@ -43,8 +43,22 @@ public class OproductReviewController {
 	@PostMapping("update")
 	public ModelAndView update(OproductReviewDTO oproductReviewDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println(oproductReviewDTO.getContents());
+		System.out.println(oproductReviewDTO.getReplyNum());
 		
 		int result = oproductReviewService.update(oproductReviewDTO);
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
+	
+	@PostMapping("delete")
+	public ModelAndView delete(OproductReviewDTO oproductReviewDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = oproductReviewService.delete(oproductReviewDTO);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");

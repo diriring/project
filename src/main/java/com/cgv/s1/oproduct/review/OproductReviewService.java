@@ -27,4 +27,9 @@ public class OproductReviewService {
 		
 		return oproductReviewDAO.update(oproductReviewDTO);
 	}
+	
+	public int delete(OproductReviewDTO oproductReviewDTO)throws Exception{
+		
+		return oproductReviewDAO.delete(oproductReviewDTO);
+	}
 }

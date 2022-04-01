@@ -32,4 +32,9 @@ public class OproductReviewDAO {
 		return sqlSession.update(NAMESPACE+"update", oproductReviewDTO);
 	}
 	
+	public int delete(OproductReviewDTO oproductReviewDTO)throws Exception{
+		
+		return sqlSession.delete(NAMESPACE+"delete", oproductReviewDTO);
+	}
+	
 }
