@@ -3,6 +3,8 @@ const num = document.querySelector("#num");
 const writer = document.querySelector("#writer");
 const contents = document.querySelector("#contents");
 const productReview = document.querySelector("#productReview");
+const ReviewAdd =document.querySelector("#ReviewAdd");
+
 
 getList();
 // -------------------list ajax ------------------
@@ -23,12 +25,14 @@ function getList(){
 
 }
 
+
+
 // ----------------- add ajax -------------------
 ok.addEventListener("click",function(){
 
     const xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST","../oproductReview/add");
+  xhttp.open("POST","../oproductReview/add");
 
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
