@@ -57,7 +57,8 @@
 						<div class="discount_price">
 							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
 							[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
-							<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]</div>							
+							<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
+						</div>							
 						<div>
 							<!-- 포인트 판매가의 0.05 적립으로 성정 -->
 							적립 포인트 : <span class="point"></span>

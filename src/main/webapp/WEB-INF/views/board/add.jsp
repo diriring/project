@@ -19,7 +19,6 @@
 		Title<input type="text" name="title">
 		Writer<input type="text" name="writer">
 		Contents<textarea name="contents" rows="" cols=""></textarea>
-		
 		<div>
 			<input type="file" name="files">
 			<input type="file" name="files">
