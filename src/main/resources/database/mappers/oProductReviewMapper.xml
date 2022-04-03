@@ -12,7 +12,7 @@
     	ORDER BY REPLYNUM DESC
 	</select>
 	
-	<insert id="add" parameterType="OproductReviewDTO">
+	<insert id="reviewAdd" parameterType="OproductReviewDTO">
 	
 	insert into OPRODUCTREVIEW(REPLYNUM, NUM, WRITER, CONTENTS, REGDATE)
 	VALUES (OPRODUCTREVIEW_SEQ.nextval, #{num}, #{writer}, #{contents}, sysdate)

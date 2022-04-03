@@ -22,9 +22,9 @@ public class OproductReviewDAO {
 		return sqlSession.selectList(NAMESPACE+"list", oproductReviewDTO);
 	}
 	
-	public int add(OproductReviewDTO oproductReviewDTO)throws Exception{
+	public int reviewAdd(OproductReviewDTO oproductReviewDTO)throws Exception{
 		
-		return sqlSession.insert(NAMESPACE+"add", oproductReviewDTO);
+		return sqlSession.insert(NAMESPACE+"reviewAdd", oproductReviewDTO);
 	}
 	
 	public int update(OproductReviewDTO oproductReviewDTO)throws Exception{

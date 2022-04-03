@@ -18,9 +18,9 @@ public class OproductReviewService {
 		return oproductReviewDAO.list(oproductReviewDTO);
 	}
 	
-	public int add(OproductReviewDTO oproductReviewDTO)throws Exception{
+	public int reviewAdd(OproductReviewDTO oproductReviewDTO)throws Exception{
 		
-		return oproductReviewDAO.add(oproductReviewDTO);
+		return oproductReviewDAO.reviewAdd(oproductReviewDTO);
 	}
 	
 	public int update(OproductReviewDTO oproductReviewDTO)throws Exception{

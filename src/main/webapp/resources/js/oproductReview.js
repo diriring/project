@@ -9,6 +9,8 @@ getList();
 function getList(){
     const xhttp = new XMLHttpRequest();
     console.log("List 가져오는중");
+    
+    console.log(num.value);
     xhttp.open("GET", "../oproductReview/list?num="+num.value);
 
     xhttp.send();

@@ -112,13 +112,12 @@
 		<hr>
 		
 		<h3>Review 작성</h3>
-		<input type="hidden" name="num" value="${dto.productNum}" id="num">
-		<input type="text" name="writer" id="writer" value="${member.id}" readonly><!-- value="${member.id}" readonly 멤버 추가되면 추가할것 -->
-		<textarea rows="" cols="" name="contents" id="contents"></textarea>
-		<button type="button" id="ok">OK</button>
-	
+		<!-- <a href="../oproductReview/reviewAdd">Review 등록</a> -->
+		<button type="button" onclick="location.href = '../oproductReview/reviewAdd?productNum=${dto.productNum}'">리뷰등록!</button>
+		
+		
 		<hr>
-
+		<input id=num value="${dto.productNum}">
 		<table id="productReview">
 	
 	
