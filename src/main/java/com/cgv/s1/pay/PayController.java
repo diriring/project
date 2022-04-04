@@ -46,7 +46,7 @@ public class PayController {
 	private OrderService orderService;
 	
 	@PostMapping("payForm")
-	public ModelAndView payForm(@RequestParam List<String> idList, MemberDTO memberDTO) throws Exception {
+	public ModelAndView payForm(@RequestParam List<String> idList, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		List<OcartDTO> cartList = new ArrayList<OcartDTO>();
@@ -73,6 +73,7 @@ public class PayController {
 		mv.addObject("productList", productList);
 		mv.addObject("totalPrice", totalPrice);
 		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		//결제 페이지에 보여줄 배송지 정보 조회
 		List<MemberAddressDTO> addressList = memberAddressService.list(memberDTO);
 		mv.addObject("addressList", addressList);

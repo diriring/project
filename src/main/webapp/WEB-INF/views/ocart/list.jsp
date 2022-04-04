@@ -52,6 +52,7 @@
                <input type="checkbox" class="all_check_input" id= "size" checked="checked"><span class="all_chcek_span">전체선택</span>
             </div>
             
+            
             <table class="subject_table">
                <caption>표 제목 부분</caption>
                <tbody>
@@ -67,6 +68,7 @@
                </tbody>
             </table>
             
+            <form action="../pay/payForm" method="post">
             <table class="cart_table">
                <caption>표 내용 부분</caption>
                <tbody>
@@ -81,7 +83,7 @@
                            <!-- id로 가지고와서 javascript 처리후 출력? -->
                            <!-- value값 가지고 와서 처리후 다시 밑에 총가 격 id로 삽입해주기 -->
                            <!-- 이건 각각의 값임-->
-                           <input type="checkbox" class="individual_check" id= "size" checked="checked">
+                           <input type="checkbox" class="individual_check" id= "size" name="idList" value="${list.cartId}" checked="checked">
                            <input type="hidden" class="individual_productPrice" value="${list.productPrice}">
                            <input type="hidden" class="individual_productAmount" value="${list.productAmount}">
                            <input type="hidden" class="individual_salePrice" value="${list.salePrice}">
@@ -115,8 +117,11 @@
                   </c:forEach>
                </tbody>
             </table>
+            
             <table class="list_table">
             </table>
+           <button type="submit" id="btn">주문하기</button>
+            </form>
          </div>
          
          <!-- paging 처리 -->
@@ -210,13 +215,13 @@
                </table>
             </div>
          </div>
+         
          <!-- 구매 버튼 영역 -->
 <!--          <div class="content_btn_section">
             <a>주문하기</a>
          </div> -->
          
-         <form action="../pay/payForm" method="post">
-         <input type="hidden" name="id" value="${member.id}">
+        <%--  <form action="../pay/payForm" method="post">
          <table class="table-basic">
             <tr>
                <th>장바구니번호</th><th>ID</th><th>제품번호</th><th>제품수량</th>
@@ -236,7 +241,7 @@
          </table> 
          
          <button type="submit" id="btn">주문하기</button> 
-         </form>
+         </form> --%>
       </div>
       <!----------------------------------------------------------------------------->
       
