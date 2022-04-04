@@ -179,7 +179,23 @@
 			</association>
 		</resultMap>
 		
-		
+		<!-- 상품 구매 시 재고, 판매수 변경 -->
+		<update id="stockAdd" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSTOCK=PRODUCTSTOCK+#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="stockSubtract" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSTOCK=PRODUCTSTOCK-#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="saleAdd" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSALE=PRODUCTSALE+#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="saleSubtract" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSALE=PRODUCTSALE-#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
 		
 		
 		

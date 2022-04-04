@@ -71,7 +71,7 @@
 	<div>
 		<h3>포인트 사용</h3>
 		보유하신 포인트 : ${memberDTO.point}P
-		<input id="point" type="number" min="0" max="${memberDTO.point}">
+		<input id="pointUse" name="pointUse" type="number" min="0" max="${memberDTO.point}">
 		<button type="button" id="pointBtn">사용</button>
 	</div>
 	
@@ -92,7 +92,7 @@
 			</tr>
 			<tr>
 				<td>포인트 사용</td>
-				<td><div id="pointUse">0</div></td>
+				<td><div id="pointUseResult">0</div></td>
 			</tr>
 			<tr>
 				<td>최종 결제금액</td>
@@ -100,6 +100,13 @@
 					<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice}" readonly="readonly">
 					<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice + 2500}" readonly>
 					<div id="totalPriceResult">${totalPrice + 2500}원</div>
+				</td>
+			</tr>
+			<tr>
+				<td>포인트 적립</td>
+				<td>
+					<input id="pointSave" type="hidden" name="pointSave">
+					<div id="pointSaveResult">0</div>
 				</td>
 			</tr>
 		</table>

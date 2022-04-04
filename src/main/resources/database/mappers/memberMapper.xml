@@ -50,4 +50,8 @@
 		SELECT COUNT(*) FROM OMEMBER WHERE ID=#{id} AND EMAIL=#{email}
 	</select>
 	
+	<update id="pointUpdate" parameterType="MemberDTO">
+		UPDATE OMEMBER SET POINT=#{point} WHERE ID=#{id}
+	</update>
+	
 </mapper>

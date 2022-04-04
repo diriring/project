@@ -97,7 +97,7 @@ public class PayController {
 			CartPayDTO cartPayDTO = new CartPayDTO();
 			cartPayDTO.setCartId(cartId);
 			cartPayDTO.setPayNum(payDTO.getPayNum());
-			cartPayService.add(cartPayDTO);
+			cartPayService.add(cartPayDTO);	
 		}
 		
 		//order 테이블 db insert

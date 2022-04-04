@@ -6,7 +6,8 @@ const addressResult = document.querySelector("#addressResult");
 const pointBtn = document.querySelector("#pointBtn");
 const payMoney = document.querySelector("#payMoney");
 const totalPrice = document.querySelector("#totalPrice");
-const point = document.querySelector("#point");
+const pointUse = document.querySelector("#pointUse");
+const pointSave = document.querySelector("#pointSave");
 
 const payBtn = document.querySelector("#payBtn");
 const payFrm = document.querySelector("#payFrm");
@@ -31,6 +32,7 @@ payBtn.addEventListener("click", function() {
     }
     
     payMoney.value = payMoney.value-point.value;
+    pointSave.value = (payMoney.value-point.value)*0.05;
 
     // console.log("payMoney : ", payMoney.value);
     // console.log("totalPrice : ", totalPrice.value);
@@ -46,9 +48,9 @@ pointBtn.addEventListener("click", function() {
         alert("보유하신 포인트를 초과하여 사용하실 수 없습니다.");
         return;
     }
-    document.querySelector("#pointUse").innerHTML=point.value+"원";
+    document.querySelector("#pointUseResult").innerHTML=point.value+"원";
     document.querySelector("#totalPriceResult").innerHTML=payMoney.value-point.value+"원";
-
+    document.querySelector("#pointSaveResult").innerHTML =(payMoney.value-point.value)*0.05+"원";
     //최종 결제할 때 totalPrice value 값 변경해줘야 함
 })
 
