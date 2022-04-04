@@ -10,7 +10,16 @@
 		VALUES (OORDER_SEQ.NEXTVAL, #{payNum}, #{orderName}, 0, SYSDATE, 0, #{id})
 	</insert>
 	
-	<select id="list" parameterType="MemberDTO" resultType="OrderDTO">
-		SELECT * FROM OORDER WHERE ID=#{id}
+	<select id="list" parameterType="Pager" resultType="OrderDTO">
+		SELECT * FROM 
+		(SELECT ROWNUM R, OD.* FROM 
+		    (SELECT * FROM OORDER
+		    WHERE ID=#{id}
+		    ORDER BY ORDERNUM DESC) OD)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="total" resultType="Long" parameterType="MemberDTO">
+		SELECT COUNT(ORDERNUM) FROM OORDER WHERE ID=#{id}
 	</select>
 </mapper>

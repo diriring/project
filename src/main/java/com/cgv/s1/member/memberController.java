@@ -27,6 +27,7 @@ import com.cgv.s1.oproduct.OproductDTO;
 import com.cgv.s1.oproduct.OproductService;
 import com.cgv.s1.order.OrderDTO;
 import com.cgv.s1.order.OrderService;
+import com.cgv.s1.util.Pager;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -321,12 +322,14 @@ public class memberController {
 	
 	//주문/배송 조회 페이지
 	@GetMapping("orderList")
-	public ModelAndView orderList(HttpSession session) throws Exception {
+	public ModelAndView orderList(HttpSession session, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		pager.setPerPage(5L);
 		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		List<OrderDTO> ar = orderService.list(memberDTO);
+		List<OrderDTO> ar = orderService.list(memberDTO, pager);
 		mv.addObject("orderList", ar);
+		mv.addObject("pager", pager);
 		
 		List<List<OproductDTO>> productList = new ArrayList<List<OproductDTO>>();
 		for(int i=0;i<ar.size();i++) {

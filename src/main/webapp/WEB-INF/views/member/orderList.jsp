@@ -61,5 +61,18 @@
 		</c:forEach>
 	</table>
 	
+	<div>
+		<c:if test="${pager.pre}">
+			<a href="./orderList?page=${pager.startNum-1}">PREVIEW</a>
+		</c:if>
+	
+		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">		
+		<a href="./orderList?page=${i}">${i}</a>
+		</c:forEach>
+		
+		<c:if test="${pager.next}">
+			<a href="./orderList?page=${pager.lastNum+1}">NEXT</a>
+		</c:if>
+	</div>
 </body>
 </html>
