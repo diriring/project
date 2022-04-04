@@ -42,8 +42,8 @@ public class OcartDAO {
 	}
 	
 	//카트 수량 수정
-	public int modifyCount(OcartDTO ocartDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"modifyCount", ocartDTO);
+	public int modifyAmount(OcartDTO ocartDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"modifyAmount", ocartDTO);
 	}
 	
 	//카트 목록

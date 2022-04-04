@@ -19,6 +19,13 @@ public class OcartService {
 	@Autowired
 	private OproductDAO oproductDAO;
 	
+	//카트 수량 수정
+	public int modifyAmount(OcartDTO ocartDTO) throws Exception {
+		return ocartDAO.modifyAmount(ocartDTO);
+	}
+	
+	
+	
 	//카트 총 리스트(검색 용도)
 	public List<OcartDTO> totalList(Pager pager) throws Exception{
 		pager.makeRow();

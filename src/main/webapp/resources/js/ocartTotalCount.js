@@ -10,7 +10,7 @@ firstCode();
 //체크박스가 체크되어있으면 실행
 //체크박스가 해제되면 미실행
 
-const cartInput = document.querySelector("#cartInput");
+//const cartInput = document.querySelectorAll(".cartInput");
 const individual_check = document.querySelectorAll(".individual_check");
 
 function firstCode(){
@@ -35,60 +35,60 @@ function firstCode(){
     // 변수 새로 생성 각각해서 ++로 다 담아주고
     //그걸 총 가격 책정하는 div에 각각 값 넣어서 추가해주면 될듯?
     let productAmountC = 0;
-    let salePriceC = 0;
     let totalPriceC = 0;
     let totalPointC = 0;
     let finalPriceC = 0;
     let dFee = 0;
+
+    //안쓰는중
     let productPriceC = 0;
     let pointC = 0;
-
+    let salePriceC = 0;
     //아직 미사용
     // if(changeCheck){
     //     console.log("change!!")
     // }
-    
+     
+    cal();
+    feeCheck();
+    finalCheck();
+
+
+    // for(i of individual_check){
+    //     console.log(i.checked);
+    //     if(i.checked == true){
+    //         for(p of productPrice){
+    //             console.log(p.value);
+    //             productPriceC = productPriceC + parseInt(p.value);
+    //         }
+    //     }
+
+    // }
+
 
 
     //기본 값 계산식
     function cal(){
-        //현재 미사용
-        for(c of individual_check){
-            //console.log("come?");
-           // console.log(c.getAttribute("checked"));
-
-            if(c.getAttribute("checked")){
-
-                for(p of productPrice){
-                    //이부분 M
-                    productPriceM = productPriceM + parseInt(p.value);
-                }
-                for(p of productAmount){
-                    //console.log(p.value);
-                    productAmountM = productAmountM + parseInt(p.value);
-                }
-                //console.log(productAmountC);
-                for(p of salePrice){
-                    salePriceM = salePriceM + parseInt(p.value);
-                }
-                for(p of totalPrice){
-                    totalPriceM = totalPriceM + parseInt(p.value);
-                }
-                for(p of totalPoint){
-                    totalPointM = totalPointM + parseInt(p.value);
-                }
-
-                //이부분
-                productAmountC += productAmountM
-                salePriceC += salePriceM
-                totalPriceC += totalPriceM
-                totalPointC += totalPointM
-
-
-            }    
-
+        //안쓰는중
+        for(p of productPrice){
+            console.log(p.value);
+            productPriceC = productPriceC + parseInt(p.value);
         }
-        
+        //안쓰는중
+        for(p of salePrice){
+            salePriceC = salePriceC + parseInt(p.value);
+        }
+
+        for(p of productAmount){
+            productAmountC = productAmountC + parseInt(p.value);
+        }
+
+        for(p of totalPrice){
+            totalPriceC = totalPriceC + parseInt(p.value);
+        }
+        for(p of totalPoint){
+            totalPointC = totalPointC + parseInt(p.value);
+        }
     }
 
     //배송비 : 총 금액 30000원이상이면 0원, 기본 3000원
@@ -106,9 +106,7 @@ function firstCode(){
         //console.log(finalPriceC);
     }
 
-    cal();
-    feeCheck();
-    finalCheck();
+    
 
     //총 상품 가격
     const totalPriceInput = document.querySelector("#totalPriceInput");
@@ -135,9 +133,14 @@ function firstCode(){
     //총 결제 예상 금액
     const finalPriceInput = document.querySelector("#finalPriceInput");
     let addFeePrice = document.createElement("span");
+    let hidden = document.createElement("input");
+    // hidden.setAttribute("type", "hidden");
+    // hidden.setAttribute("value", finalPriceC);
+    // hidden.className="hidden";
     addFeePrice.className = "finalTotalPrice_span";
     addFeePrice.innerText = finalPriceC.toLocaleString()+" 원";
     finalPriceInput.append(addFeePrice);
+    // finalPriceInput.append(hidden);
 
     //총 적립 마일리지
     const totalPointInput = document.querySelector("#totalPointInput");
@@ -152,17 +155,31 @@ function firstCode(){
 //장바구니 변화시 금액 변화
 
 //일단 맨위로 올려봄
-//const cartInput = document.querySelector("#cartInput");
-//onst individual_check = document.querySelectorAll(".individual_check");
+const cartInputT = document.querySelector("#cartInputT");
+//const individual_check = document.querySelectorAll(".individual_check");
 
-cartInput.addEventListener("change", function(event){
-
+cartInputT.addEventListener("change", function(event){
+    console.log("click");
+    
     if(event.target.classList.contains('individual_check')){
 
         //여기서 요소를 넣어주면 실행하는 코드를 위에 작성해놓기?
         // changeCheck = true;
-        // firstCode(changeCheck);
 
+
+
+       
+
+
+        //append된 내용 삭제 후 재등록
+        totalPriceInput.innerHTML = "";
+        totalAmountInput.innerHTML = "";
+        deliveryFee.innerHTML = "";
+        finalPriceInput.innerHTML = "";
+        totalPointInput.innerHTML = "";
+
+        firstCode();
+        //이게 발동되면서 checked 되있는 값만 다시 계산하고싶음
     }
 
 
@@ -181,3 +198,12 @@ cartInput.addEventListener("change", function(event){
 //그럼 위 함수에 cartInput을 자동으로 하게해줘야함
 //예를들어 addEvent발생시가 아니고 일단 기본 검사
 //그럼 걍 individual_check로만 잠만
+
+
+
+
+
+
+
+
+

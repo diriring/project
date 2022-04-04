@@ -59,7 +59,7 @@ caption{
 .content_subject{
 	height: 110px;
     line-height: 110px;
-    background-color: #5080bd;
+    background-color: #0ff096;
     margin-bottom: 60px; 
 }
 .content_subject span{ 
@@ -81,7 +81,7 @@ caption{
 
 .content_btn_section a{
     color: #fefeff;
-    background-color: #365fdd;
+    background-color: #400040;
     min-width: 125px;
     padding: 17px 25px;
     display: inline-block;
@@ -104,8 +104,8 @@ th{
 	text-align: center;
     color: #333;
     border-bottom: 1px solid #e7e7e7;
-    border-top: 1px solid #3084d9;
-    background: #f4f9fd;
+    border-top: 1px solid #80ff80;
+    background: #b6ff80;
     padding: 2px 0;	 
 }
 
@@ -164,7 +164,7 @@ th{
 .quantity_input{
 	position: absolute;
 	width: 27px;
-    height: 23px;
+    height: 25px;
     text-align: center;
     border: 1px solid #c6c6c6;
     border-right: 0px;
@@ -177,7 +177,7 @@ th{
 .quantity_btn{
 	position: absolute;
     border: 1px solid #aaa;
-    color: #3a60df;
+    color: #000000;
     width: 14px;
     height: 13px;
     padding: 0px;
@@ -200,14 +200,14 @@ th{
 	
 .quantity_modify_btn{
 	border: 1px solid #d0d0d0;
-    height: 13px;
-    line-height: 13px;
+    height: 25px;
+    line-height: 25px;
     background-color: #fff;
     text-align: center;
-    width: 28px;
+    width: 40px;
     display: inline-block;
-    padding: 3px 6px 2px;
-    margin-top: 3px;		
+    padding: 0px;
+    /* margin-top: 3px; */		
 }
 
 .table_text_align_center{
@@ -219,7 +219,7 @@ th{
 }
 		
 .content_total_section{
-    background-color: rgb(227, 237, 247);
+    background-color: #0ff096;
 }	
 	
 .total_wrap{

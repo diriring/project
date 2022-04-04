@@ -46,7 +46,7 @@
 		</delete>
 		
 		<!-- 카트 수량 수정 -->
- 		<update id="modifyCount" parameterType="OcartDTO">
+ 		<update id="modifyAmount" parameterType="OcartDTO">
 			UPDATE OCART SET PRODUCTAMOUNT=#{productAmount} WHERE ID = #{id}
 		</update> 
 

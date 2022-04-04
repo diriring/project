@@ -67,8 +67,8 @@ public class OcartController {
 	}
 	
 
-	
-	//oCart totalList - 필요없을거같음
+
+	//oCart totalList - 필요없을거같음(지우기)
 	@GetMapping("totalList")
 	public ModelAndView totalList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
