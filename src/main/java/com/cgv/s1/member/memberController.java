@@ -327,7 +327,16 @@ public class memberController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<OrderDTO> ar = orderService.list(memberDTO);
 		mv.addObject("orderList", ar);
-
+		
+		List<List<OproductDTO>> productList = new ArrayList<List<OproductDTO>>();
+		for(int i=0;i<ar.size();i++) {
+			List<OproductDTO> productInfo = oproductService.productCart(ar.get(i));
+			productList.add(productInfo);
+		}
+		mv.addObject("productList", productList);
+		
+		mv.setViewName("member/orderList");
+		
 		return mv;
 
 	}

@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import com.cgv.s1.order.OrderDTO;
 import com.cgv.s1.util.Pager;
 
 @Repository
@@ -93,6 +93,11 @@ public class OproductDAO {
     public int deleteThumbFile(OproductFileThumbDTO oproductFileThumbDTO) throws Exception{
     	//System.out.println("oproductfileDTO : " + oproductFileThumbDTO.getFileNumThumb());
     	return sqlSession.delete(NAMESPACE+"deleteThumbFile", oproductFileThumbDTO);
+    }
+    
+    //주문 조회 관련 주영 추가
+    public List<OproductDTO> productCart(OrderDTO orderDTO) throws Exception {
+    	return sqlSession.selectList(NAMESPACE+"productCart", orderDTO);
     }
     
     

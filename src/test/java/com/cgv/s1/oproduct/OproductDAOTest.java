@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cgv.s1.MyJunitTest;
+import com.cgv.s1.order.OrderDTO;
 import com.cgv.s1.util.Pager;
 
 public class OproductDAOTest extends MyJunitTest {
@@ -17,7 +18,7 @@ public class OproductDAOTest extends MyJunitTest {
 	private OproductDAO oproductDAO;
 	
 	//list
-	@Test
+//	@Test
 	public void listTest() throws Exception{
 		Pager pager = new Pager();
 		List<OproductDTO> ar = oproductDAO.list(pager);
@@ -25,7 +26,7 @@ public class OproductDAOTest extends MyJunitTest {
 	}
 	
 	//detail
-	@Test
+//	@Test
 	public void detailTest() throws Exception{
 		OproductDTO oproductDTO = new OproductDTO();
 		oproductDTO.setProductNum(296L);
@@ -69,6 +70,18 @@ public class OproductDAOTest extends MyJunitTest {
 //		}
 
 		
+	}
+	
+	@Test
+	public void productCartTest() throws Exception {
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setPayNum(63L);
+		
+		List<OproductDTO> ar = oproductDAO.productCart(orderDTO);
+		
+		for(int i=0; i<ar.size(); i++) {
+			System.out.println(ar.get(i).getProductNum());
+		}
 	}
 
 }

@@ -17,12 +17,36 @@
 			<td>주문금액</td>
 			<td>상태</td>
 		</tr>
-		<c:forEach items="${orderList}" var="order">
+		<c:forEach items="${orderList}" var="order" varStatus="status">
 			<tr>
 				<td>${order.orderDate}</td>
-				<td></td>
-				<td></td>
-				<td></td>
+					<td>
+						<table>
+						<c:forEach items="${productList[status.index]}" var="product">
+							<tr>
+								<td>${product.productName}</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</td>
+					<td>
+						<table>
+							<c:forEach items="${productList[status.index]}" var="product">
+							<tr>
+								<td>${product.cartDTO.productAmount}개</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</td>
+					<td>
+						<table>
+							<c:forEach items="${productList[status.index]}" var="product">
+							<tr>
+								<td>${product.productPrice * (1 - product.productSale / 100)}원</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</td>
 				<td>
 					<c:choose>
 						<c:when test="${order.shipState eq 0}">

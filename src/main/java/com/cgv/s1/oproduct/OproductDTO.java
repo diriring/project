@@ -3,6 +3,8 @@ package com.cgv.s1.oproduct;
 import java.sql.Date;
 import java.util.List;
 
+import com.cgv.s1.ocart.OcartDTO;
+
 
 public class OproductDTO {
 
@@ -20,6 +22,7 @@ public class OproductDTO {
 	
 	//디테일 파일 담기 
 	private List<OproductDTO> fileDTOs;
+	
 	
 	public List<OproductDTO> getFileDTOs() {
 		return fileDTOs;
@@ -46,6 +49,15 @@ public class OproductDTO {
 	}
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+	
+	//주영 추가
+	private OcartDTO cartDTO;
+	public OcartDTO getCartDTO() {
+		return cartDTO;
+	}
+	public void setCartDTO(OcartDTO cartDTO) {
+		this.cartDTO = cartDTO;
 	}
 	
 	

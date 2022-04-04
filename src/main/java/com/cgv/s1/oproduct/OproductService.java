@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.cgv.s1.order.OrderDTO;
 import com.cgv.s1.util.FileManager;
 import com.cgv.s1.util.Pager;
 
@@ -178,6 +178,11 @@ public class OproductService {
 			}
 		}
 		return result;
+	}
+	
+	//주문 조회 관련 주영 추가
+	public List<OproductDTO> productCart(OrderDTO orderDTO) throws Exception {
+		return oproductDAO.productCart(orderDTO);
 	}
 	
 }
