@@ -9,4 +9,8 @@
 		INSERT INTO OCARTPAY (CARTPAYNUM, PAYNUM, CARTID)
 		VALUES (OCP_SEQ.NEXTVAL, #{payNum}, #{cartId})
 	</insert>
+	
+	<select id="list" parameterType="OrderDTO" resultType="CartPayDTO">
+		SELECT * FROM OCARTPAY WHERE PAYNUM=#{payNum}
+	</select>
 </mapper>

@@ -17,7 +17,24 @@
 			<td>주문금액</td>
 			<td>상태</td>
 		</tr>
-		
+		<c:forEach items="${orderList}" var="order">
+			<tr>
+				<td>${order.orderDate}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>
+					<c:choose>
+						<c:when test="${order.shipState eq 0}">
+							상품 준비 중
+							<button type="button">주문 취소</button>
+						</c:when>
+						<c:when test="${order.shipState eq 1}">배송 중</c:when>
+						<c:when test="${order.shipState eq 2}">배송 완료</c:when>
+					</c:choose>
+				</td>
+			</tr>	
+		</c:forEach>
 	</table>
 	
 </body>

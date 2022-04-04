@@ -9,4 +9,8 @@
 		INSERT INTO OORDER (ORDERNUM, PAYNUM, ORDERNAME, SHIPSTATE, ORDERDATE, REFUND, ID)
 		VALUES (OORDER_SEQ.NEXTVAL, #{payNum}, #{orderName}, 0, SYSDATE, 0, #{id})
 	</insert>
+	
+	<select id="list" parameterType="MemberDTO" resultType="OrderDTO">
+		SELECT * FROM OORDER WHERE ID=#{id}
+	</select>
 </mapper>
