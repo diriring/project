@@ -31,8 +31,8 @@ payBtn.addEventListener("click", function() {
         return;
     }
     
-    payMoney.value = payMoney.value-point.value;
-    pointSave.value = (payMoney.value-point.value)*0.05;
+    payMoney.value = payMoney.value-pointUse.value;
+    pointSave.value = (payMoney.value-pointUse.value)*0.05;
 
     // console.log("payMoney : ", payMoney.value);
     // console.log("totalPrice : ", totalPrice.value);
@@ -42,15 +42,15 @@ payBtn.addEventListener("click", function() {
 })
 
 pointBtn.addEventListener("click", function() {
-    
-    let max = point.getAttribute("max");
-    if(point.value>max) {
+    let max = pointUse.getAttribute("max");
+    if(pointUse.value>max) {
         alert("보유하신 포인트를 초과하여 사용하실 수 없습니다.");
+        pointUse.focus();
         return;
     }
-    document.querySelector("#pointUseResult").innerHTML=point.value+"원";
-    document.querySelector("#totalPriceResult").innerHTML=payMoney.value-point.value+"원";
-    document.querySelector("#pointSaveResult").innerHTML =(payMoney.value-point.value)*0.05+"원";
+    document.querySelector("#pointUseResult").innerHTML=(pointUse.value * 1).toLocaleString('ko-KR')+"M";
+    document.querySelector("#totalPriceResult").innerHTML=(payMoney.value-pointUse.value).toLocaleString('ko-KR')+"원";
+    document.querySelector("#pointSaveResult").innerHTML =((payMoney.value-pointUse.value)*0.05).toLocaleString('ko-KR')+"M";
     //최종 결제할 때 totalPrice value 값 변경해줘야 함
 })
 

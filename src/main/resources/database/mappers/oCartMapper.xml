@@ -99,6 +99,10 @@
 			SELECT * FROM OCART WHERE CARTID=#{cartId}
 		</select>
 		
+		<update id="payCheck" parameterType="OcartDTO">
+			UPDATE OCART SET PAYCHECK=1 WHERE CARTID=#{cartId}
+		</update>
+		
 	</mapper>
 
 

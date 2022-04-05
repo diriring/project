@@ -24,5 +24,13 @@ public class OrderService {
 		pager.setId(memberDTO.getId());
 		return orderDAO.list(pager);
 	}
+	
+	public OrderDTO detail(OrderDTO orderDTO) throws Exception {
+		return orderDAO.detail(orderDTO);
+	}
+	
+	public int refund(OrderDTO orderDTO) throws Exception {
+		return orderDAO.refund(orderDTO);
+	}
 
 }

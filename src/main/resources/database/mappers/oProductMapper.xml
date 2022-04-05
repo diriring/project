@@ -153,8 +153,11 @@
 		
 		<!-- 주문조회 관련 주영 추가 -->
 		<select id="productCart" resultMap="productCartResult" parameterType="OrderDTO">
-			SELECT PD.*, CT.PRODUCTAMOUNT
+			SELECT PD.*, OPFT.*, CT.PRODUCTAMOUNT
 			FROM OPRODUCT PD
+				INNER JOIN
+			    OPRODUCTFILETHUMB OPFT
+			    ON (PD.PRODUCTNUM = OPFT.PRODUCTNUM)
 			    INNER JOIN
 			    OCART CT
 			    ON (PD.PRODUCTNUM = CT.PRODUCTNUM)
@@ -172,6 +175,11 @@
 			<result column="productStock" property="productStock"/>
 			<result column="productSale" property="productSale"/>
 			<result column="regDate" property="regDate"/>
+			<association property="oproductFileThumbDTO" javaType="OproductFileThumbDTO"> 
+				<id column="fileNumThumb" property="fileNumThumb"/>
+				<result column="fileNameThumb" property="fileNameThumb"/>
+				<result column="oriNameThumb" property="oriNameThumb"/>
+			</association>
 			<association property="cartDTO" javaType="OcartDTO">
 				<id column="cartId" property="cartId"/>
 				<result column="productAmount" property="productAmount"/>

@@ -75,12 +75,13 @@ public class OproductDAOTest extends MyJunitTest {
 	@Test
 	public void productCartTest() throws Exception {
 		OrderDTO orderDTO = new OrderDTO();
-		orderDTO.setPayNum(63L);
+		orderDTO.setPayNum(82L);
 		
 		List<OproductDTO> ar = oproductDAO.productCart(orderDTO);
 		
 		for(int i=0; i<ar.size(); i++) {
-			System.out.println(ar.get(i).getProductNum());
+//			System.out.println(ar.get(i).getProductNum());
+			System.out.println(ar.get(i).getOproductFileThumbDTO().getFileNameThumb());
 		}
 	}
 

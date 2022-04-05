@@ -6,8 +6,8 @@
 
 <mapper namespace="com.cgv.s1.order.OrderDAO">
 	<insert id="add" parameterType="OrderDTO">
-		INSERT INTO OORDER (ORDERNUM, PAYNUM, ORDERNAME, SHIPSTATE, ORDERDATE, REFUND, ID)
-		VALUES (OORDER_SEQ.NEXTVAL, #{payNum}, #{orderName}, 0, SYSDATE, 0, #{id})
+		INSERT INTO OORDER (ORDERNUM, PAYNUM, ORDERNAME, SHIPSTATE, ORDERDATE, REFUND, ID, POINTVAR)
+		VALUES (OORDER_SEQ.NEXTVAL, #{payNum}, #{orderName}, 0, SYSDATE, 0, #{id}, #{pointVar})
 	</insert>
 	
 	<select id="list" parameterType="Pager" resultType="OrderDTO">
@@ -22,4 +22,12 @@
 	<select id="total" resultType="Long" parameterType="MemberDTO">
 		SELECT COUNT(ORDERNUM) FROM OORDER WHERE ID=#{id}
 	</select>
+	
+	<select id="detail" resultType="OrderDTO" parameterType="OrderDTO">
+		SELECT * FROM OORDER WHERE ORDERNUM=#{orderNum}
+	</select>
+	
+	<update id="refund" parameterType="OrderDTO">
+		UPDATE OORDER SET REFUND=1 WHERE ORDERNUM=#{orderNum}
+	</update>
 </mapper>

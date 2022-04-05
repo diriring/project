@@ -88,29 +88,60 @@ public class PayController {
 	}
 	
 	@PostMapping("add")
-	public String add(@RequestParam List<String> idList, PayDTO payDTO, HttpSession session) throws Exception {
-		//pay 테이블 db insert
-		payService.add(payDTO);
+	public ModelAndView add(@RequestParam List<String> idList, PayDTO payDTO, HttpSession session, HttpServletRequest request) throws Exception {
 		
-		//cartPay 테이블 db insert
-		for(int i=0; i<idList.size(); i++) {
-			Long cartId = Long.parseLong(idList.get(i));
-			CartPayDTO cartPayDTO = new CartPayDTO();
-			cartPayDTO.setCartId(cartId);
-			cartPayDTO.setPayNum(payDTO.getPayNum());
-			cartPayService.add(cartPayDTO);	
+		ModelAndView mv = new ModelAndView();
+		
+		//pay 테이블 db insert
+		int result = payService.add(payDTO);
+		
+		mv.setViewName("common/result");
+		if(result == 1) {
+			//cartPay 테이블 db insert
+			//상품 재고 판매수 update
+			OcartDTO cartDTO = new OcartDTO();
+			for(int i=0; i<idList.size(); i++) {
+				Long cartId = Long.parseLong(idList.get(i));
+				CartPayDTO cartPayDTO = new CartPayDTO();
+				cartPayDTO.setCartId(cartId);
+				cartPayDTO.setPayNum(payDTO.getPayNum());
+				cartPayService.add(cartPayDTO);
+				
+				cartDTO.setCartId(cartId);
+				cartDTO = ocartService.detailCart(cartDTO);
+				//재고 감소
+				oproductService.stockSubtract(cartDTO);
+				//판매 증가
+				oproductService.saleAdd(cartDTO);
+				//장바구니 payCheck update
+				ocartService.payCheck(cartDTO);
+			}
+			
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			
+			//member point update
+			memberDTO = memberService.mypage(memberDTO);
+			Integer pointUse = Integer.parseInt(request.getParameter("pointUse"));
+			Integer pointSave = Integer.parseInt(request.getParameter("pointSave"));
+			memberDTO.setPoint(memberDTO.getPoint() + pointSave - pointUse);
+			memberService.pointUpdate(memberDTO);
+			
+			//order 테이블 db insert
+			OrderDTO orderDTO = new OrderDTO();
+			orderDTO.setPayNum(payDTO.getPayNum());
+			orderDTO.setOrderName(memberDTO.getName());
+			orderDTO.setId(memberDTO.getId());
+			orderDTO.setPointVar(pointSave-pointUse);
+			orderService.add(orderDTO);
+			
+			mv.addObject("message", "구매가 완료되었습니다.");
+			mv.addObject("path", "../member/orderList");
+		}else {
+			mv.addObject("message", "구매에 실패했습니다. 다시 시도해주세요.");
+			mv.addObject("path", "ocart/list");
 		}
 		
-		//order 테이블 db insert
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		OrderDTO orderDTO = new OrderDTO();
-		orderDTO.setPayNum(payDTO.getPayNum());
-		orderDTO.setOrderName(memberDTO.getName());
-		orderDTO.setId(memberDTO.getId());
-		
-		orderService.add(orderDTO);
-		
-		return "redirect:../";
+		return mv;
 		
 	}
 

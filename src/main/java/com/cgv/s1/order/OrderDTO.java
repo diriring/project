@@ -11,6 +11,7 @@ public class OrderDTO {
 	private Date orderDate;
 	private Integer refund;
 	private String id;
+	private Integer pointVar;
 	
 	public Long getOrderNum() {
 		return orderNum;
@@ -54,5 +55,12 @@ public class OrderDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public Integer getPointVar() {
+		return pointVar;
+	}
+	public void setPointVar(Integer pointVar) {
+		this.pointVar = pointVar;
+	}
+	
 	
 }

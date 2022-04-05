@@ -28,5 +28,13 @@ public class OrderDAO {
 	public Long total(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"total", memberDTO);
 	}
+	
+	public OrderDTO detail(OrderDTO orderDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"detail", orderDTO);
+	}
+	
+	public int refund(OrderDTO orderDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"refund", orderDTO);
+	}
 
 }

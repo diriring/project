@@ -82,6 +82,10 @@ public class OcartService {
 		return ocartDAO.detailCart(ocartDTO);
 
 	}
+	
+	public int payCheck(OcartDTO ocartDTO) throws Exception {
+		return ocartDAO.payCheck(ocartDTO);
+	}
 
 
 	
