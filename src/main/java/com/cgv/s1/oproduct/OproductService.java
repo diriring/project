@@ -19,11 +19,18 @@ public class OproductService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//oProduct Type별 출력 list(페이지별도)
+	public List<OproductDTO> listType(OproductTypeDTO oproductTypeDTO) throws Exception{
+		oproductTypeDTO.makeRow();
+		oproductTypeDTO.makeNum(oproductDAO.total(oproductTypeDTO));
+		return oproductDAO.listType(oproductTypeDTO);
+	}
+	
+	
 	//oProductType list
 	public List<OproductTypeDTO> typeList() throws Exception{
 		return oproductDAO.typeList();
 	}
-	
 	
 	//oProduct list
 	public List<OproductDTO> list(Pager pager) throws Exception{

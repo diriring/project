@@ -53,6 +53,8 @@
 			<exclude-mapping path="/member/idFind"/>
 			<exclude-mapping path="/member/pwFind"/>
 			<exclude-mapping path="/oproduct/list"/>
+			<!-- 새로추가 -->
+			<exclude-mapping path="/oproduct/listType"/>
 			<exclude-mapping path="/oproduct/detail"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>

@@ -23,7 +23,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 
-	<h1>OProduct Update Page</h1>
+	<h1>상품 수정</h1>
 	
 	
 	
@@ -77,7 +77,7 @@
 			</div>
 			<div class="form_section_content">
 				<div class="type_wrap">
-					<input type="text" name="productName" id="productName" placeholder="제품의 이름을 입력해 주세요" value="${dto.productName}">
+					<input type="text" name="productName" id="productName" placeholder="제품의 이름을 입력해 주세요" value="${dto.productName}" onkeyup="delHangleTrim(this);" onchange="delHangleTrim(this);">
 				</div> 
 			</div>
 		</div>

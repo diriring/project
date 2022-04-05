@@ -9,11 +9,18 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/ao_detail.css">
 <c:import url="../template/header_css.jsp"></c:import>
+<style type="text/css">
+	#img {
+		margin-left: 10px;
+		width: 400px;
+		height: 400px;
+	}
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	<!-- 중요 잊지말고 구매가 진행되면 재고에서 없어지고 판매량 늘어나는 코드 작성할것 -->
-	<h1>OProduct Detail Page</h1>
+	<h1>상세페이지</h1>
 	
 
 		<div class="content_area">
@@ -24,15 +31,8 @@
 					<div class="image_wrap">
 						<img alt="img" src="../resources/upload/oproduct/thumbnail/${dto.oproductFileThumbDTO.fileNameThumb}" id="img">
 					</div>
-					<div class="line">
-					</div>
-					<div class="image_detail_wrap">
-						<div class="image_detail">
-							<c:forEach items="${dto.fileDTOs}" var="f">
-								<img alt="" src="../resources/upload/oproduct/${f.fileName}" id="imgd">
-							</c:forEach>
-						</div>
-					</div>
+					<!-- <div class="line"></div> -->
+					<!-- 여기서 디테일 빼봄 -->
 				</div> 
 				<div class="ct_right_area">
 					<div class="title">
@@ -79,8 +79,8 @@
 							</span>
 						</div>
 						<div id="button_set">
-							<a class="btn_cart" data-id="${member.id}" data-proNum="${dto.productNum}">장바구니 담기</a>
-							<a class="btn_buy">바로구매</a>
+							<button type = "button" class="btn_cart" data-id="${member.id}" data-proNum="${dto.productNum}">장바구니 담기</button>
+							<button type = "button" class="btn_buy" id="btn_buyT">바로구매</button>
 						</div>
 					</div>
 				</div>
@@ -91,12 +91,22 @@
 				<div class="product_intro">
 					${dto.productDetail}
 				</div>
-				<div class="product_content">
-					${dto.productDetail}
+				<div class="line">
 				</div>
+				<div class="product_content">
+					<div class="image_detail_wrap">
+						<div class="image_detail">
+							<c:forEach items="${dto.fileDTOs}" var="f">
+								<img alt="" src="../resources/upload/oproduct/${f.fileName}" id="imgd">
+							</c:forEach>
+						</div>
+					</div>
+				</div>	
 			</div>
+			
 			<div class="line">
 			</div>
+			
 		<!-- product Review -->	
 		<hr>
 		
@@ -133,14 +143,18 @@
 		</div>
 		
 
+	<!-- pay form -->
+	<!-- 현재 문제는 지금 paycontroller는 cartid로만 기능하게 되어있음  변수명 미선언 or 컨트롤러 작동 메서드 하나더 생성-->
+	<form action="../pay/payForm" method="post" id="pay_frm">
+		<input type="hidden" name="productNum" id="pay_pNum" value="${dto.productNum}">
+		<input type="hidden" name="productAmount" id="pay_pAmount">
+		<input type="hidden" name="id" value="${member.id}">
+	</form>
 
 
-	
-	
-	
-	<script src="../resources/js/detail.js"></script>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/header_js.jsp"></c:import>
+	<script src="../resources/js/oproductDetail.js"></script>
 	<script src="../resources/js/oproductReview.js"></script>
 
 </body>

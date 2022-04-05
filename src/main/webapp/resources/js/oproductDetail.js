@@ -17,6 +17,7 @@ minus_btn.addEventListener("click", function(){
 //장바구니 담기(ajax 연결)
 const button_set = document.querySelector('#button_set');
 const btn_cart = document.querySelectorAll(".btn_cart");
+//바로구매 아직연결 안함
 const btn_buy = document.querySelectorAll(".btn_buy");
 
 button_set.addEventListener("click", function(event){
@@ -27,9 +28,6 @@ button_set.addEventListener("click", function(event){
         let productAmount = count_check.value;
         let id = event.target.getAttribute("data-id")
         let productNum = event.target.getAttribute("data-proNum")
-        console.log(productAmount);
-        console.log(id);
-        console.log(productNum);
         let xhttp = new XMLHttpRequest();
         xhttp.open("POST", "../ocart/add")
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -48,10 +46,17 @@ button_set.addEventListener("click", function(event){
 				}
             }
         }
-
-
-
     }
-
-
 });
+
+
+// 주문탭 바로이동
+const pay_frm = document.querySelector("#pay_frm");
+const pay_pAmount = document.querySelector("#pay_pAmount");
+let btn_buyT = document.querySelector("#btn_buyT");
+
+btn_buyT.addEventListener("click", function(event){
+    pay_pAmount.setAttribute("value", count_check.value);
+    pay_frm.submit();
+});
+

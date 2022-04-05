@@ -92,12 +92,22 @@ writer.addEventListener("blur", function(){
     }
 });
 
+//일단 공백 체크 이거로(04.05)
 productName.addEventListener("blur", function(){
-    if(productName.value == ''){
-        productNameCheck = false;
-    }else{
-        productNameCheck = true;
-    }
+    let blank_pattern = /^\s+|\s+$/g; // 공백체크
+        if(productName.value == ''){
+            productNameCheck = false;
+        }else{
+            //앞뒤 문자 다 없애고 공백만 남겼을때 공백만 있으면 발동
+            if(productName.value.replace(blank_pattern, '') == ""){
+                //일단 맨 앞에 공백있어도 넘어가게 해놓음
+                alert(' 공백만 입력되었습니다 ');
+                productName.value = null;
+                productNameCheck = false;
+            }else{
+                productNameCheck = true;
+            }
+        }
 });
 
 
@@ -149,6 +159,17 @@ btn.addEventListener("click", function(){
     }
 });
 
+// 공백사용못하게(04.05)
+// function delHangleTrim(obj) { 
+//     var str_space = /\s/;  // 공백체크
+//     if(str_space.exec(obj.value)) { //공백 체크
+//         alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+//         obj.focus();
+//         obj.value = obj.value.replace(' ',''); // 공백제거
+//         return false;
+//     }
+// }
+
 
 
 function delHangle(evt){//한글을 지우는부분, keyup부분에 넣어준다
@@ -196,6 +217,7 @@ function isNumberKey2(evt){ // 숫자를 제외한 값은 입력하지 못함
 }
 
 
+//밑에 삭제가능(04.05)
 // 소숫점 아래까지 적용시
 // function isNumberKey(evt){ // 숫자를 제외한 값은 입력하지 못함
 //     let charCode = (evt.which)? evt.which:event.keyCode;

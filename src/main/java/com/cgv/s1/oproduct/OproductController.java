@@ -48,6 +48,18 @@ public class OproductController {
 		return mv;
 	}
 	
+	//새로만듬 보여주는 페이지도 새로만들? 안만들어도되나?
+	//타입 dto를 새로만들고 거기에 페이저도 넣고 같이 돌려버리기?
+	//listType
+	@RequestMapping(value="listType", method = RequestMethod.GET)
+	public ModelAndView listType(ModelAndView mv, OproductTypeDTO oproductTypeDTO) throws Exception{
+		List<OproductDTO> ar = oproductService.listType(oproductTypeDTO);
+		mv.addObject("list", ar);
+		mv.setViewName("oproduct/listType");
+		return mv;
+	}
+	//끝
+	
 	//detail
 	@RequestMapping(value="detail", method = RequestMethod.GET)
 	public ModelAndView detail(OproductDTO oproductDTO) throws Exception{

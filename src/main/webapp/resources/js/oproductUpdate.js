@@ -15,11 +15,13 @@ let typeCheck2 = true;
 let typeCheck3 = true;
 //photoCheck는 밑 imgCheck로 재구현
 //let photoCheck = false;
-let productNameCheck = false;
-let productDetailCheck = false;
-let productPriceCheck = false;
-let productDCCheck = false;
-let productStockCheck = false;
+let productNameCheck = true;
+let productDetailCheck = true;
+let productPriceCheck = true;
+let productDCCheck = true;
+let productStockCheck = true;
+//04.05 오류발견해서 일단 넣는 true로 다 바꿔줌, 시작시 focus넣어놨는데 안되는듯
+//생각해보면 걍 true 넣고 focus빼고 change나 blur 발생하면 봐도 될듯사실
 
 
 //분류도 동일하게 focus 주는게 있어야함
@@ -88,34 +90,57 @@ function imgDelete(){
         imgCheck = false;
         imgDeleteCheck = true;
         if(imgCheck == false){
-            //console.log("이거 중요2" + imgCheck);
-           const photo = document.querySelector("#photo");
-            photo.addEventListener("change", function(){
-                //console.log(photo.value);
-                if(photo.value == ''){
-                    imgCheck = false;
-                }else{
-                    imgCheck = true;
-                }
-            });
+            console.log("이거 함수안쪽" + imgCheck);
+            //이게작동안하네(04.05)
+            //아마 이유는 버튼을 안누르고 그냥 지우고 넣었을떄는
+            //change가 발생하지 않아서 안되는거같음  
+            let photo = document.querySelector("#photo");
+            //console.log(photo.value);
+            //해결 위해서 if문 하나더 생성
+            if(photo.value ==''){
+                photo.addEventListener("change", function(){
+                    //console.log(photo.value);
+                    if(photo.value == ''){
+                        imgCheck = false;
+                    }else{
+                        imgCheck = true;
+                    }
+                    console.log("이거 함수안쪽2" + imgCheck);
+                });
+            }else{
+                imgCheck = true;
+            }
         }
     }else{
         imgCheck = true;
     }
 }
 
-
-
-productName.focus();
+//일단 공백 체크 이거로(04.05)
 productName.addEventListener("blur", function(){
-    if(productName.value == ''){
-        productNameCheck = false;
-    }else{
-        productNameCheck = true;
-    }
+    let blank_pattern = /^\s+|\s+$/g; // 공백체크
+        if(productName.value == ''){
+            productNameCheck = false;
+        }else{
+            if(productName.value.replace(blank_pattern, '') == ""){
+                //일단 맨 앞에 공백있어도 넘어가게 해놓음
+                productName.value = null;
+                alert(' 공백만 입력되었습니다 ');
+                productNameCheck = false;
+            }else{
+                productNameCheck = true;
+            }
+        }
 });
 
-productDetail.focus();
+// productName.addEventListener("blur", function(){
+//     if(productName.value == ''){
+//         productNameCheck = false;
+//     }else{
+//         productNameCheck = true;
+//     }
+// });
+
 productDetail.addEventListener("blur", function(){
     if(productDetail.value == ''){
         productDetailCheck = false;
@@ -124,7 +149,6 @@ productDetail.addEventListener("blur", function(){
     }
 });
 
-productPrice.focus();
 productPrice.addEventListener("blur", function(){
     if(productPrice.value == ''){
         productPriceCheck = false;
@@ -133,7 +157,6 @@ productPrice.addEventListener("blur", function(){
     }
 });
 
-productDC.focus();
 productDC.addEventListener("blur", function(){
     if(productDC.value == ''){
         productDCCheck = false;
@@ -142,7 +165,6 @@ productDC.addEventListener("blur", function(){
     }
 });
 
-productStock.focus();
 productStock.addEventListener("blur", function(){
     if(productStock.value == ''){
         productStockCheck = false;
@@ -166,6 +188,7 @@ btn.addEventListener("click", function(){
         //처음에만 실행가능
         imgDelete();
     }
+    console.log(imgCheck);
     if(imgCheck == false){
          alert('썸네일 파일은 꼭 입력해주셔야합니다')   
     }else{
@@ -177,6 +200,17 @@ btn.addEventListener("click", function(){
     }
 
 });
+
+// 공백사용못하게(04.05) 공백체크 위에서그냥
+// function delHangleTrim(obj) { 
+//     var str_space = /\s/;  // 공백체크
+//     if(str_space.exec(obj.value)) { //공백 체크
+//         alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+//         obj.focus();
+//         obj.value = obj.value.replace(' ',''); // 공백제거
+//         return false;
+//     }
+// }
 
 
 //숫자
@@ -195,17 +229,8 @@ function isNumberKey(evt){ // 숫자를 제외한 값은 입력하지 못함
     let charCode = (evt.which)? evt.which:event.keyCode;
     let _value = event.srcElement.value;
     if(event.keyCode < 48 || event.keyCode > 57){
-        if(event.keyCode != 46){ //숫자와 .만 입력가능
-            return false;
-        }
-    }
-
-    //소숫점(.)이 두번 이상 나오지 못하게
-    let _pattern0 = /^\d*[.]\d*$/; //현재 value 값에 소숫점(.)이 있으면 . 입력불가
-    if(_pattern0.test(_value)){
-        if(charCode == 46){
-            return false;
-        }
+        alert('숫자만 입력 가능합니다')
+        return false;
     }
 
     //두자리 이하의 숫자만 입력가능
@@ -218,15 +243,7 @@ function isNumberKey(evt){ // 숫자를 제외한 값은 입력하지 못함
         }
     }
 
-    //소숫점 둘째자리까지만 입력가능
-    let _pattern2 = /^\d*[.]\d{2}$/; //현재 value 값이 소숫점 둘째자리 숫자이면 더이상 입력 불가
-    // {숫자}의 값을 변경하면 자릿수를 조정할 수 있다.
-    if(_pattern2.test(_value)){
-        alert("소수점 둘째자리까지만 입력가능합니다.")
-        return false;
-    }
     return true;
-
 }
 
 //price, stock 적용
@@ -239,7 +256,101 @@ function isNumberKey2(evt){ // 숫자를 제외한 값은 입력하지 못함
         return false;
     }
     return true;
-}    
+}
+
+
+//밑에 삭제가능(04.05)
+
+// 소숫점 아래까지 적용시
+// function isNumberKey(evt){ // 숫자를 제외한 값은 입력하지 못함
+//     let charCode = (evt.which)? evt.which:event.keyCode;
+//     let _value = event.srcElement.value;
+//     if(event.keyCode < 48 || event.keyCode > 57){
+//         if(event.keyCode != 46){ //숫자와 .만 입력가능
+//             return false;
+//         }
+//     }
+
+//     //소숫점(.)이 두번 이상 나오지 못하게
+//     let _pattern0 = /^\d*[.]\d*$/; //현재 value 값에 소숫점(.)이 있으면 . 입력불가
+//     if(_pattern0.test(_value)){
+//         if(charCode == 46){
+//             return false;
+//         }
+//     }
+
+//     //두자리 이하의 숫자만 입력가능
+//     let _pattern1 = /^\d{2}$/; //현재 value 값이 2자리 숫자이면 . 만 입력가능
+//     //{숫자}의 값을 변경하면 자릿수를 조정할 수 있다.
+//     if(_pattern1.test(_value)){
+//         if(charCode != 46){
+//             alert("두자리 이하의 숫자만 입력 가능합니다.");
+//             return false;
+//         }
+//     }
+
+//     //소숫점 둘째자리까지만 입력가능
+//     let _pattern2 = /^\d*[.]\d{2}$/; //현재 value 값이 소숫점 둘째자리 숫자이면 더이상 입력 불가
+//     // {숫자}의 값을 변경하면 자릿수를 조정할 수 있다.
+//     if(_pattern2.test(_value)){
+//         alert("소수점 둘째자리까지만 입력가능합니다.")
+//         return false;
+//     }
+//     return true;
+
+// }
+
+
+// function isNumberKey(evt){ // 숫자를 제외한 값은 입력하지 못함
+//     let charCode = (evt.which)? evt.which:event.keyCode;
+//     let _value = event.srcElement.value;
+//     if(event.keyCode < 48 || event.keyCode > 57){
+//         if(event.keyCode != 46){ //숫자와 .만 입력가능
+//             return false;
+//         }
+//     }
+
+//     //소숫점(.)이 두번 이상 나오지 못하게
+//     let _pattern0 = /^\d*[.]\d*$/; //현재 value 값에 소숫점(.)이 있으면 . 입력불가
+//     if(_pattern0.test(_value)){
+//         if(charCode == 46){
+//             return false;
+//         }
+//     }
+
+//     //두자리 이하의 숫자만 입력가능
+//     let _pattern1 = /^\d{2}$/; //현재 value 값이 2자리 숫자이면 . 만 입력가능
+//     //{숫자}의 값을 변경하면 자릿수를 조정할 수 있다.
+//     if(_pattern1.test(_value)){
+//         if(charCode != 46){
+//             alert("두자리 이하의 숫자만 입력 가능합니다.");
+//             return false;
+//         }
+//     }
+
+//     //소숫점 둘째자리까지만 입력가능
+//     let _pattern2 = /^\d*[.]\d{2}$/; //현재 value 값이 소숫점 둘째자리 숫자이면 더이상 입력 불가
+//     // {숫자}의 값을 변경하면 자릿수를 조정할 수 있다.
+//     if(_pattern2.test(_value)){
+//         alert("소수점 둘째자리까지만 입력가능합니다.")
+//         return false;
+//     }
+//     return true;
+
+// }
+
+// //price, stock 적용
+// function isNumberKey2(evt){ // 숫자를 제외한 값은 입력하지 못함
+//     //console.log(event.which);
+//     let charCode = (evt.which)? evt.which:event.keyCode;
+//     let _value = event.srcElement.value;
+//     if(event.keyCode < 48 || event.keyCode > 57){
+//         alert('숫자만 입력 가능합니다')
+//         return false;
+//     }
+//     return true;
+// }    
+
 
 
 

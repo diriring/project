@@ -17,7 +17,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-	<h1>OProduct Add Page</h1>
+	<h1>상품 추가</h1>
 	
 	<form action="./add" method="POST" id="frm" enctype="multipart/form-data">
 	
@@ -64,7 +64,7 @@
 			</div>
 			<div class="form_section_content">
 				<div class="type_wrap">
-					<input type="text" name="productName" id="productName" placeholder="제품의 이름을 입력해 주세요">
+					<input type="text" name="productName" id="productName" placeholder="제품의 이름을 입력해 주세요" onkeyup="delHangleTrim(this);" onchange="delHangleTrim(this);">
 				</div> 
 			</div>
 		</div>

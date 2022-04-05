@@ -24,21 +24,21 @@
 	
 	<div class="table-container">
 	
-		<h1>상품페이지</h1>
+		<h1> OProduct Page</h1>
 		
 		<!-- paging 처리 -->
 		<!--이름,내용 별 검색 만들기 카테고리 미완성 아니면 가격을 넣어볼지 카트에서는 뺼지?  -->
-		<form action="./list" class="search" method="get">
+		
+ 		<form action="./list" class="search" method="get">
 			<fieldset>
-					<select name="kind">
+				<select name="kind">
 						<option value="col1">상품명</option>
 						<option value="col2">상품내용</option>
-					</select>
-				<input type="text" name="search" value="${pager.search}">
+				</select>
+				<input type="text" name="search" value="${oproductTypeDTO.search}">
 				<button type="submit">검색</button>
 			</fieldset>
 		</form>
-		
 		
 		<table class="table-basic">
 			<tr>
@@ -62,14 +62,14 @@
 		
 		<!-- paging 처리 -->
 		<div>
-			<c:if test="${pager.pre}">
-				<a href="./list?page=${pager.startNum-1}">PREVIEW</a>
+			<c:if test="${oproductTypeDTO.pre}">
+				<a href="./list?page=${oproductTypeDTO.startNum-1}">PREVIEW</a>
 			</c:if>
-			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<a href="./list?page=${i}&kind=${pager.kind} &search=${pager.search}">${i}</a>
+			<c:forEach begin="${oproductTypeDTO.startNum}" end="${oproductTypeDTO.lastNum}" var="i">
+				<a href="./list?page=${i}&kind=${oproductTypeDTO.kind} &search=${oproductTypeDTO.search}">${i}</a>
 			</c:forEach>
-			<c:if test="${pager.next}">
-				<a href="./list?page=${pager.lastNum+1}">NEXT</a>
+			<c:if test="${oproductTypeDTO.next}">
+				<a href="./list?page=${oproductTypeDTO.lastNum+1}">NEXT</a>
 			</c:if>
 		</div>
 		

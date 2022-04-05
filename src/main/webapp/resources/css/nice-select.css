@@ -11,8 +11,10 @@
   font-family: inherit;
   font-size: 14px;
   font-weight: normal;
-  height: 42px;
-  line-height: 40px;
+  /* 42에서 30으로 수정*/
+  height: 30px;
+  /* 40에서 30으로 수정*/
+  line-height: 30px;
   outline: none;
   padding-left: 18px;
   padding-right: 30px;

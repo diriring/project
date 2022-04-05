@@ -53,7 +53,7 @@ public class PayController {
 			productDTO = oproductService.detail(productDTO);
 			productList.add(productDTO);
 			
-			//가격 수정 cartDTO 양 추가
+			//가격 수정 cartDTO 양 추가(재석)
 			double price = productDTO.getProductPrice() * (1 - productDTO.getProductDC() / 100) * cartDTO.getProductAmount();
 			totalPrice = totalPrice + price;
 		}

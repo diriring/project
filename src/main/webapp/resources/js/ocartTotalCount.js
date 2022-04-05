@@ -1,209 +1,120 @@
-//이거 해결하고 체크박스 전체 체크까지 
-
-let changeCheck = false;
-
-//이걸 함수로 만들고
-//만약 change가 생기면 함수를 다시 호출해서 그 값을 넣어주고
-//값을 조정해서 재호출함
-firstCode();
-
-//체크박스가 체크되어있으면 실행
-//체크박스가 해제되면 미실행
-
-//const cartInput = document.querySelectorAll(".cartInput");
 const individual_check = document.querySelectorAll(".individual_check");
+const all_check_input = document.querySelector("#size"); //임의로 size 바꿔야함
 
-function firstCode(){
-    const individual_check = document.querySelectorAll(".individual_check");
-    const productPrice = document.querySelectorAll('.individual_productPrice');
-    const productAmount = document.querySelectorAll('.individual_productAmount');
-    const salePrice = document.querySelectorAll('.individual_salePrice');
-    const totalPrice = document.querySelectorAll('.individual_totalPrice');
-    const point = document.querySelectorAll('.individual_point');
-    const totalPoint = document.querySelectorAll('.individual_totalPoint');
-
-    //아직 이 더해지는 부분 해결해야함
-    let productAmountM = 0;
-    let salePriceM = 0;
-    let totalPriceM = 0;
-    let totalPointM = 0;
-    let finalPriceM = 0;
-    let productPriceM = 0;
-
-
-    //생각은 밑에처럼 각각 가격 다 가지고 오고
-    // 변수 새로 생성 각각해서 ++로 다 담아주고
-    //그걸 총 가격 책정하는 div에 각각 값 넣어서 추가해주면 될듯?
-    let productAmountC = 0;
-    let totalPriceC = 0;
-    let totalPointC = 0;
-    let finalPriceC = 0;
-    let dFee = 0;
-
-    //안쓰는중
-    let productPriceC = 0;
-    let pointC = 0;
-    let salePriceC = 0;
-    //아직 미사용
-    // if(changeCheck){
-    //     console.log("change!!")
-    // }
-     
+//전체동의 탭 이건 일단 하나 있어야할듯
+all_check_input.addEventListener("click", function(){
+    for(i of individual_check){
+        i.checked = all_check_input.checked;
+    }
     cal();
-    feeCheck();
-    finalCheck();
+});
 
-
-    // for(i of individual_check){
-    //     console.log(i.checked);
-    //     if(i.checked == true){
-    //         for(p of productPrice){
-    //             console.log(p.value);
-    //             productPriceC = productPriceC + parseInt(p.value);
-    //         }
-    //     }
-
-    // }
-
-
-
-    //기본 값 계산식
-    function cal(){
-        //안쓰는중
-        for(p of productPrice){
-            console.log(p.value);
-            productPriceC = productPriceC + parseInt(p.value);
+//개별동의 탭
+const rules = document.querySelectorAll(".rules");
+for (r of rules){
+    r.addEventListener("click", function(){
+        let final = true;
+        for(i of individual_check){
+            if(!i.checked){
+                final = false;
+            }
         }
-        //안쓰는중
-        for(p of salePrice){
-            salePriceC = salePriceC + parseInt(p.value);
-        }
-
-        for(p of productAmount){
-            productAmountC = productAmountC + parseInt(p.value);
-        }
-
-        for(p of totalPrice){
-            totalPriceC = totalPriceC + parseInt(p.value);
-        }
-        for(p of totalPoint){
-            totalPointC = totalPointC + parseInt(p.value);
-        }
-    }
-
-    //배송비 : 총 금액 30000원이상이면 0원, 기본 3000원
-    function feeCheck(){
-        if(totalPriceC >= 30000){
-            dFee = 0;
-        }else{
-            dFee = 3000;
-        }
-    }
-
-    //배송비 + 총금액
-    function finalCheck(){
-        finalPriceC = dFee + totalPriceC;
-        //console.log(finalPriceC);
-    }
-
-    
-
-    //총 상품 가격
-    const totalPriceInput = document.querySelector("#totalPriceInput");
-    let addPrice = document.createElement("span");
-    addPrice.className = "totalPrice_span";
-    addPrice.innerText = totalPriceC.toLocaleString()+" 원";
-                        //.toLocaleString() 0,000원 값으로 리턴
-    totalPriceInput.append(addPrice);
-
-    //총 주문 상품수
-    const totalAmountInput = document.querySelector("#totalAmountInput");
-    let addAmount = document.createElement("span");
-    addAmount.className = "totalKind_span";
-    addAmount.innerText = productAmountC.toLocaleString()+" 개";
-    totalAmountInput.append(addAmount);
-
-    //배송비
-    const deliveryFee = document.querySelector("#deliveryFee");
-    let fee = document.createElement("span");
-    fee.className = "delivery_price";
-    fee.innerText = dFee.toLocaleString()+" 원";
-    deliveryFee.append(fee);
-
-    //총 결제 예상 금액
-    const finalPriceInput = document.querySelector("#finalPriceInput");
-    let addFeePrice = document.createElement("span");
-    let hidden = document.createElement("input");
-    // hidden.setAttribute("type", "hidden");
-    // hidden.setAttribute("value", finalPriceC);
-    // hidden.className="hidden";
-    addFeePrice.className = "finalTotalPrice_span";
-    addFeePrice.innerText = finalPriceC.toLocaleString()+" 원";
-    finalPriceInput.append(addFeePrice);
-    // finalPriceInput.append(hidden);
-
-    //총 적립 마일리지
-    const totalPointInput = document.querySelector("#totalPointInput");
-    let addPoint = document.createElement("span");
-    addPoint.className = "totalPoint_span";
-    addPoint.innerText = totalPointC.toLocaleString()+" M";
-    totalPointInput.append(addPoint);
+        all_check_input.checked = final;
+        cal();
+    });
 }
 
 
 
-//장바구니 변화시 금액 변화
+//체크에 클릭이 발생했을때 발동함
+for(i of individual_check){
+   
+    i.addEventListener("click", function(){
+        //클릭이 발생했을때 계산식 발동
+        cal();
+    });
 
-//일단 맨위로 올려봄
-const cartInputT = document.querySelector("#cartInputT");
-//const individual_check = document.querySelectorAll(".individual_check");
+}
 
-cartInputT.addEventListener("change", function(event){
-    console.log("click");
+const totalPrice_span = document.querySelector('#totalPrice_span');
+const delivery_price = document.querySelector('#delivery_price');
+const totalAmount_span = document.querySelector('#totalAmount_span');
+const finalTotalPrice_span = document.querySelector('#finalTotalPrice_span');
+const totalPoint_span = document.querySelector('#totalPoint_span');
+
+//페이지가 처음 떴을때 실행하는 계산식
+cal();
+
+//계산식 총금액
+function cal(){
     
-    if(event.target.classList.contains('individual_check')){
+    //console.log(individual.checked);
 
-        //여기서 요소를 넣어주면 실행하는 코드를 위에 작성해놓기?
-        // changeCheck = true;
+    let totalPrice = 0;
+    let totalPoint = 0;
+    let totalAmount = 0;
 
+    
+    for(individual of individual_check){
+        //console.log(individual.checked);
+        if(individual.checked){
 
+            //console.log(individual.nextSibling.nextSibling.nextSibling.value);
+            //이게 중요했음 각각의 id를 확인하게 해주는 코드
+            let cartId = individual.getAttribute("data-num");
+            
+            // 판매가 변수
+            let price = document.querySelector('#individual_salePriceC'+cartId).value;
+            //console.log(price);
+            // 포인트 변수
+            let point = document.querySelector('#individual_pointC'+cartId).value;
 
-       
+            // 수량 변수
+            let amount = document.querySelector('#individual_productAmountC'+cartId).value;
 
-
-        //append된 내용 삭제 후 재등록
-        totalPriceInput.innerHTML = "";
-        totalAmountInput.innerHTML = "";
-        deliveryFee.innerHTML = "";
-        finalPriceInput.innerHTML = "";
-        totalPointInput.innerHTML = "";
-
-        firstCode();
-        //이게 발동되면서 checked 되있는 값만 다시 계산하고싶음
+            //총금액 더해주기
+            totalPrice = totalPrice + price*amount;
+            totalPoint = totalPoint + point*amount;
+            totalAmount = totalAmount*1 + amount*1;
+           
+        }
+        
     }
 
+    let fee = 3000;
+    if(totalPrice >= 30000){
+        fee = 0;
+    }
 
+    totalPrice_span.innerHTML=totalPrice +" 원";
+    delivery_price.innerHTML= fee +" 원";
+    finalTotalPrice_span.innerHTML=fee+totalPrice +" 원";
+    totalAmount_span.innerHTML=totalAmount +" 개";
+    totalPoint_span.innerHTML=totalPoint +" M";
+
+}
+
+const frm = document.querySelector("#frm");
+
+//버튼 클릭시 넘어가게
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", function(event){
+    let check = false;
+    //여기서 토탈 프라이스, 토탈 포인트,
+    //파이널 토탈 프라이스, 멤버아이디 넘겨주면 될듯
+    //일단 위 주석 수행안함
+    for(i of individual_check){
+       if(i.checked){
+            check = true;
+       }
+    }
+    //체크검사가 필요한거고 체크가 하나라도 있으면 되게해야함
+    if(check){
+        frm.submit();
+    }else{
+        alert('주문탭에 담긴 상품이 없습니다.');
+        event.preventDefault();
+    }
 });
-
-///기본실행은 해놓고
-//위에 change가 발생하면
-//cartInput이 자동 실행을 하게 하고
-//그럼 기본적으로 위에도 catInput이 들어가야함
-//거기서 일단 true면 다 계산을 하게하고 append를 해놓고
-//check박스가 true일때만 코드를 작성(이건 전역변수로해놓기)
-//아래 함수에서 change가 발생하면 기존에 넣었던 span들을 다 지우고
-//새로 넣어주게 실행
-//changeCheck의 true false는 필요한지? 안필요할거같고 지우는거 cartInput 클릭시 하는거로하고
-//어차피 firstCode는 기본실행이니까
-//그럼 위 함수에 cartInput을 자동으로 하게해줘야함
-//예를들어 addEvent발생시가 아니고 일단 기본 검사
-//그럼 걍 individual_check로만 잠만
-
-
-
-
-
-
-
 
 

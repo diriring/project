@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="stylesheet" href="./resources/css/ao_index.css" type="text/css">
     <link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
@@ -24,7 +25,21 @@
     <link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
+    <script
+	  src="https://code.jquery.com/jquery-3.4.1.js"
+	  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	  crossorigin="anonymous">
+	</script>
+	
+	<style>
+    .cateMenu a{cursor:pointer;}
+    .cateMenu .hide{display:none;}
+	</style>
+
+
+
 </head>
+
 
 <body>
     <!-- Page Preloder -->
@@ -40,8 +55,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i> oliveweb@cj.net</li>
+                                <li>3만원 이상 구매시 배송비 무료</li>
                             </ul>
                         </div>
                     </div>
@@ -83,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/s1/"><img src="./resources/img/logo.png" alt=""></a>
+                        <a href="/s1/"><img src="./resources/img/olive/logo/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -126,24 +141,92 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="hero__categories">
+                    <div class="hero__categories" id="cateMenu">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
                             <span>카테고리</span>
                         </div>
                         <ul>
-                            <li><a href="#">스킨케어</a></li>
-                            <li><a href="#">마스크팩</a></li>
-                            <li><a href="#">클렌징</a></li>
-                            <li><a href="#">건강/위생용품</a></li>
-                            <li><a href="#">건강식품</a></li>
-                            <li><a href="#">푸드</a></li>
-                            <li><a href="#">라이프/홈</a></li>
-                            <li><a href="#">반려동물</a></li>
-                            <li><a href="#">베이비</a></li>
+                            <li class="cateMenu"><a href="#" id="s1">스킨케어</a>
+                            	<!-- 아니면 div로 묶고 위에 a태그에 id줘서 click왔을때 옆에 보이게? -->
+                            	<ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=10101">스킨/로션/올인원</a></li>
+                            		<li><a href="./oproduct/listType?productType=10102">에센스/크림</a></li>
+                            		<li><a href="./oproduct/listType?productType=10103">미스트/오일</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s2">마스크팩</a>
+                            	<ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=10201">시트팩/패드</a></li>
+                            		<li><a href="./oproduct/listType?productType=10202">페이셜팩</a></li>
+                            		<li><a href="./oproduct/listType?productType=10203">코팩/패치</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s3">클렌징</a>
+                                <ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=10301">페이셜클렌징</a></li>
+                            		<li><a href="./oproduct/listType?productType=10302">메이크업클렌징</a></li>
+                            		<li><a href="./oproduct/listType?productType=10303">필링/패드</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s4">건강/위생용품</a>
+                            	<ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=20101">스팟패치/의료용품</a></li>
+                            		<li><a href="./oproduct/listType?productType=20102">여성/위생용품</a></li>
+                            		<li><a href="./oproduct/listType?productType=20103">운동/헬스용품</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s5">건강식품</a>
+                            	<ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=20201">비타민류</a></li>
+                            		<li><a href="./oproduct/listType?productType=20202">체중관리</a></li>
+                            		<li><a href="./oproduct/listType?productType=20203">선물용 건강세트</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s6">푸드</a>
+                                <ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=20301">식단/이너뷰티</a></li>
+                            		<li><a href="./oproduct/listType?productType=20302">간편식/요리</a></li>
+                            		<li><a href="./oproduct/listType?productType=20303">디저트/간식</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s7">라이프/홈</a>
+                            	 <ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=30101">홈클리닝</a></li>
+                            		<li><a href="./oproduct/listType?productType=30102">생활</a></li>
+                            		<li><a href="./oproduct/listType?productType=30103">주방</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s8">반려동물</a>
+                                <ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=30201">강아지식품</a></li>
+                            		<li><a href="./oproduct/listType?productType=30202">강아지용품</a></li>
+                            		<li><a href="./oproduct/listType?productType=30203">고양이식품</a></li>
+                            		<li><a href="./oproduct/listType?productType=30204">고양이용품</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#" id="s9">베이비</a>
+                                <ul class="hide">
+                            		<li><a href="./oproduct/listType?productType=30301">기저귀</a></li>
+                            		<li><a href="./oproduct/listType?productType=30302">분유/이유식/간식</a></li>
+                            		<li><a href="./oproduct/listType?productType=30303">스킨/바디케어</a></li>
+                            	</ul>
+                            </li>
                             <!-- 밑에 두개 미구현 -->
-                            <li><a href="#">네일</a></li>
-                            <li><a href="#">바디케어</a></li>
+                            <li class="cateMenu"><a href="#">네일</a>
+                            	<ul class="hide">
+                            		<li><a href="">스킨/로션/올인원</a></li>
+                            		<li><a href="">에센스/크림</a></li>
+                            		<li><a href="">미스트/오일</a></li>
+                            	</ul>
+                            </li>
+                            <li class="cateMenu"><a href="#">바디케어</a>
+                                <ul class="hide">
+                            		<li><a href="">스킨/로션/올인원</a></li>
+                            		<li><a href="">에센스/크림</a></li>
+                            		<li><a href="">미스트/오일</a></li>
+                            	</ul>
+                            </li>
 
                         </ul>
                     </div>
@@ -152,8 +235,8 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                                <input type="text" placeholder="어떤게 필요하신가요?">
+                                <button type="submit" class="site-btn">검 색</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -161,17 +244,17 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>+02 1522-0882</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="./resources/img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="./resources/img/olive/banner/banner.jpg">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                            <span>모든 생필품이 다 있는</span>
+                            <h2>올리브영에 <br />오신 여러분 환영합니다</h2>
+                            <p>저렴하고 좋은 물건 가져가세요!</p>
+                            <a href="./oproduct/list" class="primary-btn">상품 보러가기</a>
                         </div>
                     </div>
                </div> 
@@ -186,28 +269,48 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/skin.jpg">
+                            <h5><a href="./oproduct/listType?productType=10101">스킨/로션/올인원</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/maskPack.png">
+                            <h5><a href="./oproduct/listType?productType=10201">시트팩/패드</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/cleansing.jpg">
+                            <h5><a href="./oproduct/listType?productType=10301">페이셜클렌징</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/spotPatch.png">
+                            <h5><a href="./oproduct/listType?productType=20101">스팟패치/의료용품</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="./resources/img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/vitamin.jpg">
+                            <h5><a href="./oproduct/listType?productType=20201">비타민류</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/food.jpg">
+                            <h5><a href="./oproduct/listType?productType=20301">식단/이너뷰티</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/homeCleaning.jpg">
+                            <h5><a href="./oproduct/listType?productType=30101">홈클리닝</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/dogFood.jpg">
+                            <h5><a href="./oproduct/listType?productType=30201">강아지식품</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="./resources/img/olive/categories/diaper.jpg">
+                            <h5><a href="./oproduct/listType?productType=30301">기저귀</a></h5>
                         </div>
                     </div>
                 </div>
@@ -584,8 +687,9 @@
     </section>
     <!-- Latest Product Section End -->
 
+	<!-- 블로그 지우기 -->
     <!-- Blog Section Begin -->
-    <section class="from-blog spad">
+    <!-- <section class="from-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -642,7 +746,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Blog Section End -->
 
     <!-- Footer Section Begin -->
@@ -714,6 +818,7 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+    <script src="./resources/js/index.js"></script>
     <script src="./resources/js/jquery-3.3.1.min.js"></script>
     <script src="./resources/js/bootstrap.min.js"></script>
     <script src="./resources/js/jquery.nice-select.min.js"></script>
@@ -723,6 +828,28 @@
     <script src="./resources/js/owl.carousel.min.js"></script>
     <script src="./resources/js/main.js"></script>
 
+	<script>
+		//JQUERY로 카테고리 메뉴 클릭시 구동
+	    $(document).ready(function(){
+	        $(".cateMenu>a").click(function(){
+	            var submenu = $(this).next("ul");
+	 
+	            // submenu 가 화면상에 보일때는 위로 부드럽게 접고 아니면 아래로 부드럽게 펼치기
+	            if( submenu.is(":visible") ){
+	                submenu.slideUp();
+	            }else{
+	                submenu.slideDown();
+	            }
+	        })
+	 
+	        //마우스 갔다댔을때 너무 번잡함
+	 		/* .mouseover(function(){
+	            $(this).next("ul").slideDown();
+	        }); */
+/* 	        // cateMenu class 중에 두번째 있는 cateMenu 의 하위에 있는 a태그에 클릭 이벤트를 발생시킨다. 화면 켰을때 먼저 다보고싶을때
+	        $(".cateMenu:eq(1)>a").click(); */
+	    });
+	</script>
 
 
 </body>

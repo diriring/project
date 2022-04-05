@@ -17,36 +17,19 @@ public class OcartDTO {
 	
 	//상품 담는 변수
 	private String productName;
+	private String productDetail;
 	private	Integer productPrice;
 	private Double productDC;
 
 	//썸네일 파일 담기(여러개라 리스트로)
 	private List<OproductFileThumbDTO> thumbFilesDTOs;
+	
 	public List<OproductFileThumbDTO> getThumbFilesDTOs() {
 		return thumbFilesDTOs;
 	}
 	public void setThumbFilesDTOs(List<OproductFileThumbDTO> thumbFilesDTOs) {
 		this.thumbFilesDTOs = thumbFilesDTOs;
 	}
-	
-	//썸네일 파일담기(하나씩해보자)ㄴㄴ
-//	private OproductFileThumbDTO oproductFileThumbDTO;
-//	public OproductFileThumbDTO getOproductFileThumbDTO() {
-//		return oproductFileThumbDTO;
-//	}
-//	public void setOproductFileThumbDTO(OproductFileThumbDTO oproductFileThumbDTO) {
-//		this.oproductFileThumbDTO = oproductFileThumbDTO;
-//	}
-
-	//일단 이거로 안담기면 위에꺼
-//	private List<OcartDTO> thumbFilesDTOs;
-//	public List<OcartDTO> getThumbFilesDTOs() {
-//		return thumbFilesDTOs;
-//	}
-//	public void setThumbFilesDTOs(List<OcartDTO> thumbFilesDTOs) {
-//		this.thumbFilesDTOs = thumbFilesDTOs;
-//	}
-
 	
 	//=========계산식 변수========
 	//추가 - setter 미구현
@@ -121,6 +104,13 @@ public class OcartDTO {
 	}
 	public void setProductDC(Double productDC) {
 		this.productDC = productDC;
+	}
+	
+	public String getProductDetail() {
+		return productDetail;
+	}
+	public void setProductDetail(String productDetail) {
+		this.productDetail = productDetail;
 	}
 	public Integer getSalePrice() {
 		return salePrice;
