@@ -21,8 +21,8 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	
+	<div class="container">
 	
-	<div class="table-container">
 	
 		<h1>상품페이지</h1>
 		
@@ -76,6 +76,7 @@
 		<c:if test="${not empty member}">
 			<a href="./add">ADD</a>
 		</c:if>
+	
 	
 	</div>
 <c:import url="../template/footer.jsp"></c:import>

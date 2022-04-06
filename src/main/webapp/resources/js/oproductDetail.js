@@ -42,7 +42,10 @@ button_set.addEventListener("click", function(event){
 				} else if(result == '2'){
 					alert("장바구니에 이미 추가되어져 있습니다.");
 				} else if(result == '5'){
-					alert("로그인이 필요합니다.");	
+					alert("로그인이 필요합니다.");
+                    //로그인 안되있을떄 창 리로드하고 로그인 창으로 넘기기(04.06)	
+                    window.location.reload();
+                    window.location.href = "../member/login";
 				}
             }
         }

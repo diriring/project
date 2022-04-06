@@ -28,7 +28,7 @@
     height: 80%;
     width: 80%;
     /*크기줄임*/
-    margin-left: 130px;
+	margin-left: 20px;
     top: 10%;
     position: relative;  		
 }
@@ -54,8 +54,8 @@
 
 .image_detail img{
 	display: inline-block;
-	width: 100px;
-	height: 100px;
+	width: 980px;
+	max-height: 20000px;
 }
 
 .line{
@@ -74,11 +74,12 @@
 }
 
 .title{
-    height: 28%;
+    height: 27%;
     font-size: 17px;
     line-height: 110px;
     color: #3a60df;
     padding-left: 3%;
+    margin-top: 45px;
 }
 
 .year{
@@ -99,7 +100,7 @@
     			
 }
 .button{
-	padding: 2% 0 2% 3%;
+	padding: 3% 0 2% 3%;
 }
 
 .button_quantity{
@@ -155,13 +156,16 @@
 }
 
 .product_intro{
-	width: 20%;
-	margin: auto;
+	/* width: 10px; */
+	/* 상품 디테일 건드리는 부분 */
+	margin-left: 80px;
 	margin-top: 40px;
+	margin-bottom: 40px;
 }
 .product_content{
-	width: 20%;
-	margin: auto;
+/* 	width: 20%;
+	margin: auto; */
+	margin-left: 80px;
 	margin-top: 40px;
 	margin-bottom: 40px;
 }

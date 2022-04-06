@@ -15,8 +15,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i> oliveweb@cj.net</li>
+                                <li>3만원 이상 구매시 배송비 무료</li>
                             </ul>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/s1/"><img src="/s1/resources/img/logo.png" alt=""></a>
+                        <a href="/s1/"><img src="/s1/resources/img/olive/logo/logo.png" alt=""></a>
                     </div>
                 </div>
                 

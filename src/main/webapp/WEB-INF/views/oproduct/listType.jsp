@@ -21,8 +21,8 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	
+	<div class="container">
 	
-	<div class="table-container">
 	
 		<h1> OProduct Page</h1>
 		
@@ -77,7 +77,9 @@
 			<a href="./add">ADD</a>
 		</c:if>
 	
+	
 	</div>
+	
 <c:import url="../template/footer.jsp"></c:import>
 <c:import url="../template/header_js.jsp"></c:import>
 </body>

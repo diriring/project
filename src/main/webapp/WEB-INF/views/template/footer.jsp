@@ -6,7 +6,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="/s1/index.jsp"><img src="/s1/resources/img/logo.png" alt=""></a>
+                            <a href="/s1/"><img src="/s1/resources/img/olive/logo/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>
