@@ -5,9 +5,24 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cgv.s1.member.address.MemberAddressDAO">
+	
+	<select id="listPage" parameterType="Pager" resultType="MemberAddressDTO">
+		SELECT * FROM 
+		(SELECT ROWNUM R, MA.* FROM 
+		    (SELECT * FROM OMEMBERADDRESS
+		    WHERE ID=#{id}
+		    ORDER BY MANUM ASC) MA)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="total" parameterType="MemberDTO" resultType="Long">
+		SELECT COUNT(MANUM) FROM OMEMBERADDRESS WHERE ID=#{id}
+	</select>
+	
 	<select id="list" parameterType="MemberDTO" resultType="MemberAddressDTO">
 		SELECT * FROM OMEMBERADDRESS WHERE ID=#{id} ORDER BY MANUM ASC
 	</select>
+	
 	<select id="addressDetail" parameterType="MemberAddressDTO" resultType="MemberAddressDTO">
 		SELECT * FROM OMEMBERADDRESS WHERE MANUM=#{maNum}
 	</select>

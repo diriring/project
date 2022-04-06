@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cgv.s1.member.MemberDTO;
+import com.cgv.s1.util.Pager;
 
 @Controller
 @RequestMapping(value="/member/address/**")
@@ -22,10 +23,10 @@ public class MemberAddressController {
 	private MemberAddressService memberAddressService;
 	
 	@GetMapping("list")
-	public ModelAndView list(HttpSession session) throws Exception {
+	public ModelAndView list(HttpSession session, Pager pager) throws Exception {
+		pager.setPerPage(5L);
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		List<MemberAddressDTO> ar = memberAddressService.list(memberDTO);
-//		System.out.println(ar.get(0).getMaNum());
+		List<MemberAddressDTO> ar = memberAddressService.listPage(memberDTO, pager);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", ar);
 		mv.setViewName("member/address/list");
