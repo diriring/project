@@ -11,21 +11,35 @@
 <body>
 	
 		<tr>
-			<td>배송지명</td>
+			<td style="width:200px">배송지명</td>
 			<td>
 				${dto.addressName}
 			</td>
 		</tr>
 		
 		<tr>
-			<td>우편번호/주소</td>
+			<td style="width:200px">우편번호/주소</td>
 			<td>
 				<c:set var="fullAddress" value="${dto.mAddress2}"></c:set>
-				<input type="text" id="mAddress1" name="mAddress1" value="${dto.mAddress1}" placeholder="우편번호" readonly>
-				<input type="text" id="address" placeholder="주소" value="${fn:split(fullAddress, '&&')[0]}" readonly><br>
-				<input type="text" id="detailAddress" value="${fn:split(fullAddress, '&&')[2]}" placeholder="상세주소">
-				<input type="text" id="extraAddress" value="${fn:split(fullAddress, '&&')[1]}" placeholder="참고항목">
-				<input type="hidden" name="arrive" id="arrive">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-9">
+								<div class="checkout__input">
+									<input type="text" id="mAddress1" placeholder="우편번호" value="${dto.mAddress1}" disabled="disabled">										
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<input type="text" id="address" placeholder="주소" value="${fn:split(fullAddress, '&&')[0]}" readonly><br>
+							<input type="text" id="detailAddress" placeholder="상세주소" value="${fn:split(fullAddress, '&&')[2]}">
+							<input type="text" id="extraAddress" placeholder="참고항목" value="${fn:split(fullAddress, '&&')[1]}">
+							<input type="hidden" name="arrive" id="arrive">
+						</div>
+					</div>
+				</div>
 			</td>
 		</tr>
 

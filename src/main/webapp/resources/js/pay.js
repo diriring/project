@@ -55,6 +55,7 @@ pointBtn.addEventListener("click", function() {
 })
 
 selectBox.addEventListener("change", function(event) {
+    // console.log("change");
     let maNum = event.target.value;
     // console.log(maNum);
 
