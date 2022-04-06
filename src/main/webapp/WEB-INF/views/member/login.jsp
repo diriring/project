@@ -8,36 +8,44 @@
 <title>Insert title here</title>
 <!-- 내가추가 -->
 <c:import url="../template/header_css.jsp"></c:import>
+
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <!-- -- 기존 --
 </head>
 <body> -->
-	<h1>Login Page</h1>
-	
-	<div>	
-		<c:if test="${result == '0'}">
-			사용자 아이디 혹은 비밀번호를 확인해주세요.
-		</c:if>
-		
-		<form action="./login" method="post" id="loginfrm">
-			<fieldset>
-				ID <input type="text" id="id" name="id" value="${cookie.remember.value}" placeholder="아이디">
-			</fieldset>
-			<fieldset>
-				PW <input type="password" id="pw" name="pw" placeholder="비밀번호">
-			</fieldset>
-			<fieldset>
-				<input type="checkbox" name="remember" value="1"> 아이디 저장
-				<a href="./idFind">아이디 찾기</a>
-				<a href="./pwFind">비밀번호 찾기</a>
-			</fieldset>
-			
-			
-			<button type="button" id="loginbtn">로그인</button>
-		</form>
-		
+	<div class="container">	
+		<div class="checkout__form spad">
+			<div class="row">
+				<div class="col-lg-6 text-center" style="float: none; margin: 0 auto;">
+					<div class="section-title">
+						<h3>로그인</h3>
+						<h5>올리브영의 다양한 서비스와 혜택을 누리세요</h5>
+					</div>
+					<c:if test="${result == '0'}">
+						사용자 아이디 혹은 비밀번호를 확인해주세요.
+					</c:if>
+					
+					<form action="./login" method="post" id="loginfrm">
+						<div class="checkout__input">
+							<input type="text" id="id" name="id" value="${cookie.remember.value}" placeholder="아이디">
+						</div>
+						<div class="checkout__input">
+							<input type="password" id="pw" name="pw" placeholder="비밀번호">
+						</div>
+						<div class="checkout__input__checkbox">
+							<input type="checkbox" name="remember" value="1"> 아이디 저장
+							<a href="./idFind">아이디 찾기</a>
+							<a href="./pwFind">비밀번호 찾기</a>
+						</div>
+						
+						
+						<button type="button" id="loginbtn" class="site-btn">로그인</button>
+					</form>
+				</div>
+			</div>
+		</div>	
 	</div>
 
 <script src="../resources/js/login.js"></script>
