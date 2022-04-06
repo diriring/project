@@ -42,6 +42,28 @@
 			ORDER BY OP.PRODUCTNUM DESC
 		</select>
 
+		<!-- 타입리스트 출력 페이징 처리시 숫자 가져오기 -->
+		<select id="totalType" resultType="Long" parameterType="oproductTypeDTO">
+			SELECT COUNT(PRODUCTNUM) FROM
+			 (SELECT * FROM OPRODUCT WHERE
+			 PRODUCTNUM>0
+			 AND 
+			 PRODUCTTYPE = #{productType}
+			 AND
+			    
+			 <choose>
+		    	<when test="kind=='col1'">
+		    		PRODUCTNAME
+		    	</when>
+		    	<otherwise>
+		    		PRODUCTDETAIL
+		    	</otherwise>
+			  </choose>
+		    	  
+			 LIKE '%'||#{search}||'%')
+		</select>
+	
+	
 	
 		<!-- 전체 리스트 출력 -->
 		<select id="list" resultMap="detailResult" parameterType="Pager">

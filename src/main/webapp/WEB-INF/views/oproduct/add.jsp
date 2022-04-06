@@ -16,7 +16,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-
+	<div class="container">
 	<h1>상품 추가</h1>
 	
 	<form action="./add" method="POST" id="frm" enctype="multipart/form-data">
@@ -75,7 +75,7 @@
 			</div>
 			<div class="form_section_content">
 				<div class="type_wrap">
-					<textarea rows="10" cols="" name="productDetail" id="productDetail"  placeholder="제품의 상세내용을 입력해 주세요"></textarea>
+					<textarea rows="10" cols="134" name="productDetail" id="productDetail"  placeholder="제품의 상세내용을 입력해 주세요"></textarea>
 				</div> 
 			</div>
 		</div>
@@ -117,8 +117,9 @@
 			</div>
 		</div>
 		
+		<!-- 동일 간격 주려고 css용 class 생성 -->
 		<!-- 썸네일 파일 시작 -->
-		<div>
+		<div class="photoFile">
 			<label>ThumbNail File</label>
 			<!-- <p>썸네일 파일은 꼭 지정해주셔야 합니다</p> -->
 			<div>
@@ -126,9 +127,9 @@
 			</div>
 		</div>
 		<!-- 썸네일 파일 끝	 -->
-
+		
 		<!-- 디테일 파일 시작 -->
-		<div>
+		<div class="photoFile">
 			<label>Detail File</label>
 			<div id="fileResult"></div>
 			<div>
@@ -136,13 +137,15 @@
 			</div>
 		</div>
 		<!-- 디테일 파일 끝	 -->
-
-		<button type="button" id="btn">ADD</button>
+		
+		<button class="photoFile" type="button" id="btn">ADD</button>
 		
 	</form>
 	
 	
-	<a href="./list">List</a>
+	<a href="./list" class="photoFile">List</a>
+	</div>
+	
 	
 	<script>
 		//ajax로도 처리 가능하고

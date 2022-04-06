@@ -11,7 +11,6 @@
 <c:import url="../template/header_css.jsp"></c:import>
 <style type="text/css">
 	#img {
-		margin-left: 10px;
 		width: 400px;
 		height: 400px;
 	}
@@ -20,9 +19,11 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	<!-- 중요 잊지말고 구매가 진행되면 재고에서 없어지고 판매량 늘어나는 코드 작성할것 -->
+	
+	
+	<div class="container">
 	<h1>상세페이지</h1>
 	
-
 		<div class="content_area">
 			<div class="line">
 			</div>			
@@ -36,9 +37,10 @@
 				</div> 
 				<div class="ct_right_area">
 					<div class="title">
-						<h1>
+						<!-- 수정 -->
+						<h2>
 							${dto.productName}
-						</h1>
+						</h2>
 					</div>
 					<div class="line">
 					</div>
@@ -89,7 +91,8 @@
 			</div>				
 			<div class="content_middle">
 				<div class="product_intro">
-					${dto.productDetail}
+				<!-- 추가함 옆으로 옮기는것 생각 -->
+					<div style="white-space:pre;"><c:out value="${dto.productDetail}" /></div>
 				</div>
 				<div class="line">
 				</div>
@@ -141,8 +144,8 @@
 			</div> -->
 			
 		</div>
-		
-
+	
+	</div>
 	<!-- pay form -->
 	<!-- 현재 문제는 지금 paycontroller는 cartid로만 기능하게 되어있음  변수명 미선언 or 컨트롤러 작동 메서드 하나더 생성-->
 	<form action="../pay/payForm" method="post" id="pay_frm">

@@ -325,23 +325,24 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>오늘의 추천상품</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
+                            <li data-filter=".beauty">Beauty</li>
+                            <li data-filter=".health">Health</li>
+                            <li data-filter=".food">Food</li>
+                            <li data-filter=".life">Life</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <!----------------------------------여기 구현시 링크 제품 넣고 실제 제품 링크로 할것 -------------------------->
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix beauty">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-1.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/2T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -349,14 +350,17 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                        	<!-- 이 부분 -->
+							<!-- 연습용 db임 -->
+                        	<h6><a href="./oproduct/detail?productNum=798">아누아 수딩 토너 350ml</a></h6>
+                            <!-- <h6><a href="#">아누아 수딩 토너 350ml</a></h6> -->
+                            <h5>30,500원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix health">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-2.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/22T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -364,14 +368,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">센시안 압박밴드 1켤레</a></h6>
+                            <h5>21,900원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix beauty">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-3.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/3T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -379,14 +383,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">아비브 토너 스킨부스터 1+1</a></h6>
+                            <h5>39,000원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix life">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-4.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/31T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -394,14 +398,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">리큅 3in1 미니믹서기</a></h6>
+                            <h5>49,000원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix food">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-5.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/27T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -409,14 +413,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">쿠캣 쭈꾸미볶음 280g 2종 택1</a></h6>
+                            <h5>7,500원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix beauty">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-6.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/14T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -424,14 +428,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">스킨푸드 캐롯 카로틴 카밍 워터 패드</a></h6>
+                            <h5>26,000원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix beauty">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-7.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/18T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -439,14 +443,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">바닐라코 클렌징밤 오리지널 125ml</a></h6>
+                            <h5>18,000원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix beauty">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/featured/feature-8.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="./resources/img/olive/today/13T.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -454,8 +458,8 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">눅스멀티 플로럴오일(본품100ml+멀티오일10ml*2 증정)</a></h6>
+                            <h5>49,000원</h5>
                         </div>
                     </div>
                 </div>
@@ -756,7 +760,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.jsp"><img src="./resources/img/logo.png" alt=""></a>
+                            <a href="/s1/"><img src="./resources/img/olive/logo/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>

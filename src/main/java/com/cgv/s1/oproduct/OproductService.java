@@ -22,7 +22,7 @@ public class OproductService {
 	//oProduct Type별 출력 list(페이지별도)
 	public List<OproductDTO> listType(OproductTypeDTO oproductTypeDTO) throws Exception{
 		oproductTypeDTO.makeRow();
-		oproductTypeDTO.makeNum(oproductDAO.total(oproductTypeDTO));
+		oproductTypeDTO.makeNum(oproductDAO.totalType(oproductTypeDTO));
 		return oproductDAO.listType(oproductTypeDTO);
 	}
 	
