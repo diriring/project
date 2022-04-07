@@ -6,11 +6,51 @@
 
 <mapper namespace="com.cgv.s1.oproduct.review.OproductReviewDAO">
 
-	<select id="list" resultType="OproductReviewDTO" parameterType="OproductReviewDTO">
-		SELECT * FROM OPRODUCTREVIEW
-    	WHERE NUM=#{num}
+	<!-- File   -->
+	<select id="listFile" parameterType="OproductReviewDTO" resultType="OproductReviewFileDTO">
+    	SELECT * FROM OPRODUCTREVIEWFILE
+    	WHERE NUM = #{num}
+    </select>
+    
+    <select id="detailFile" parameterType="OproductReviewFileDTO" resultType="OproductReviewFileDTO"> 
+    SELECT * FROM OproductReviewFile
+    WHERE FILENUM = #{fileNum}
+    </select>
+    
+    <insert id="addFile" parameterType="OproductReviewFileDTO">
+    	insert into OproductReviewFile (FILENUM, NUM, FILENAME, ORINAME)
+    	VALUES (opfile_seq.nextval, #{num}, #{fileName}, #{oriName})
+    
+    </insert>
+	
+	
+	
+	
+	
+	<select id="list" resultType="OproductReviewDTO" parameterType="OproductReviewDTO" resultMap="listResult">
+		SELECT O.*, OFILE.*
+		FROM
+	        OPRODUCTREVIEW O
+	            LEFT OUTER JOIN
+	         OPRODUCTREVIEWFILE OFILE 
+	        	ON O.NUM=OFILE.NUM
+		WHERE   O.NUM=#{num} 
     	ORDER BY REPLYNUM DESC
 	</select>
+	
+	<resultMap type="OproductReviewDTO" id="listResult">
+		<result column="replyNum" property="replyNum"/>
+		<result column="num" property="num"/>
+			<result column="title" property="title"/>
+	 		<result column="writer" property="writer"/>
+	 		<result column="contents" property="contents"/>
+	 		<result column="regdate" property="regdate"/>
+	 	<collection property="fileDTOs" javaType="list" ofType="OproductReviewFileDTO">
+	 		<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+	 	</collection>
+	</resultMap>
 	
 	<insert id="add" parameterType="OproductReviewDTO">
 	

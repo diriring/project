@@ -1,6 +1,9 @@
 package com.cgv.s1.oproduct.review;
 
 import java.util.Date;
+import java.util.List;
+
+
 
 public class OproductReviewDTO {
 	
@@ -10,7 +13,17 @@ public class OproductReviewDTO {
 	private String contents;
 	private Date regdate;
 	
+	private List<OproductReviewFileDTO> fileDTOs;
 	
+	
+	
+	
+	public List<OproductReviewFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<OproductReviewFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public Long getReplyNum() {
 		return replyNum;
 	}

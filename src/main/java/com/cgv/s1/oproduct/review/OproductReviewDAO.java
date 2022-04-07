@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cgv.s1.oproduct.OproductFileDTO;
 import com.cgv.s1.util.Pager;
 
 @Repository
@@ -16,8 +17,26 @@ public class OproductReviewDAO {
 	
 	private String NAMESPACE = "com.cgv.s1.oproduct.review.OproductReviewDAO.";
 	
-	public List<OproductReviewDTO> list(OproductReviewDTO oproductReviewDTO)throws Exception{
+	public List<OproductReviewFileDTO> listFile(OproductReviewDTO oproductReviewDTO)throws Exception{
 		
+		
+		return sqlSession.selectList(NAMESPACE+"listFile", oproductReviewDTO);
+	}
+	
+	public OproductReviewFileDTO detailFile(OproductReviewFileDTO oproductReviewFileDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", oproductReviewFileDTO);
+	}
+	
+	public int addFile(OproductReviewFileDTO oproductFReviewFileDTO)throws Exception{
+		
+		return sqlSession.insert(NAMESPACE+"addFile", oproductFReviewFileDTO);
+	}
+	
+	
+	
+	
+	public List<OproductReviewDTO> list(OproductReviewDTO oproductReviewDTO)throws Exception{
+		System.out.println("DAO에서 num은 ? ="+oproductReviewDTO.getNum());
 		
 		return sqlSession.selectList(NAMESPACE+"list", oproductReviewDTO);
 	}

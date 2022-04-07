@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/ao_detail.css">
 <c:import url="../template/header_css.jsp"></c:import>
+
+<!-- Modal -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import> 
@@ -111,18 +117,70 @@
 		<!-- product Review -->	
 		<hr>
 		
-		<h3>Review 작성</h3>
-		<input type="hidden" name="num" value="${dto.productNum}" id="num">
-		<input type="text" name="writer" id="writer" value="${member.id}" readonly><!-- value="${member.id}" readonly 멤버 추가되면 추가할것 -->
-		<textarea rows="" cols="" name="contents" id="contents"></textarea>
-		<button type="button" id="ok">OK</button>
-	
-		<hr>
+		<!-- Modal  -->
+		<ul class="nav">
+ 			<li>
+  				<a data-toggle="modal" href="#loginModal">Review 작성</a>
+	  				<div class="modal fade" id="loginModal" role="dialog">
+				   		<div class="modal-dialog">
+				    		<div class="modal-content">
+				     			<div class="modal-header">
+				      				<button type="button" class="close" data-dismiss="modal">취소</button>
+				      				<h1 class="modal-title" align="center">Review</h1>
+				     			</div>
+				     			
+				     			<div class="modal-body">
+				     				
+				     				<form action="../oproductReview/add" method="POST" enctype="multipart/form-data">
+									<div hidden="${result.replyNum}" id="replyNum"></div>
+									<input type="hidden" name="num" value="${dto.productNum}" id="num">
+									
+									글쓴이 <input type="text" name="writer" value="${member.id}"  readonly="readonly"> 
+									리뷰내용 <textarea name="contents" rows="" cols="" id="contents"></textarea>
+		
+									<div id="fileResult">
+									
+									</div>
+											<div>
+												<hr>
+												<button type="button" id="fileAdd">파일추가</button>
+												<button type="button" class="del">파일삭제</button>
+												<hr>
+											</div>
+												<button type="submit">리뷰등록</button>
+				     				
+				     				</form>
+				     				
+				     				<%-- ajax 시도 
+				     				 <form id="formData">    
+									<input type="hidden" name="num" value="${dto.productNum}" id="num">
+									<input type="text" name="writer" id="writer" value="${member.id}" readonly><!-- value="${member.id}" readonly 멤버 추가되면 추가할것 -->
+									<textarea rows="" cols="" name="contents" id="contents"></textarea>
+									<div>
+										<label>Review File</label>
+										
+										<div>
+										<input type="file" name="files" id="upload_file">
+										</div>
+									</div>
+									</form>
+									<button type="button" id="ok">OK</button> --%>
+				      			</div>
+				      			
+				      			
+				      			
+				    		</div>
+				   		</div>
+				  	</div>
+				 </li>
+			</ul>
 
-		<table id="productReview">
+		<!-- Modal 끝 -->
+			
+			<table id="productReview">
 	
 	
-		</table>
+			</table>
 
 		<hr>
 			
@@ -141,7 +199,7 @@
 				리뷰
 			</div> -->
 			
-		</div>
+		
 		
 
 
@@ -153,6 +211,7 @@
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/header_js.jsp"></c:import>
 	<script src="../resources/js/oproductReview.js"></script>
+	
 
 </body>
 

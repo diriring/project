@@ -67,7 +67,7 @@ replyResult.addEventListener("click",function(event){
         let replyNum = document.querySelector("#up"+num);
 
         let text = replyNum.innerText;
-        replyNum.innerText='';
+        
 
         let tx = document.createElement('textarea');
         tx.setAttribute("id", "update"+num);
@@ -84,6 +84,7 @@ replyResult.addEventListener("change",function(event){
     if(event.target.classList.contains('reply')){
         let contents = event.target.value;
         let replyNum = event.target.getAttribute("data-num");
+        
 
         let check = window.confirm("수정 하시겠습니까?");
 
@@ -94,7 +95,7 @@ replyResult.addEventListener("change",function(event){
 
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            xhttp.send("replyNum="+replyNum+"&contents="+contents);
+            xhttp.send("replyNum="+replyNum+"&contents="+contents+"&num"+num);
 
             xhttp.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
@@ -129,7 +130,7 @@ replyResult.addEventListener("click",function(event){
         //요청 header 정보 Post로 할때는 이걸 넣어줄것 !
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         
-        xhttp.send("replyNum="+replyNum);
+        xhttp.send("num="+replyNum);
 
 
         xhttp.onreadystatechange = function(){
