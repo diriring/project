@@ -41,7 +41,7 @@
 									</div>
 								</div>
 								<div class="col-lg-12">
-									<div id="nameResult"></div>
+									<div id="nameResult"></div> <br>
 								</div>
 									
 							</div>
@@ -59,7 +59,7 @@
 									<button type="button" id="idCheckBtn" class="site-btn">중복확인</button>
 								</div>
 								<div class="col-lg-12">
-									<div id="idResult"></div>
+									<div id="idResult"></div> <br>
 								</div>
 							</div>
 						</div>
@@ -73,7 +73,7 @@
 									</div>
 								</div>
 								<div class="col-lg-12">
-									<div id="pwResult">영문자, 숫자, 특수문자 조합하여 8~12자리</div>
+									<div id="pwResult">영문자, 숫자, 특수문자 조합하여 8~12자리</div> <br>
 								</div>
 							</div>
 						</div>
@@ -87,7 +87,7 @@
 									</div>
 								</div>
 								<div class="col-lg-12">
-									<div id="pcResult"></div>
+									<div id="pcResult"></div> <br>
 								</div>
 							</div>
 						</div>
@@ -112,7 +112,7 @@
 								</div>
 								<input type="hidden" id="birth" name="birth">
 								<div class="col-lg-12">
-									<div id="birthResult"></div>
+									<div id="birthResult"></div> <br>
 								</div>
 							</div>
 						</div>
@@ -137,7 +137,7 @@
 								</div>
 								<input type="hidden" id="phone" name="phone">
 								<div class="col-lg-12">
-									<div id="phoneResult"></div>
+									<div id="phoneResult"></div> <br>
 								</div>
 							</div>
 						</div>
@@ -161,7 +161,7 @@
 									<button type="button" id="emailCheckBtn" class="site-btn">중복확인</button>
 								</div>
 								<div class="col-lg-12">
-									<div id="emailResult"></div>
+									<div id="emailResult"></div> <br>
 								</div>
 							</div>
 						</div>

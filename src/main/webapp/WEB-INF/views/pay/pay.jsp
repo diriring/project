@@ -32,6 +32,7 @@
 					<div class="col-lg-8">
 						<div>
 							<h4>배송지 정보</h4>
+							<div class="shoping__cart__table">
 							<table>
 								<tr>
 									<td style="width:200px"><h5>배송지 선택</h5></td>
@@ -75,7 +76,7 @@
 									</td>
 								</tr>
 							</table>
-							
+							</div>
 						</div>
 						
 						<div>
@@ -84,8 +85,7 @@
 								<table>
 									<thead>
 										<tr>
-											<th>이미지</th>
-											<th>상품정보</th>
+											<th colspan="2">상품정보</th>
 											<th>판매가</th>
 											<th>수량</th>
 											<th>구매가</th>

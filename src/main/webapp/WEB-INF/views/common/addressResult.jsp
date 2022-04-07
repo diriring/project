@@ -12,7 +12,7 @@
 	
 		<tr>
 			<td style="width:200px">배송지명</td>
-			<td>
+			<td style="text-align: left;">
 				${dto.addressName}
 			</td>
 		</tr>
