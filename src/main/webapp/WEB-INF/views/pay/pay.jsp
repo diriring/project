@@ -85,7 +85,15 @@
 			</tr>
 			<tr>
 				<td>총 배송비</td>
-				<td>2500원</td>
+				<!-- 이 부분 추가함 -->
+				<c:choose>
+					<c:when test="${totalPrice >= 30000}">
+						<td>0원</td>
+					</c:when>
+					<c:otherwise>
+						<td>3000원</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 			<tr>
 				<td>포인트 사용</td>
@@ -94,9 +102,20 @@
 			<tr>
 				<td>최종 결제금액</td>
 				<td>
-					<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice}" readonly="readonly">
-					<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice + 2500}" readonly>
-					<div id="totalPriceResult">${totalPrice + 2500}원</div>
+				<!-- 이 부분 추가함 -->
+					<c:choose>
+						<c:when test="${totalPrice >= 30000}">
+							<!-- 중복되는건 빼도될듯 아마 결제 눌를때 넘어가는 값 -->
+							<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice}" readonly="readonly">
+							<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice}" readonly>
+							<div id="totalPriceResult">${totalPrice + 0}원</div> 
+						</c:when>
+						<c:otherwise>
+							<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice}" readonly="readonly">
+							<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice + 3000}" readonly>
+							<div id="totalPriceResult">${totalPrice + 3000}원</div>
+						</c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 		</table>

@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import com.cgv.s1.ocart.OcartDTO;
 import com.cgv.s1.util.Pager;
 
 @Repository
@@ -16,6 +16,15 @@ public class OproductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.cgv.s1.oproduct.OproductDAO.";
 
+	//oProduct Type별 리스트
+	public List<OproductDTO> listType(OproductTypeDTO oproductTypeDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listType", oproductTypeDTO);
+	}
+	
+	//total oProductType별(검색 용도) - 이게 지금 사용중인건가?
+	public Long totalType(OproductTypeDTO oproductTypeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "totalType", oproductTypeDTO);
+	}
 	
 	//oProductType List
 	public List<OproductTypeDTO> typeList() throws Exception{

@@ -50,4 +50,23 @@
     text-align-last: center;
 }
 
+/*add, update에 간격주려고 만듬*/
+.photoFile{
+	margin-left: 2%;
+	margin-top: 20px;
+}
 
+/*update 썸네일*/
+.imgThumb{
+	width: 200px;
+	height: 200px;
+	display:flex(inline-flex); 
+	display: inline-block;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.imgDetail{
+	width: 500px;
+	max-height: 20000px;
+}

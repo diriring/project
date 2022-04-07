@@ -8,12 +8,6 @@
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/ao_type.css">
-<style type="text/css">
-	.img{
-		width: 200px;
-		height: 200px;
-	}
-</style> 
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -23,7 +17,8 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 
-	<h1>OProduct Update Page</h1>
+	<div class="container">
+	<h1>상품 수정</h1>
 	
 	
 	
@@ -77,7 +72,7 @@
 			</div>
 			<div class="form_section_content">
 				<div class="type_wrap">
-					<input type="text" name="productName" id="productName" placeholder="제품의 이름을 입력해 주세요" value="${dto.productName}">
+					<input type="text" name="productName" id="productName" placeholder="제품의 이름을 입력해 주세요" value="${dto.productName}" onkeyup="delHangleTrim(this);" onchange="delHangleTrim(this);">
 				</div> 
 			</div>
 		</div>
@@ -88,7 +83,7 @@
 			</div>
 			<div class="form_section_content">
 				<div class="type_wrap">
-					<textarea rows="10" cols="" name="productDetail" id="productDetail"  placeholder="제품의 상세내용을 입력해 주세요">${dto.productDetail}</textarea>
+					<textarea rows="10" cols="134" name="productDetail" id="productDetail"  placeholder="제품의 상세내용을 입력해 주세요">${dto.productDetail}</textarea>
 				</div> 
 			</div>
 		</div>
@@ -131,13 +126,13 @@
 		</div>
 		
 		<!-- 썸네일 파일 시작 -->
-		<div id="photoUpdateTop">
+		<div id="photoUpdateTop" class="photoFile imgThumb">
 			<label>ThumbNail File</label>
 			<c:choose>
 				<c:when test="${not empty dto.oproductFileThumbDTO.fileNameThumb}">
 					<div id="photoUpdate">
 						<img alt="img" src="../resources/upload/oproduct/thumbnail/${dto.oproductFileThumbDTO.fileNameThumb}" id="img">	
-						${dto.oproductFileThumbDTO.oriNameThumb} <button type="button" class="photoDeleteBtn" data-productNum="${dto.productNum}" data-fileNum="${dto.oproductFileThumbDTO.fileNumThumb}" data-fileNameThumb="${dto.oproductFileThumbDTO.fileNameThumb}">X</button>
+						${dto.oproductFileThumbDTO.oriNameThumb}<button type="button" class="photoDeleteBtn" data-productNum="${dto.productNum}" data-fileNum="${dto.oproductFileThumbDTO.fileNumThumb}" data-fileNameThumb="${dto.oproductFileThumbDTO.fileNameThumb}">X</button>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -149,7 +144,7 @@
 		</div>
 		<!-- 썸네일 파일 끝	 -->
 
-		<div>
+		<div class="photoFile imgDetail">
 			<label>Detail File</label>
 			<div id="files">
 			<c:forEach items="${dto.fileDTOs}" var="f">
@@ -167,9 +162,15 @@
 			</div>
 		</div>
 		
-		<button type="button" id="btn">UPDATE</button>
+		<input type="hidden" name="type" value="${type}">
+		
+		<button class="photoFile" type="button" id="btn">UPDATE</button>
 		
 	</form>
+
+	</div>
+
+
 
 	<script>
 		//업데이트시 구현(기존거 가지고 오기)

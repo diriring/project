@@ -23,15 +23,27 @@ public class OcartController {
 	@Autowired
 	private OcartService ocartService;
 	
-	//HttpSession session;
-
-	//기존
+	//장바구니 삭제
+	@PostMapping("delete")
+	public String deleteCart(OcartDTO ocartDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = ocartService.deleteCart(ocartDTO);
+		return "redirect:./list";
+	}
+	
+	
+	//장바구니 갯수 수정
+	@PostMapping("update")
+	public String updateCart(OcartDTO ocartDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = ocartService.modifyAmount(ocartDTO);
+		return "redirect:./list";
+	}
+	
+	
 	//getCart(member로 확인)
-	//Mvc annotation driven?? 굳이 쓰지말자
-	//@PathVariable("id") String id 굳이 쓰지말자
 	@GetMapping("list")                                      
 	public ModelAndView getCart(OcartDTO ocartDTO, HttpSession session) throws Exception{
-		//System.out.println("contro come??");
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ocartDTO.setId(memberDTO.getId());
 		ModelAndView mv = new ModelAndView();
@@ -44,15 +56,9 @@ public class OcartController {
 	
 	//addCart(member로 확인)
 	@PostMapping("add")
-	 											//, HttpSession session(전역변수로 해봄 null오류뜸)	
 	public ModelAndView addCart(OcartDTO ocartDTO, HttpSession session) throws Exception{
-		System.out.println("check!!!");
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		//System.out.println(memberDTO);
-		//System.out.println(ocartDTO.getId());
-		//System.out.println(ocartDTO.getProductNum());
-		//System.out.println(ocartDTO.getProductAmount());
 		if(memberDTO == null) {
 			//ajax에서 출력
 			mv.addObject("result", 5);
@@ -63,18 +69,6 @@ public class OcartController {
 		//result 문자값으로 반환 ajax에서 출력
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
-		return mv;
-	}
-	
-
-	
-	//oCart totalList - 필요없을거같음
-	@GetMapping("totalList")
-	public ModelAndView totalList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<OcartDTO> ar = ocartService.totalList(pager);
-		mv.addObject("list", ar);
-		mv.setViewName("ocart/totalList");
 		return mv;
 	}
 	

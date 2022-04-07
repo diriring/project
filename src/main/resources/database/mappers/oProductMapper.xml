@@ -10,6 +10,60 @@
 		<select id="typeList" resultType="OproductTypeDTO">
 			SELECT * FROM OPRODUCTTYPE ORDER BY PRODUCTTYPE
 		</select>
+		
+		<!-- 타입별 리스트 출력 -->
+		<select id="listType" resultMap="detailResult" parameterType="OproductTypeDTO">
+			SELECT OP.*, OT.typeName, OPFT.* FROM
+			    (SELECT ROWNUM R, N.* FROM
+			    (SELECT * FROM OPRODUCT WHERE 
+			    PRODUCTNUM>0 
+			    AND
+			    PRODUCTTYPE = #{productType}
+			    AND
+			    
+			    <choose>
+			    	<when test="kind=='col1'">
+			    		PRODUCTNAME
+			    	</when>
+			    	<otherwise>
+			    		PRODUCTDETAIL
+			    	</otherwise>
+			    </choose>
+	    
+			    LIKE '%'||#{search}||'%'
+			   ORDER BY PRODUCTNUM DESC) N) OP
+			   		LEFT OUTER JOIN
+		       OPRODUCTTYPE OT
+    		   ON OP.PRODUCTTYPE = OT.PRODUCTTYPE
+			  	   LEFT OUTER JOIN
+			   OPRODUCTFILETHUMB OPFT
+			   ON OP.PRODUCTNUM = OPFT.PRODUCTNUM  
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
+			ORDER BY OP.PRODUCTNUM DESC
+		</select>
+
+		<!-- 타입리스트 출력 페이징 처리시 숫자 가져오기 -->
+		<select id="totalType" resultType="Long" parameterType="oproductTypeDTO">
+			SELECT COUNT(PRODUCTNUM) FROM
+			 (SELECT * FROM OPRODUCT WHERE
+			 PRODUCTNUM>0
+			 AND 
+			 PRODUCTTYPE = #{productType}
+			 AND
+			    
+			 <choose>
+		    	<when test="kind=='col1'">
+		    		PRODUCTNAME
+		    	</when>
+		    	<otherwise>
+		    		PRODUCTDETAIL
+		    	</otherwise>
+			  </choose>
+		    	  
+			 LIKE '%'||#{search}||'%')
+		</select>
+	
+	
 	
 		<!-- 전체 리스트 출력 -->
 		<select id="list" resultMap="detailResult" parameterType="Pager">
@@ -18,7 +72,16 @@
 			    (SELECT * FROM OPRODUCT WHERE 
 			    PRODUCTNUM>0 
 			    AND
-				PRODUCTNAME		    
+			    
+				<choose>
+			    	<when test="kind=='col1'">
+			    		PRODUCTNAME
+			    	</when>
+			    	<otherwise>
+			    		PRODUCTDETAIL
+			    	</otherwise>
+			    </choose>
+			      
 			    LIKE '%'||#{search}||'%'
 			   ORDER BY PRODUCTNUM DESC) N) OP
 			   		LEFT OUTER JOIN
@@ -38,7 +101,16 @@
 			 (SELECT * FROM OPRODUCT WHERE
 			 PRODUCTNUM>0
 			 AND 
-			 PRODUCTNAME		  
+			 
+			 <choose>
+		    	<when test="kind=='col1'">
+		    		PRODUCTNAME
+		    	</when>
+		    	<otherwise>
+		    		PRODUCTDETAIL
+		    	</otherwise>
+			  </choose>
+		    	  
 			 LIKE '%'||#{search}||'%')
 		</select>
 			

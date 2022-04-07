@@ -15,8 +15,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i> oliveweb@cj.net</li>
+                                <li>3만원 이상 구매시 배송비 무료</li>
                             </ul>
                         </div>
                     </div>
@@ -46,9 +46,6 @@
 							<div class="header__top__right__social">
                                 <a href="#">주문배송</a>
 							</div>
-							<div class="header__top__right__social">
-                                <a href="/s1/qna/list">QNA</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +56,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/s1/"><img src="/s1/resources/img/logo.png" alt=""></a>
+                        <a href="/s1/"><img src="/s1/resources/img/olive/logo/logo.png" alt=""></a>
                     </div>
                 </div>
                 
@@ -68,27 +65,29 @@
                         <ul>
                             <li class="active"><a href="/s1/">Home</a></li>
                             <li><a href="/s1/oproduct/list">Shop</a></li>
-                            <li><a href="#">Pages</a>
+<!--                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
                                     <li><a href="./checkout.html">Check Out</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            </li> -->
+                            <li><a href="/s1/qna/list">QNA</a></li>
+                            <li><a href="#">NOTICE</a></li>
                         </ul>
                     </nav>
                 </div>
                 
                 <div class="col-lg-3">
                     <div class="header__cart">
-                        <ul>
+<!--                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        </ul> -->
+                        <div class="header__cart__price">
+                        	<a href="/s1/member/join?type=seller">사업자등록</a>
+                        </div>
                     </div>
                 </div>
             </div>

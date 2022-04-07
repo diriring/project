@@ -21,15 +21,19 @@
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	
+	<div class="container">
 	
-	<div class="table-container">
 	
-		<h1> OProduct Page</h1>
+		<h1>상품페이지</h1>
 		
 		<!-- paging 처리 -->
-		<!-- 아직 미완성 카테고리, 이름 별 검색 만들기 -->
+		<!--이름,내용 별 검색 만들기 카테고리 미완성 아니면 가격을 넣어볼지 카트에서는 뺼지?  -->
 		<form action="./list" class="search" method="get">
 			<fieldset>
+					<select name="kind">
+						<option value="col1">상품명</option>
+						<option value="col2">상품내용</option>
+					</select>
 				<input type="text" name="search" value="${pager.search}">
 				<button type="submit">검색</button>
 			</fieldset>
@@ -72,6 +76,7 @@
 		<c:if test="${not empty member}">
 			<a href="./add">ADD</a>
 		</c:if>
+	
 	
 	</div>
 <c:import url="../template/footer.jsp"></c:import>

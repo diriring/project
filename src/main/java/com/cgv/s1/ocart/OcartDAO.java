@@ -15,17 +15,17 @@ public class OcartDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE ="com.cgv.s1.ocart.OcartDAO.";
 	
-	//카트 총 리스트(검색 용도)
-	public List<OcartDTO> totalList(Pager pager) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"totalList", pager);
-	}
-	
+	//카트 총 리스트(검색 용도)(지울수도)
+//	public List<OcartDTO> totalList(Pager pager) throws Exception{
+//		return sqlSession.selectList(NAMESPACE+"totalList", pager);
+//	}
+//	
 	//total(검색 용도)
 	public Long total(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "total", pager);
 	}
 	
-	//total oCartPager(검색 용도)
+	//total oCartPager(검색 용도) - 이게 지금 사용중인건가?
 	public Long total(OcartDTO ocartDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "total", ocartDTO);
 	}
@@ -42,8 +42,9 @@ public class OcartDAO {
 	}
 	
 	//카트 수량 수정
-	public int modifyCount(OcartDTO ocartDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"modifyCount", ocartDTO);
+	public int modifyAmount(OcartDTO ocartDTO) throws Exception{
+//		System.out.println(ocartDTO.getCartId());
+		return sqlSession.update(NAMESPACE+"modifyAmount", ocartDTO);
 	}
 	
 	//카트 목록

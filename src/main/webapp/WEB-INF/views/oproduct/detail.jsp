@@ -9,13 +9,21 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/ao_detail.css">
 <c:import url="../template/header_css.jsp"></c:import>
+<style type="text/css">
+	#img {
+		width: 400px;
+		height: 400px;
+	}
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import> 
 	<!-- 중요 잊지말고 구매가 진행되면 재고에서 없어지고 판매량 늘어나는 코드 작성할것 -->
-	<h1>OProduct Detail Page</h1>
 	
-
+	
+	<div class="container">
+	<h1>상세페이지</h1>
+	
 		<div class="content_area">
 			<div class="line">
 			</div>			
@@ -24,21 +32,15 @@
 					<div class="image_wrap">
 						<img alt="img" src="../resources/upload/oproduct/thumbnail/${dto.oproductFileThumbDTO.fileNameThumb}" id="img">
 					</div>
-					<div class="line">
-					</div>
-					<div class="image_detail_wrap">
-						<div class="image_detail">
-							<c:forEach items="${dto.fileDTOs}" var="f">
-								<img alt="" src="../resources/upload/oproduct/${f.fileName}" id="imgd">
-							</c:forEach>
-						</div>
-					</div>
+					<!-- <div class="line"></div> -->
+					<!-- 여기서 디테일 빼봄 -->
 				</div> 
 				<div class="ct_right_area">
 					<div class="title">
-						<h1>
+						<!-- 수정 -->
+						<h2>
 							${dto.productName}
-						</h1>
+						</h2>
 					</div>
 					<div class="line">
 					</div>
@@ -55,26 +57,14 @@
 					</div>	
 					<div class="price">
 						<div class="sale_price">정가 : <fmt:formatNumber value="${dto.productPrice}" pattern="#,### 원" /></div>
+						<!-- 생각해보니 여기 건드릴 필요없어서 다시 C:CHOOSE 지움 / OCARTDTO만 처리 -->
 						<div class="discount_price">
-						<c:choose>
-							<c:when test="${dto.productDC eq 0}">
-								판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice}" pattern="#,### 원" /></span> 
-								[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
-								<fmt:formatNumber value="${dto.productDC}" pattern="#,### 원" /> 할인]
-							</c:when>
-							<c:otherwise>
 								판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
 								[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
 								<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
-							</c:otherwise>
-						</c:choose>
-						</div>
-							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${dto.productPrice - (dto.productPrice)*(dto.productDC*0.01)}" pattern="#,### 원" /></span> 
-							[<fmt:formatNumber value="${dto.productDC}" pattern="###" />% 
-							<fmt:formatNumber value="${dto.productPrice*(dto.productDC*0.01)}" pattern="#,### 원" /> 할인]
-						</div>							
+						</div>						
 						<div>
-							<!-- 포인트 판매가의 0.05 적립으로 성정 -->
+							<!-- 포인트 판매가의 0.05 적립으로 설정 -->
 							적립 포인트 : <span class="point"></span>
 							<fmt:formatNumber value="${(dto.productPrice - (dto.productPrice)*(dto.productDC*0.01))*0.05}" pattern="#,### 원"/>
 						</div>
@@ -91,8 +81,8 @@
 							</span>
 						</div>
 						<div id="button_set">
-							<a class="btn_cart" data-id="${member.id}" data-proNum="${dto.productNum}">장바구니 담기</a>
-							<a class="btn_buy">바로구매</a>
+							<button type = "button" class="btn_cart" data-id="${member.id}" data-proNum="${dto.productNum}">장바구니 담기</button>
+							<button type = "button" class="btn_buy" id="btn_buyT">바로구매</button>
 						</div>
 					</div>
 				</div>
@@ -101,14 +91,25 @@
 			</div>				
 			<div class="content_middle">
 				<div class="product_intro">
-					${dto.productDetail}
+				<!-- 추가함 옆으로 옮기는것 생각 -->
+					<div style="white-space:pre;"><c:out value="${dto.productDetail}" /></div>
+				</div>
+				<div class="line">
 				</div>
 				<div class="product_content">
-					${dto.productDetail}
-				</div>
+					<div class="image_detail_wrap">
+						<div class="image_detail">
+							<c:forEach items="${dto.fileDTOs}" var="f">
+								<img alt="" src="../resources/upload/oproduct/${f.fileName}" id="imgd">
+							</c:forEach>
+						</div>
+					</div>
+				</div>	
 			</div>
+			
 			<div class="line">
 			</div>
+			
 		<!-- product Review -->	
 		<hr>
 		
@@ -132,10 +133,18 @@
 			
 			<div class="content_bottom">
 				<c:if test="${member.id eq dto.writer}">
-					<a href="./update?productNum=${dto.productNum}">Update</a>
-					<a href="./delete?productNum=${dto.productNum}">Delete</a>
+					<a href="./update?productNum=${dto.productNum}&type=${type}">Update</a>
+					<a href="./delete?productNum=${dto.productNum}&type=${type}">Delete</a>
 				</c:if>
-				<a href="./list">List</a>
+				<!-- listType에서 넘겨준 type이 있으면 listType으로 가는 list 버튼 -->
+				<c:choose>
+					<c:when test="${type eq ''}">
+						<a href="./list">List</a>
+					</c:when>
+					<c:otherwise>
+						<a href="./listType?productType=${type}">List</a>
+					</c:otherwise>
+				</c:choose>
 			</div>	
 						
 			<!-- <div class="content_bottom">
@@ -143,16 +152,20 @@
 			</div> -->
 			
 		</div>
-		
+	
+	</div>
+	<!-- pay form -->
+	<!-- 현재 문제는 지금 paycontroller는 cartid로만 기능하게 되어있음  변수명 미선언 or 컨트롤러 작동 메서드 하나더 생성-->
+	<form action="../pay/payForm" method="post" id="pay_frm">
+		<input type="hidden" name="productNum" id="pay_pNum" value="${dto.productNum}">
+		<input type="hidden" name="productAmount" id="pay_pAmount">
+		<input type="hidden" name="id" value="${member.id}">
+	</form>
 
 
-
-	
-	
-	
-	<script src="../resources/js/detail.js"></script>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/header_js.jsp"></c:import>
+	<script src="../resources/js/oproductDetail.js"></script>
 	<script src="../resources/js/oproductReview.js"></script>
 
 </body>

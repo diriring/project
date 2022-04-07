@@ -6,27 +6,15 @@
 
 	<mapper namespace="com.cgv.s1.ocart.OcartDAO">
 
-		<!-- 카트 총 리스트(모든항목) 검색용도 필요없을수 있음 -->
-		<select id="list" resultType="OcartDTO" parameterType="Pager">
-			SELECT * FROM
-			    (SELECT ROWNUM R, N.* FROM
-			    (SELECT * FROM OCART WHERE 
-			    CARTID>0 
-			    AND
-				PRODUCTNUM		    
-			    LIKE '%'||#{search}||'%'
-			   ORDER BY CARTID DESC) N)
-			WHERE R BETWEEN #{startRow} AND #{lastRow}
-		</select>
-		
+
 		<!-- 검색용도 활용 total -->
 		<select id="total" resultType="Long" parameterType="Pager">
 			SELECT COUNT(CARTID) FROM
 			 (SELECT * FROM OCART WHERE
-			 CARTID>0
-			 AND 
-			 PRODUCTNUM		  
-			 LIKE '%'||#{search}||'%')
+			 CARTID>0)
+			 <!-- 일단 검색 뺴봄 -->
+			<!--  AND   
+			 LIKE '%'||#{search}||'%') -->
 		</select>
 		
  
@@ -46,8 +34,8 @@
 		</delete>
 		
 		<!-- 카트 수량 수정 -->
- 		<update id="modifyCount" parameterType="OcartDTO">
-			UPDATE OCART SET PRODUCTAMOUNT=#{productAmount} WHERE ID = #{id}
+ 		<update id="modifyAmount" parameterType="OcartDTO">
+			UPDATE OCART SET PRODUCTAMOUNT=#{productAmount} WHERE CARTID = #{cartId}
 		</update> 
 
 		<!-- 카트 목록 -->
@@ -58,9 +46,7 @@
 			    (SELECT ROWNUM R, N.* FROM
 			    (SELECT * FROM OCART WHERE 
 			    CARTID>0 
-			    AND
-				PRODUCTNUM		    
-			    LIKE '%'||#{search}||'%'
+			    <!-- 일단 검색 뺴봄 -->
 			    ORDER BY CARTID DESC) N)
 				WHERE R BETWEEN #{startRow} AND #{lastRow}) O
 					LEFT OUTER JOIN
@@ -72,6 +58,36 @@
 			WHERE id=#{id}
 		</select>
 		
+
+		
+		<!-- 카트 확인 -->
+		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">
+			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum}
+		</select>
+		
+		<!-- 결제페이지 관련 주영 추가 -->
+		<select id="detailCart" parameterType="OcartDTO" resultType="OcartDTO">
+			SELECT * FROM OCART WHERE CARTID=#{cartId}
+		</select>
+		
+	</mapper>
+
+
+		<!-- 밑에 최종 지우기 -->
+		<!-- 카트 총 리스트(모든항목) 검색용도 필요없을수 있음 -->
+		<!-- <select id="list" resultType="OcartDTO" parameterType="Pager">
+			SELECT * FROM
+			    (SELECT ROWNUM R, N.* FROM
+			    (SELECT * FROM OCART WHERE 
+			    CARTID>0 
+			    AND
+				PRODUCTNUM		    
+			    LIKE '%'||#{search}||'%'
+			   ORDER BY CARTID DESC) N)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
+		</select> -->
+		
+
 		<!-- 이거 실패 -->
 		<!-- pk가 cartid가 들어가는데 productNum으로 참조가 안되서 그런가?
 		<resultMap type="OcartDTO" id="detailResult">
@@ -88,22 +104,6 @@
 			</collection>
 		</resultMap>
 		-->
-		
-		<!-- 카트 확인 -->
-		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">
-			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum}
-		</select>
-		
-		<!-- 결제페이지 관련 주영 추가 -->
-		<select id="detailCart" parameterType="OcartDTO" resultType="OcartDTO">
-			SELECT * FROM OCART WHERE CARTID=#{cartId}
-		</select>
-		
-	</mapper>
-
-
-
-
 
 
 
