@@ -223,9 +223,59 @@
 			DELETE OPRODUCTFILETHUMB WHERE FILENUMTHUMB=#{fileNumThumb}
 		</delete>
 		
+		<!-- 주문조회 관련 주영 추가 -->
+		<select id="productCart" resultMap="productCartResult" parameterType="OrderDTO">
+			SELECT PD.*, OPFT.*, CT.PRODUCTAMOUNT
+			FROM OPRODUCT PD
+				INNER JOIN
+			    OPRODUCTFILETHUMB OPFT
+			    ON (PD.PRODUCTNUM = OPFT.PRODUCTNUM)
+			    INNER JOIN
+			    OCART CT
+			    ON (PD.PRODUCTNUM = CT.PRODUCTNUM)
+			WHERE CT.CARTID IN (SELECT CARTID FROM OCARTPAY WHERE PAYNUM=#{payNum})
+		</select>
+		<resultMap type="OproductDTO" id="productCartResult">
+			<id column="productNum" property="productNum"/>
+			<result column="writer" property="writer"/>
+			<result column="productType" property="productType"/>
+			<result column="typeName" property="typeName"/>
+			<result column="productName" property="productName"/>
+			<result column="productDetail" property="productDetail"/>
+			<result column="productPrice" property="productPrice"/>
+			<result column="productDC" property="productDC"/>
+			<result column="productStock" property="productStock"/>
+			<result column="productSale" property="productSale"/>
+			<result column="regDate" property="regDate"/>
+			<association property="oproductFileThumbDTO" javaType="OproductFileThumbDTO"> 
+				<id column="fileNumThumb" property="fileNumThumb"/>
+				<result column="fileNameThumb" property="fileNameThumb"/>
+				<result column="oriNameThumb" property="oriNameThumb"/>
+			</association>
+			<association property="cartDTO" javaType="OcartDTO">
+				<id column="cartId" property="cartId"/>
+				<result column="productAmount" property="productAmount"/>
+				<result column="productNum" property="productNum"/>
+			</association>
+		</resultMap>
 		
-		
-		
+		<!-- 상품 구매 시 재고, 판매수 변경 -->
+		<update id="stockAdd" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSTOCK=PRODUCTSTOCK+#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="stockSubtract" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSTOCK=PRODUCTSTOCK-#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="saleAdd" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSALE=PRODUCTSALE+#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="saleSubtract" parameterType="OcartDTO">
+			UPDATE OPRODUCT SET PRODUCTSALE=PRODUCTSALE-#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
 		
 		
 		

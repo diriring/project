@@ -1,6 +1,7 @@
 package com.cgv.s1.member;
 
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -18,12 +19,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cgv.s1.cartPay.CartPayDTO;
+import com.cgv.s1.cartPay.CartPayService;
+import com.cgv.s1.ocart.OcartDTO;
+import com.cgv.s1.ocart.OcartService;
+import com.cgv.s1.oproduct.OproductDTO;
+import com.cgv.s1.oproduct.OproductService;
+import com.cgv.s1.order.OrderDTO;
+import com.cgv.s1.order.OrderService;
+import com.cgv.s1.util.Pager;
+
 @Controller
 @RequestMapping(value="/member/**")
 public class memberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private CartPayService cartPayService;
+	@Autowired
+	private OcartService ocartService;
+	@Autowired
+	private OproductService oproductService;
 	
 	//로그인 페이지 이동
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -303,7 +322,25 @@ public class memberController {
 	
 	//주문/배송 조회 페이지
 	@GetMapping("orderList")
-	public void orderList() throws Exception {
+	public ModelAndView orderList(HttpSession session, Pager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		pager.setPerPage(5L);
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<OrderDTO> ar = orderService.list(memberDTO, pager);
+		mv.addObject("orderList", ar);
+		mv.addObject("pager", pager);
+		
+		List<List<OproductDTO>> productList = new ArrayList<List<OproductDTO>>();
+		for(int i=0;i<ar.size();i++) {
+			List<OproductDTO> productInfo = oproductService.productCart(ar.get(i));
+			productList.add(productInfo);
+		}
+		mv.addObject("productList", productList);
+		
+		mv.setViewName("member/orderList");
+		
+		return mv;
 
 	}
 	

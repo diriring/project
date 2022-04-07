@@ -10,14 +10,30 @@
 </head>
 <body>
 		<tr>
-			<td>우편번호/주소</td>
+			<td style="width:200px">우편번호/주소</td>
 			<td>
-				<input type="text" id="mAddress1" name="mAddress1" placeholder="우편번호" readonly>
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="address" placeholder="주소" readonly><br>
-				<input type="text" id="detailAddress" placeholder="상세주소">
-				<input type="text" id="extraAddress" placeholder="참고항목">
-				<input type="hidden" name="mAddress2" id="mAddress2">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="checkout__input">
+									<input type="text" id="mAddress1" placeholder="우편번호" disabled="disabled">										
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="site-btn">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<input type="text" id="address" placeholder="주소" readonly><br>
+							<input type="text" id="detailAddress" placeholder="상세주소">
+							<input type="text" id="extraAddress" placeholder="참고항목">
+							<input type="hidden" name="arrive" id="arrive">
+						</div>
+					</div>
+				</div>
 			</td>
 		</tr>
 

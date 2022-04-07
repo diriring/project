@@ -2,30 +2,60 @@ const selectBox = document.querySelector("#selectBox");
 const addressNameResult = document.querySelector("#addressNameResult");
 const addressResult = document.querySelector("#addressResult");
 
-const mAddress1 = document.querySelector("#mAddress1");
-const address = document.querySelector("#address");
-const detailAddress = document.querySelector("#detailAddress");
-const extraAddress = document.querySelector("#extraAddress");
-const mAddress2 = document.querySelector("#mAddress2");
 
 const pointBtn = document.querySelector("#pointBtn");
+const payMoney = document.querySelector("#payMoney");
 const totalPrice = document.querySelector("#totalPrice");
+const pointUse = document.querySelector("#pointUse");
+const pointSave = document.querySelector("#pointSave");
 
-pointBtn.addEventListener("click", function() {
-    
-    let point = document.querySelector("#point").value;
-    let max = document.querySelector("#point").getAttribute("max");
-    if(point>max) {
-        alert("보유하신 포인트를 초과하여 사용하실 수 없습니다.");
+const payBtn = document.querySelector("#payBtn");
+const payFrm = document.querySelector("#payFrm");
+
+payBtn.addEventListener("click", function() {
+    // console.log("click");
+    let mAddress1 = document.querySelector("#mAddress1");
+    let address = document.querySelector("#address");
+    let detailAddress = document.querySelector("#detailAddress");
+    let extraAddress = document.querySelector("#extraAddress");
+    let arrive = document.querySelector("#arrive");
+
+    arrive.value = address.value + extraAddress.value + detailAddress.value;
+    if(mAddress1.value == "") {
+        alert("우편번호는 필수입니다.")
         return;
     }
-    document.querySelector("#pointUse").innerHTML=point+"원";
-    document.querySelector("#totalPriceResult").innerHTML=totalPrice.value-point+"원";
+    if(detailAddress.value == "") {
+        alert("상세주소를 입력해주세요.")
+        detailAddress.focus();
+        return;
+    }
+    
+    payMoney.value = payMoney.value-pointUse.value;
+    pointSave.value = (payMoney.value-pointUse.value)*0.05;
 
+    // console.log("payMoney : ", payMoney.value);
+    // console.log("totalPrice : ", totalPrice.value);
+    // console.log(arrive.value);
+    
+    payFrm.submit();
+})
+
+pointBtn.addEventListener("click", function() {
+    let max = pointUse.getAttribute("max");
+    if(pointUse.value>max) {
+        alert("보유하신 포인트를 초과하여 사용하실 수 없습니다.");
+        pointUse.focus();
+        return;
+    }
+    document.querySelector("#pointUseResult").innerHTML=(pointUse.value * 1).toLocaleString('ko-KR')+"M";
+    document.querySelector("#totalPriceResult").innerHTML=(payMoney.value-pointUse.value).toLocaleString('ko-KR')+"원";
+    document.querySelector("#pointSaveResult").innerHTML =((payMoney.value-pointUse.value)*0.05).toLocaleString('ko-KR')+"M";
     //최종 결제할 때 totalPrice value 값 변경해줘야 함
 })
 
 selectBox.addEventListener("change", function(event) {
+    // console.log("change");
     let maNum = event.target.value;
     // console.log(maNum);
 

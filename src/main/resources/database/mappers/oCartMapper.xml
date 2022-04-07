@@ -70,7 +70,6 @@
 			SELECT * FROM OCART WHERE CARTID=#{cartId}
 		</select>
 		
-	</mapper>
 
 
 		<!-- 밑에 최종 지우기 -->
@@ -104,6 +103,25 @@
 			</collection>
 		</resultMap>
 		-->
+
+		
+		<!-- 카트 확인 -->
+ 		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">
+			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum}
+		</select>
+		
+		<!-- 결제페이지 관련 주영 추가 -->
+		<select id="detailCart" parameterType="OcartDTO" resultType="OcartDTO">
+			SELECT * FROM OCART WHERE CARTID=#{cartId}
+		</select>
+		
+		<update id="payCheck" parameterType="OcartDTO">
+			UPDATE OCART SET PAYCHECK=1 WHERE CARTID=#{cartId}
+		</update>
+		
+	</mapper>
+
+
 
 
 

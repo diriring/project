@@ -5,10 +5,9 @@ import java.sql.Date;
 public class PayDTO {
 	
 	private Long payNum;
-	private Long num;
 	private Date payDate;
 	private Integer payMoney;
-	private Integer totalPrice;
+	private Double totalPrice;
 	private String arrive;
 	private Integer payCheck;
 	
@@ -17,12 +16,6 @@ public class PayDTO {
 	}
 	public void setPayNum(Long payNum) {
 		this.payNum = payNum;
-	}
-	public Long getNum() {
-		return num;
-	}
-	public void setNum(Long num) {
-		this.num = num;
 	}
 	public Date getPayDate() {
 		return payDate;
@@ -36,10 +29,10 @@ public class PayDTO {
 	public void setPayMoney(Integer payMoney) {
 		this.payMoney = payMoney;
 	}
-	public Integer getTotalPrice() {
+	public Double getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(Integer totalPrice) {
+	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	public String getArrive() {

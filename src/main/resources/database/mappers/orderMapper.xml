@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.s1.order.OrderDAO">
+	<insert id="add" parameterType="OrderDTO">
+		INSERT INTO OORDER (ORDERNUM, PAYNUM, ORDERNAME, SHIPSTATE, ORDERDATE, REFUND, ID, POINTVAR)
+		VALUES (OORDER_SEQ.NEXTVAL, #{payNum}, #{orderName}, 0, SYSDATE, 0, #{id}, #{pointVar})
+	</insert>
+	
+	<select id="list" parameterType="Pager" resultType="OrderDTO">
+		SELECT * FROM 
+		(SELECT ROWNUM R, OD.* FROM 
+		    (SELECT * FROM OORDER
+		    WHERE ID=#{id}
+		    ORDER BY ORDERNUM DESC) OD)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="total" resultType="Long" parameterType="MemberDTO">
+		SELECT COUNT(ORDERNUM) FROM OORDER WHERE ID=#{id}
+	</select>
+	
+	<select id="detail" resultType="OrderDTO" parameterType="OrderDTO">
+		SELECT * FROM OORDER WHERE ORDERNUM=#{orderNum}
+	</select>
+	
+	<update id="refund" parameterType="OrderDTO">
+		UPDATE OORDER SET REFUND=1 WHERE ORDERNUM=#{orderNum}
+	</update>
+</mapper>

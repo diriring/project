@@ -61,6 +61,10 @@ public class OcartDAO {
 	public OcartDTO detailCart(OcartDTO ocartDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"detailCart", ocartDTO);
 	}
+	
+	public int payCheck(OcartDTO ocartDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"payCheck", ocartDTO);
+	}
 
 	
 }

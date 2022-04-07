@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+   #img{
+         margin-left: 10px;
+         width: 100px;
+         height: 100px;
+      }
+</style> 
 </head>
 <body>
 	<h1>주문/배송 조회</h1>
@@ -17,8 +25,77 @@
 			<td>주문금액</td>
 			<td>상태</td>
 		</tr>
-		
+		<c:forEach items="${orderList}" var="order" varStatus="status">
+			<tr>
+				<td>${order.orderDate}</td>
+					<td>
+						<table>
+						<c:forEach items="${productList[status.index]}" var="product">
+							<tr>
+								<td>
+									<img alt="img" src="../resources/upload/oproduct/thumbnail/${product.oproductFileThumbDTO.fileNameThumb}" id="img">
+								</td>
+								<td>${product.productName}</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</td>
+					<td>
+						<table>
+							<c:forEach items="${productList[status.index]}" var="product">
+							<tr>
+								<td>${product.cartDTO.productAmount}개</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</td>
+					<td>
+						<table>
+							<c:forEach items="${productList[status.index]}" var="product">
+							<tr>
+								<td>
+									<fmt:formatNumber value="${product.productPrice * (1 - product.productSale / 100)}" pattern="#,###원"/>
+								</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</td>
+				<td>
+					<c:choose>
+						<c:when test="${order.refund eq 0}">
+							<c:choose>
+								<c:when test="${order.shipState eq 0}">
+									상품 준비 중
+									<form action="../order/refund" method="post">
+									<input type="hidden" name="orderNum" value="${order.orderNum}">
+									<button type="submit">주문 취소</button>
+									</form>
+								</c:when>
+								<c:when test="${order.shipState eq 1}">배송 중</c:when>
+								<c:when test="${order.shipState eq 2}">배송 완료</c:when>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							환불 처리 완료
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</tr>	
+		</c:forEach>
 	</table>
 	
+	<div>
+		<c:if test="${pager.pre}">
+			<a href="./orderList?page=${pager.startNum-1}">PREVIEW</a>
+		</c:if>
+	
+		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">		
+		<a href="./orderList?page=${i}">${i}</a>
+		</c:forEach>
+		
+		<c:if test="${pager.next}">
+			<a href="./orderList?page=${pager.lastNum+1}">NEXT</a>
+		</c:if>
+	</div>
 </body>
 </html>

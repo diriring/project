@@ -49,4 +49,8 @@ public class MemberService {
 		return memberDAO.pwFind(memberDTO);
 	}
 	
+	public int pointUpdate(MemberDTO memberDTO) throws Exception {
+		return memberDAO.pointUpdate(memberDTO);
+	}
+	
 }

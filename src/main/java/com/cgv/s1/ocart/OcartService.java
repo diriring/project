@@ -86,6 +86,10 @@ public class OcartService {
 		return ocartDAO.detailCart(ocartDTO);
 
 	}
+	
+	public int payCheck(OcartDTO ocartDTO) throws Exception {
+		return ocartDAO.payCheck(ocartDTO);
+	}
 
 	
 	//카트 총 리스트(검색 용도) 지울수도

@@ -26,7 +26,18 @@ public class Pager {
 	private boolean pre;
 	private boolean next;
 	
+	
+	private String id;
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	
+	
 	public void makeRow() {
 		this.startRow = (this.getPage()-1)*this.getPerPage()+1;
 		this.lastRow = this.getPage()*this.getPerPage();

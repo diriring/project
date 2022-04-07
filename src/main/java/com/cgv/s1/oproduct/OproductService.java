@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.cgv.s1.ocart.OcartDTO;
+import com.cgv.s1.order.OrderDTO;
 import com.cgv.s1.util.FileManager;
 import com.cgv.s1.util.Pager;
 
@@ -185,6 +186,28 @@ public class OproductService {
 			}
 		}
 		return result;
+	}
+	
+	//주문 조회 관련 주영 추가
+	public List<OproductDTO> productCart(OrderDTO orderDTO) throws Exception {
+		return oproductDAO.productCart(orderDTO);
+	}
+	
+	//주문 결제 시 재고/판매수 변경
+	public int stockAdd(OcartDTO ocartDTO) throws Exception {
+		return oproductDAO.stockAdd(ocartDTO);
+	}
+	
+	public int stockSubtract(OcartDTO ocartDTO) throws Exception {
+		return oproductDAO.stockSubtract(ocartDTO);
+	}
+	
+	public int saleAdd(OcartDTO ocartDTO) throws Exception {
+		return oproductDAO.saleAdd(ocartDTO);
+	}
+	
+	public int saleSubtract(OcartDTO ocartDTO) throws Exception {
+		return oproductDAO.saleSubtract(ocartDTO);
 	}
 	
 }

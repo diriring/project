@@ -25,6 +25,8 @@
 		<typeAlias type="com.cgv.s1.board.review.reviewReply.ReviewReplyDTO" alias="ReviewReplyDTO"/>
 		<typeAlias type="com.cgv.s1.oproduct.review.OproductReviewDTO" alias="OproductReviewDTO"/>
 		<typeAlias type="com.cgv.s1.pay.PayDTO" alias="payDTO"/>
+		<typeAlias type="com.cgv.s1.cartPay.CartPayDTO" alias="CartPayDTO"/>
+		<typeAlias type="com.cgv.s1.order.OrderDTO" alias="OrderDTO"/>
 
 
 

@@ -18,6 +18,7 @@
 </style>
 </head>
 <body>
+
 	<c:import url="../template/header.jsp"></c:import>
 
 	<div class="container">
@@ -243,8 +244,10 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/header_js.jsp"></c:import>
+
 </body>
 </html>
+
 
 
 
