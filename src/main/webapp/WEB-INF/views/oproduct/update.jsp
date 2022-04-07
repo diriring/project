@@ -162,6 +162,8 @@
 			</div>
 		</div>
 		
+		<input type="hidden" name="type" value="${type}">
+		
 		<button class="photoFile" type="button" id="btn">UPDATE</button>
 		
 	</form>

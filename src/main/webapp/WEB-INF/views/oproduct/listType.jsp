@@ -24,7 +24,7 @@
 	<div class="container">
 	
 	
-		<h1> OProduct Page</h1>
+		<h1>타입별 상품 페이지</h1>
 		
 		<!-- paging 처리 -->
 		<!--이름,내용 별 검색 만들기 카테고리 미완성 아니면 가격을 넣어볼지 카트에서는 뺼지?  -->
@@ -51,7 +51,7 @@
 						<img alt="" src="../resources/upload/oproduct/thumbnail/${list.oproductFileThumbDTO.fileNameThumb}" id="img">
 					</td>															
 					<td>${list.productNum}</td>
-					<td><a href="./detail?productNum=${list.productNum}">${list.productName}</a></td>
+					<td><a href="./detail?productNum=${list.productNum}&type=${list.productType}">${list.productName}</a></td>
 					<td>${list.typeName}</td>
 					<td>${list.productPrice}</td>
 					<td>${list.regDate}</td>
@@ -73,9 +73,10 @@
 			</c:if>
 		</div>
 		
-		<c:if test="${not empty member}">
+		<!-- 카테고리 타입별로 볼때 add빼버릴까 고민중 04.07-->
+		<%-- <c:if test="${not empty member}">
 			<a href="./add">ADD</a>
-		</c:if>
+		</c:if> --%>
 	
 	
 	</div>

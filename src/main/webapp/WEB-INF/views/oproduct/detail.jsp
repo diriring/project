@@ -133,10 +133,18 @@
 			
 			<div class="content_bottom">
 				<c:if test="${member.id eq dto.writer}">
-					<a href="./update?productNum=${dto.productNum}">Update</a>
-					<a href="./delete?productNum=${dto.productNum}">Delete</a>
+					<a href="./update?productNum=${dto.productNum}&type=${type}">Update</a>
+					<a href="./delete?productNum=${dto.productNum}&type=${type}">Delete</a>
 				</c:if>
-				<a href="./list">List</a>
+				<!-- listType에서 넘겨준 type이 있으면 listType으로 가는 list 버튼 -->
+				<c:choose>
+					<c:when test="${type eq ''}">
+						<a href="./list">List</a>
+					</c:when>
+					<c:otherwise>
+						<a href="./listType?productType=${type}">List</a>
+					</c:otherwise>
+				</c:choose>
 			</div>	
 						
 			<!-- <div class="content_bottom">

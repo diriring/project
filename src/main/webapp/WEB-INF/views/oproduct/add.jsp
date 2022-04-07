@@ -138,12 +138,14 @@
 		</div>
 		<!-- 디테일 파일 끝	 -->
 		
+		<input type="hidden" name="type" value="${type}">
+		
 		<button class="photoFile" type="button" id="btn">ADD</button>
 		
 	</form>
 	
 	
-	<a href="./list" class="photoFile">List</a>
+	<a href="javascript:history.back();" class="photoFile">List</a>
 	</div>
 	
 	

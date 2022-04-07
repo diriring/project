@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +24,7 @@ public class OproductController {
 	@Autowired
 	private OproductService oproductService;
 	
-	//수정해야할듯 합치게되면 filedown에 경로부분!
+	//fileDown할때 필요
 	@ModelAttribute("board")
 	public String oproduct() {
 		return "oproduct";
@@ -48,8 +49,6 @@ public class OproductController {
 		return mv;
 	}
 	
-	//새로만듬 보여주는 페이지도 새로만들? 안만들어도되나?
-	//타입 dto를 새로만들고 거기에 페이저도 넣고 같이 돌려버리기?
 	//listType
 	@RequestMapping(value="listType", method = RequestMethod.GET)
 	public ModelAndView listType(ModelAndView mv, OproductTypeDTO oproductTypeDTO) throws Exception{
@@ -58,16 +57,16 @@ public class OproductController {
 		mv.setViewName("oproduct/listType");
 		return mv;
 	}
-	//끝
+
 	
 	//detail
 	@RequestMapping(value="detail", method = RequestMethod.GET)
-	public ModelAndView detail(OproductDTO oproductDTO) throws Exception{
+	public ModelAndView detail(OproductDTO oproductDTO, String type) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		oproductDTO = oproductService.detail(oproductDTO);
 		mv.addObject("dto", oproductDTO);
-		//제대로된것
-		//mv.setViewName("oproduct/detail");
+		//카테고리 탭으로 바로 가기위해 type변수 추가(04.07)
+		mv.addObject("type", type);
 		mv.setViewName("oproduct/detail");
 		return mv;
 	}
@@ -78,10 +77,8 @@ public class OproductController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<OproductTypeDTO> list = oproductService.typeList();
-		//System.out.println(list);
 		ObjectMapper objm = new ObjectMapper();
 		String typeList = objm.writeValueAsString(list);
-		//System.out.println(typeList);
 		mv.addObject("typeList", typeList);
 		mv.setViewName("oproduct/add");
 		return mv;
@@ -90,36 +87,35 @@ public class OproductController {
 	//add DB
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public ModelAndView add(ModelAndView mv, OproductDTO oproductDTO, MultipartFile [] files, MultipartFile photo) throws Exception{
-		//System.out.println(oproductDTO.getProductName());
-		//System.out.println(oproductDTO.getWriter());
-		//System.out.println(oproductDTO.getProductType());
 		int result = oproductService.add(oproductDTO, files, photo);
-		mv.setViewName("redirect:./list");
+		String list = "redirect:./list";
+		mv.setViewName(list);
 		return mv;
 	}
 	
 	//delete
 	@RequestMapping(value="delete", method = RequestMethod.GET)
-	public String delete(OproductDTO oproductDTO) throws Exception{
+	public String delete(OproductDTO oproductDTO, String type) throws Exception{
+		
+		System.out.println(type);
 		
 		int result = oproductService.delete(oproductDTO);
-		return "redirect:./list"; 
 		
-//		String message="Delete Fail";
-//		if(result != 0) {
-//			message="Delete Success";
-//		}
-//		model.addAttribute("path", "./list");
-//		model.addAttribute("message", message);
-//		String view="common/result";
-//		return view;
-
+		String list = "redirect:./list";
+		
+		//타입이 공백일경우는 위 list로 실행
+		if(type != "") {
+			list = "redirect:./listType?productType="+type;
+		}
+		
+		return list; 
+		
 	}
 	
 
 	//update form 이동
 	@RequestMapping(value="update", method = RequestMethod.GET)
-	public ModelAndView update(ModelAndView mv, OproductDTO oproductDTO) throws Exception{
+	public ModelAndView update(ModelAndView mv, OproductDTO oproductDTO, String type) throws Exception{
 		
 		List<OproductTypeDTO> list = oproductService.typeList();
 		ObjectMapper objm = new ObjectMapper();
@@ -127,6 +123,9 @@ public class OproductController {
 		mv.addObject("typeList", typeList);
 		
 		oproductDTO = oproductService.detail(oproductDTO);
+		//카테고리 탭으로 바로 가기위해 type변수 추가(04.07)
+		mv.addObject("type", type);
+		System.out.println(type);
 		mv.addObject("dto", oproductDTO);
 		mv.setViewName("oproduct/update");
 		return mv;
@@ -134,10 +133,10 @@ public class OproductController {
 	
 	//update DB
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String update(OproductDTO oproductDTO, MultipartFile [] files, MultipartFile photo) throws Exception{
+	public String update(OproductDTO oproductDTO, MultipartFile [] files, MultipartFile photo, String type) throws Exception{
 		int result = oproductService.update(oproductDTO, files, photo);
-		return "redirect:./detail?productNum="+oproductDTO.getProductNum();
-		//return "redirect:./list";
+		System.out.println(type);
+		return "redirect:./detail?productNum="+oproductDTO.getProductNum()+"&type="+type;
 	}
 	
 	
@@ -145,8 +144,6 @@ public class OproductController {
 	@PostMapping("deleteFile")
 	public ModelAndView fileDelete(OproductFileDTO oproductFileDTO, OproductDTO oproductDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		//System.out.println(oproductDTO.getProductNum());
-		//System.out.println(oproductFileDTO.getFileName());
 		int result = oproductService.deleteFile(oproductFileDTO, oproductDTO);
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
@@ -157,8 +154,6 @@ public class OproductController {
 	@PostMapping("deleteFileThumb")
 	public ModelAndView fileThumbDelete(OproductFileThumbDTO oproductFileThumbDTO, OproductDTO oproductDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		//System.out.println(oproductDTO.getProductNum());
-		//System.out.println(oproductFileThumbDTO.getFileNameThumb());
 		int result = oproductService.deleteFileThumb(oproductFileThumbDTO, oproductDTO);
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");
