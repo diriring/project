@@ -1,48 +1,42 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-5 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
                             <a href="/s1/"><img src="/s1/resources/img/olive/logo/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>씨제이올리브영 주식회사</li>
+                            <li>대표이사 : 구창근 | 사업자등록번호 : 809-81-01574</li>
+                            <li>주소 : (04323) 서울특별시 용산구 한강대로 372, 24층(동자동, KDB타워)</li>
+                            <li>호스팅사업자 : CJ 올리브네트웍스</li>
+                            <li>통신판매업신고번호 : 2019-서울용산-1428</li>
+                            <li>이메일 : oliveweb@cj.net</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Useful Links</h6>
+                <div class="col-lg-3 col-md-6 col-sm-6 offset-lg-1">
+					 <div class="footer__about">
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
+                        	<li>이용약관법적고지</li>
+                            <li>개인정보처리방침</li>
+                            <li>청소년보호방침</li>
+                            <li>영상정보처리기기 운영/관리 방침</li>
+                            <li>이메일무단수집거부</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-3 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <h6>정기구독</h6>
+                        <p>최신 쇼핑정보 받아가세요!</p>
                         <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
+                            <input type="text" placeholder="이메일 입력">
+                            <button type="submit" class="site-btn">구독하기</button>
                         </form>
                         <div class="footer__widget__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
