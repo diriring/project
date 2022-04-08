@@ -4,6 +4,12 @@ const writer = document.querySelector("#writer");
 const contents = document.querySelector("#contents");
 const productReview = document.querySelector("#productReview");
 
+const fileInput = document.getElementById("upload_file");
+const fileAdd = document.getElementById("fileAdd");
+const fileResult = document.getElementById("fileResult");
+const del = document.getElementsByClassName("del");
+
+
 getList();
 // -------------------list ajax ------------------
 function getList(){
@@ -23,35 +29,58 @@ function getList(){
 
 }
 
-// ----------------- add ajax -------------------
-ok.addEventListener("click",function(){
+//add (ajax아님 )
 
-    const xhttp = new XMLHttpRequest();
+let count = 0;
+let num1 = 0;
 
-    xhttp.open("POST","../oproductReview/add");
+fileAdd.addEventListener("click",function(){
 
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    xhttp.send("num="+num.value+"&writer="+writer.value+"&contents="+contents.value);
-
- xhttp.onreadystatechange = function(){
-    if(this.readyState == 4 && this.status == 200){
-        console.log(this.responseText);
-        let result = this.responseText.trim();
-        if(result=='1'){
-            alert('리뷰가 등록 되었습니다');
-            
-            getList();
-        }else {
-            alert('리뷰등록이 실패했습니다.');
-        }
+    if(count>2){
+        alert("리뷰사진은 3개까지 가능합니다")
+        return;
     }
-}
+    count ++
+
+    let div = document.createElement('div');
+    div.setAttribute("id","del"+num);
+
+    let file = document.createElement("input");
+    file.setAttribute("type","file");
+    file.setAttribute("name","files");
+
+    let button = document.createElement('button');
+    button.setAttribute("type", "button");
+    button.className="del";
+    button.setAttribute("data-num", "del"+num);
+    button.innerHTML="파일 지우기";
+
+    div.append(file);
+    div.append(button);
+    
+    fileResult.append(div);
+
+    num1++;
 });
+
+fileResult.addEventListener("click", function(event){
+    let cn = event.target;
+   
+
+    if(cn.classList.contains('del')){
+        let delNum = cn.getAttribute("data-num");
+        document.getElementById(delNum).remove();
+
+        count--;
+    }
+    
+});
+
+
 //update
 productReview.addEventListener("click",function(event){
     if(event.target.classList.contains('update')){
-       
+        
         let num = event.target.getAttribute('data-index'); //num
         let replyNum = document.querySelector("#up"+num); //td
         
@@ -69,6 +98,8 @@ productReview.addEventListener("click",function(event){
 
 
 });
+
+
 //update 실행
 productReview.addEventListener("change",function(event){
     if(event.target.classList.contains('ok')){

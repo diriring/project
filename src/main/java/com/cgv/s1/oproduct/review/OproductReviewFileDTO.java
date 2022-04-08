@@ -13,4 +13,10 @@ public class OproductReviewFileDTO extends FileDTO{
 	public void setNum(Long num) {
 		this.num = num;
 	}
+	
+	
+
+	
+
+	
 }
