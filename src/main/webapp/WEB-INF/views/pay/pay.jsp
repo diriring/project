@@ -95,7 +95,7 @@
 									<!-- 통째로 다르게 출력해보기 -->
 									<!-- 아마 결제에서 안될수 있음 밑에 결제 버튼 -->
 									<!-- 다른 변수가 들어올 경우 다르게 출력값을 넣어봄 -->
-										<c:if test="${productList ne ''}">
+										<c:if test="${not empty productList}">
 											<c:forEach items="${productList}" var="product" varStatus="status">
 												<tr>
 													<td>
@@ -112,7 +112,7 @@
 												</tr>
 											</c:forEach>
 										</c:if>
-										<c:if test="${productDTO ne ''}">
+										<c:if test="${not empty productDTO}">
 											<tr>
 												<td>
 													<img alt="img" src="../resources/upload/oproduct/thumbnail/${productDTO.oproductFileThumbDTO.fileNameThumb}" id="img">
@@ -137,7 +137,7 @@
 							<div class="col-lg-6">
 								<h5>보유 마일리지 <fmt:formatNumber value="${memberDTO.point}" pattern="#,###M"/></h5>
 								<div class="input-group mb-3">																<!-- value값 추가 04.08 재석 -->
-									<input id="pointUse" name="pointUse" type="number" min="0" max="${memberDTO.point}" class="form-control">
+									<input id="pointUse" name="pointUse" type="number" min="0" max="${memberDTO.point}" class="form-control" value="0">
 									<button type="button" id="pointBtn" class="btn btn-outline-secondary">사용</button>
 								</div>
 								</div>

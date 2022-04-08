@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock.Catch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -242,8 +243,20 @@ public class PayController {
 			
 			//member point update
 			memberDTO = memberService.mypage(memberDTO);
-			Integer pointUse = Integer.parseInt(request.getParameter("pointUse"));
-			Integer pointSave = Integer.parseInt(request.getParameter("pointSave"));
+			
+			//(04.08)재석추가 try catch
+			Integer pointUse = 0;
+			Integer pointSave = 0;
+			
+			try {
+				pointUse = Integer.parseInt(request.getParameter("pointUse"));
+				pointSave = Integer.parseInt(request.getParameter("pointSave"));
+			}catch (NumberFormatException e) {
+				// TODO: handle exception
+			}catch (Exception e) {
+			}
+			// 추가 끝
+			
 			memberDTO.setPoint(memberDTO.getPoint() + pointSave - pointUse);
 			memberService.pointUpdate(memberDTO);
 			

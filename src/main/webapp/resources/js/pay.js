@@ -31,6 +31,7 @@ payBtn.addEventListener("click", function() {
         return;
     }
     
+    //0408 value *1 넣어봄(재석) 일단뻄 중간
     payMoney.value = payMoney.value-pointUse.value;
     pointSave.value = (payMoney.value-pointUse.value)*0.05;
 
