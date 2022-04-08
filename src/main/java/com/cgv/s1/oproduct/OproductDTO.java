@@ -15,7 +15,7 @@ public class OproductDTO {
 	private String productName;
 	private String productDetail;
 	private Integer productPrice;
-	//퍼센트 double에서 integer로 바꿈
+	//퍼센트 double에서 integer로 바꿈 -> 다시 double로 바꿈(04.08) -> 다시 integer
 	private Integer productDC;
 	private Integer productStock;
 	private Integer productSale;

@@ -74,8 +74,10 @@
 						</div>						
 						<div>
 							<!-- 포인트 판매가의 0.05 적립으로 설정 -->
+							<!-- 컨트롤러에서 직접 뿌려주는것으로 변경해볼것 04.08 -->
 							적립 포인트 : <span class="point"></span>
-							<fmt:formatNumber value="${(dto.productPrice - (dto.productPrice)*(dto.productDC*0.01))*0.05}" pattern="#,### 원"/>
+							<%-- <fmt:formatNumber value="${(dto.productPrice - (dto.productPrice)*(dto.productDC*0.01))*0.05}" pattern="#,### 원"/> --%>
+							<fmt:formatNumber value="${point}" pattern="#,### M"/>
 						</div>
 					</div>			
 					<div class="line">
@@ -218,7 +220,7 @@
 	</div>
 	<!-- pay form -->
 	<!-- 현재 문제는 지금 paycontroller는 cartid로만 기능하게 되어있음  변수명 미선언 or 컨트롤러 작동 메서드 하나더 생성-->
-	<form action="../pay/payForm" method="post" id="pay_frm">
+	<form action="../pay/payFormDetail" method="post" id="pay_frm">
 		<input type="hidden" name="productNum" id="pay_pNum" value="${dto.productNum}">
 		<input type="hidden" name="productAmount" id="pay_pAmount">
 		<input type="hidden" name="id" value="${member.id}">

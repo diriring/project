@@ -90,6 +90,8 @@
 										<input type="hidden" class="individual_salePrice" id="individual_salePriceC${list.cartId}" value="${list.salePrice}">
 										<input type="hidden" class="individual_productAmount" id="individual_productAmountC${list.cartId}" value="${list.productAmount}"> 
 										<input type="hidden" class="individual_point" id="individual_pointC${list.cartId}" value="${list.point}">
+										<!-- point 1원 차이나는거 고민중에 만들어봄 -->
+										<%-- <input type="hidden" class="individual_totalPoint" id="individual_totalPointC${list.cartId}" value="${list.totalPoint}"> --%>
 									</td>
 									
 									<td class="td_width_2">

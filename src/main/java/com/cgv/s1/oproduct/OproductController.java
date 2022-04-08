@@ -65,8 +65,11 @@ public class OproductController {
 		ModelAndView mv = new ModelAndView();
 		oproductDTO = oproductService.detail(oproductDTO);
 		mv.addObject("dto", oproductDTO);
-		//카테고리 탭으로 바로 가기위해 type변수 추가(04.07)
+		//카테고리 탭으로 바로 가기위해 type변수 추가(04.07) 재석수정
 		mv.addObject("type", type);
+		//포인트 controller에서 뿌려주기 1원단위 잡기(04.08) 재석수정
+		double point = (Math.floor(oproductDTO.getProductPrice() * (1 - (double)oproductDTO.getProductDC() / 100)*0.05));
+		mv.addObject("point", point);
 		mv.setViewName("oproduct/detail");
 		return mv;
 	}
