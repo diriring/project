@@ -210,6 +210,24 @@ public class OproductService {
 		return oproductDAO.saleSubtract(ocartDTO);
 	}
 	
+	//주문 결제 시 재고/판매수 변경(0408 재석 만들어보는중)
+	public int stockAdd(int productAmount) throws Exception {
+		return oproductDAO.stockAdd(productAmount);
+	}
+	
+	public int stockSubtract(int productAmount) throws Exception {
+		return oproductDAO.stockSubtract(productAmount);
+	}
+	
+	public int saleAdd(int productAmount) throws Exception {
+		return oproductDAO.saleAdd(productAmount);
+	}
+	
+	public int saleSubtract(int productAmount) throws Exception {
+		return oproductDAO.saleSubtract(productAmount);
+	}
+	
+
 }
 
 

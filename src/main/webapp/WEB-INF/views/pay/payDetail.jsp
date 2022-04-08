@@ -30,7 +30,7 @@
 				<!-- 재석 수정중 04.08 -->
 				<!-- controller에서 같이 써볼까 일단 실패해서 이걸 두개로 써보려고함-->
 				
-				<form action="./add" method="post" id="payFrm">
+				<form action="./addDetail" method="post" id="payFrm">
 				<div class="row">
 					<div class="col-lg-8">
 						<div>
@@ -98,21 +98,19 @@
 									<!-- 통째로 다르게 출력해보기 -->
 									<!-- 아마 결제에서 안될수 있음 밑에 결제 버튼 -->
 									<!-- 다른 변수가 들어올 경우 다르게 출력값을 넣어봄 -->
-										<c:forEach items="${productList}" var="product" varStatus="status">
-											<tr>
-												<td>
-													<img alt="img" src="../resources/upload/oproduct/thumbnail/${product.oproductFileThumbDTO.fileNameThumb}" id="img">
-												</td>
-												<td><!-- 여기랑 -->
-													<input type="hidden" name="idList" value="${cartList[status.index].cartId}">
-													${product.productName}
-												</td>
-												<td><fmt:formatNumber value="${product.productPrice}" pattern="#,###원"/></td>
-												<!-- 여기 수정해야할거같고 -->
-												<td>${cartList[status.index].productAmount}개</td>
-												<td><fmt:formatNumber value="${product.productPrice * (1 - product.productDC / 100)}" pattern="#,###원"/></td>
-											</tr>
-										</c:forEach>
+										<tr>
+											<td>
+												<img alt="img" src="../resources/upload/oproduct/thumbnail/${productDTO.oproductFileThumbDTO.fileNameThumb}" id="img">
+											</td>
+											<td><!-- 여기랑  name 바꿈-->
+												<input type="hidden" name="productNum" value="${productDTO.productNum}">
+													${productDTO.productName}
+											</td>
+											<td><fmt:formatNumber value="${productDTO.productPrice}" pattern="#,###원"/></td>
+											<!-- 여기 수정해야할거같고 -->
+											<td>${productAmount}개</td>
+											<td><fmt:formatNumber value="${productDTO.productPrice * (1 - productDTO.productDC / 100)}" pattern="#,###원"/></td>
+										</tr>
 								</table>
 							</div>
 						</div>
@@ -196,8 +194,10 @@
 						</div>
 					</div>
 				</div>
+				<!-- productAmount값 넘겨서 addDetail에서 받기 -->
+				<input type="hidden" name="productAmount" value="${productAmount}">
 				</form>
-		
+			
 				<!-- <a href="../ocart/list">취소</a> -->
 			</div>
 		</div>

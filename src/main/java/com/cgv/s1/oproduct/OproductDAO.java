@@ -129,8 +129,24 @@ public class OproductDAO {
     }
     
     
+    //만들어보는중 0408 재석 위에 꺼 그대로
+    public int stockAdd(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"stockAddD", productAmount);
+    }
     
+    public int stockSubtract(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"stockSubtractD", productAmount);
+    }
     
+    public int saleAdd(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"saleAddD", productAmount);
+    }
+    
+    public int saleSubtract(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"saleSubtractD", productAmount);
+    }
+    
+
     
     //file Deletelist(새로만든것 fileupdate 때문에)
     //public List<OproductFileDTO> listFileDelete(OproductFileDTO oproductFileDTO) throws Exception{

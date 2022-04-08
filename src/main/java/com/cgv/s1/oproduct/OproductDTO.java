@@ -21,6 +21,7 @@ public class OproductDTO {
 	private Integer productSale;
 	private Date regDate;
 	
+
 	//디테일 파일 담기 
 	private List<OproductDTO> fileDTOs;
 	

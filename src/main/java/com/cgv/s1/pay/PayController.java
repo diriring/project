@@ -85,78 +85,81 @@ public class PayController {
 		memberDTO = memberService.mypage(memberDTO);
 		mv.addObject("memberDTO", memberDTO);
 		
-		mv.setViewName("pay/pay");
+		mv.setViewName("pay/payDetail");
 		
 		return mv;
 	}
 	
 	
-//	@PostMapping("addDetail")
-//	public ModelAndView add(@RequestParam List<String> idList, PayDTO payDTO, HttpSession session, HttpServletRequest request) throws Exception {
-//		
-//		ModelAndView mv = new ModelAndView();
-//		
-//		//pay 테이블 db insert
-//		int result = payService.add(payDTO);
-//		
-//		mv.setViewName("common/result");
-//		if(result == 1) {
-//			//cartPay 테이블 db insert
-//			//상품 재고 판매수 update
-//			OcartDTO cartDTO = new OcartDTO();
-//			for(int i=0; i<idList.size(); i++) {
-//				Long cartId = Long.parseLong(idList.get(i));
-//				CartPayDTO cartPayDTO = new CartPayDTO();
-//				cartPayDTO.setCartId(cartId);
-//				cartPayDTO.setPayNum(payDTO.getPayNum());
-//				cartPayService.add(cartPayDTO);
-//				
-//				cartDTO.setCartId(cartId);
-//				cartDTO = ocartService.detailCart(cartDTO);
-//				//재고 감소
-//				oproductService.stockSubtract(cartDTO);
-//				//판매 증가
-//				oproductService.saleAdd(cartDTO);
-//				//장바구니 payCheck update
-//				ocartService.payCheck(cartDTO);
-//			}
-//			
-//			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-//			
-//			//member point update
-//			memberDTO = memberService.mypage(memberDTO);
-//			Integer pointUse = Integer.parseInt(request.getParameter("pointUse"));
-//			Integer pointSave = Integer.parseInt(request.getParameter("pointSave"));
-//			memberDTO.setPoint(memberDTO.getPoint() + pointSave - pointUse);
-//			memberService.pointUpdate(memberDTO);
-//			
-//			//order 테이블 db insert
-//			OrderDTO orderDTO = new OrderDTO();
-//			orderDTO.setPayNum(payDTO.getPayNum());
-//			orderDTO.setOrderName(memberDTO.getName());
-//			orderDTO.setId(memberDTO.getId());
-//			orderDTO.setPointVar(pointSave-pointUse);
-//			orderService.add(orderDTO);
-//			
-//			mv.addObject("message", "구매가 완료되었습니다.");
-//			mv.addObject("path", "../member/orderList");
-//		}else {
-//			mv.addObject("message", "구매에 실패했습니다. 다시 시도해주세요.");
-//			mv.addObject("path", "ocart/list");
-//		}
-//		
-//		return mv;
-//		
-//	}
+	@PostMapping("addDetail")
+	public ModelAndView add(@RequestParam Long productNum, @RequestParam int productAmount,PayDTO payDTO, HttpSession session, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+			
+		//pay 테이블 db insert
+		int result = payService.add(payDTO);
+		
+		mv.setViewName("common/result");
+		if(result == 1) {
+			//cartPay 테이블 db insert
+			//상품 재고 판매수 update
+			OproductDTO oproductDTO = new OproductDTO();
+
+			oproductDTO.setProductNum(productNum);
+			oproductDTO = oproductService.detail(oproductDTO);
+			//재고 감소(productAmount 직접받아서 넘겨보기)
+			oproductService.stockSubtract(productAmount);
+			//판매 증가
+			oproductService.saleAdd(productAmount);
+			//장바구니 payCheck update 없앰
+	//		ocartService.payCheck(oproductDTO);
+			
+			
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			
+			//member point update
+			memberDTO = memberService.mypage(memberDTO);
+			
+			//(04.08)재석추가 try catch 이거로 잡고 pay.jsp에 기본값 0 넣어주고 사용 안되도 넘어감
+			Integer pointUse = 0;
+			Integer pointSave = 0;
+			
+			try {
+				pointUse = Integer.parseInt(request.getParameter("pointUse"));
+				pointSave = Integer.parseInt(request.getParameter("pointSave"));
+			}catch (NumberFormatException e) {
+				// TODO: handle exception
+			}catch (Exception e) {
+			}
+			// 추가 끝
+			
+			memberDTO.setPoint(memberDTO.getPoint() + pointSave - pointUse);
+			memberService.pointUpdate(memberDTO);
+			
+			//order 테이블 db insert
+			OrderDTO orderDTO = new OrderDTO();
+			orderDTO.setPayNum(payDTO.getPayNum());
+			orderDTO.setOrderName(memberDTO.getName());
+			orderDTO.setId(memberDTO.getId());
+			orderDTO.setPointVar(pointSave-pointUse);
+			orderService.add(orderDTO);
+			
+			mv.addObject("message", "구매가 완료되었습니다.");
+			mv.addObject("path", "../member/orderList");
+		}else {
+			mv.addObject("message", "구매에 실패했습니다. 다시 시도해주세요.");
+			mv.addObject("path", "ocart/list");
+		}
+	
+		return mv;
+		
+	}
 	
 	//--------------------상품탭에서 구매탭 넘기는부분 끝----------------------------
 	
 	
 	
-	
-	
-	
-	
+
 	
 	//--------------------장바구니에서 구매탭 넘기는부분 시작----------------------------
 	@PostMapping("payForm")
@@ -185,7 +188,7 @@ public class PayController {
 			//가격 수정 cartDTO 양 추가(재석) -> 04.08 dto 다시 integer로하고 여기서 double
 			double price = productDTO.getProductPrice() * (1 - (double)productDTO.getProductDC() / 100) * cartDTO.getProductAmount();
 			totalPrice = totalPrice + price;
-			//04.08 재석 추가(1원단위 해결, 각각 소숫점 뒷자리 올림으로)
+			//04.08 재석 추가(1원단위 해결, 각각 소숫점 뒷자리 내림으로)
 			double point = (Math.floor(productDTO.getProductPrice() * (1 - (double)productDTO.getProductDC() / 100)*0.05)) * cartDTO.getProductAmount();
 			totalPoint = totalPoint + point;
 		}
@@ -211,7 +214,6 @@ public class PayController {
 	
 	@PostMapping("add")
 	public ModelAndView add(@RequestParam List<String> idList, PayDTO payDTO, HttpSession session, HttpServletRequest request) throws Exception {
-		
 		ModelAndView mv = new ModelAndView();
 		
 		//pay 테이블 db insert
@@ -244,7 +246,7 @@ public class PayController {
 			//member point update
 			memberDTO = memberService.mypage(memberDTO);
 			
-			//(04.08)재석추가 try catch
+			//(04.08)재석추가 try catch 이거로 잡고 pay.jsp에 기본값 0 넣어주고 사용 안되도 넘어감
 			Integer pointUse = 0;
 			Integer pointSave = 0;
 			
@@ -274,10 +276,11 @@ public class PayController {
 			mv.addObject("message", "구매에 실패했습니다. 다시 시도해주세요.");
 			mv.addObject("path", "ocart/list");
 		}
-		
+
 		return mv;
-		
 	}
 	//--------------------장바구니에서 구매탭 넘기는부분 끝----------------------------
 
 }
+
+

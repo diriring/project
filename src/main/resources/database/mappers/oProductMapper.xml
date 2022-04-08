@@ -277,6 +277,23 @@
 			WHERE PRODUCTNUM=#{productNum}
 		</update>
 		
+		<!-- 상품 구매 시 재고, 판매수 변경 재석 만들어보는중 0408-->
+		<update id="stockAddD" parameterType="int">
+			UPDATE OPRODUCT SET PRODUCTSTOCK=PRODUCTSTOCK+#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="stockSubtractD" parameterType="int">
+			UPDATE OPRODUCT SET PRODUCTSTOCK=PRODUCTSTOCK-#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="saleAddD" parameterType="int">
+			UPDATE OPRODUCT SET PRODUCTSALE=PRODUCTSALE+#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
+		<update id="saleSubtractD" parameterType="int">
+			UPDATE OPRODUCT SET PRODUCTSALE=PRODUCTSALE-#{productAmount}
+			WHERE PRODUCTNUM=#{productNum}
+		</update>
 		
 		
 		<!-- 필요 없을거 같음 -->
