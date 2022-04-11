@@ -31,6 +31,13 @@
 				<!-- controller에서 같이 써볼까 일단 실패해서 이걸 두개로 써보려고함-->
 				
 				<form action="./addDetail" method="post" id="payFrm">
+				<!-- 카트 id로 해보려다 실패 -->
+<%-- 				<c:forEach items="${cart}" var="cart" varStatus="index">
+					<c:if test="${index.last}">
+						<input type="hidden" name="cartId" value="${cart.cartId}">
+						<h1>${cart.cartId}</h1>
+					</c:if>
+				</c:forEach> --%>
 				<div class="row">
 					<div class="col-lg-8">
 						<div>

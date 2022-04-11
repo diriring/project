@@ -53,13 +53,31 @@ public class PayController {
 	public ModelAndView payFormDetail(@RequestParam Long productNum, @RequestParam int productAmount, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		//멤버 위로 올림
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
 		System.out.println(productNum);
 		System.out.println(productAmount);
+		
+		//카트 새로 추가 1개만(바로결제탭)
+		//안될듯 카트가 생성되서 이름 중복되는 항목이 계속 생성되는 오류가 생김
+//		OcartDTO ocartDTO = new OcartDTO();
+//		ocartDTO.setId(memberDTO.getId());
+//		ocartDTO.setProductNum(productNum);
+//		ocartDTO.setProductAmount(productAmount);
+//		
+//		int result = ocartService.addCartD(ocartDTO);
+//		//cartId 가져오기
+//		List<OcartDTO> ar = ocartService.getCart(ocartDTO);
+//		
+//		mv.addObject("cart", ar);
+		//새로추가 끝
+		
 		
 		double totalPrice = 0;
 		//04.08 재석 포인트 추가(1원 단위 안넘어가기 때문)
 		double totalPoint = 0;
-		
+
 		OproductDTO productDTO = new OproductDTO();
 		productDTO.setProductNum(productNum);
 		productDTO = oproductService.detail(productDTO);
@@ -76,7 +94,7 @@ public class PayController {
 		mv.addObject("totalPrice", totalPrice);
 		mv.addObject("totalPoint", totalPoint);
 		
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
 		//결제 페이지에 보여줄 배송지 정보 조회
 		List<MemberAddressDTO> addressList = memberAddressService.list(memberDTO);
 		mv.addObject("addressList", addressList);
@@ -92,7 +110,7 @@ public class PayController {
 	
 	
 	@PostMapping("addDetail")
-	public ModelAndView add(@RequestParam Long productNum, @RequestParam int productAmount,PayDTO payDTO, HttpSession session, HttpServletRequest request) throws Exception {
+	public ModelAndView add(@RequestParam Long productNum, @RequestParam int productAmount, PayDTO payDTO, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 			
@@ -103,6 +121,23 @@ public class PayController {
 		if(result == 1) {
 			//cartPay 테이블 db insert
 			//상품 재고 판매수 update
+//			OcartDTO cartDTO = new OcartDTO();
+//			CartPayDTO cartPayDTO = new CartPayDTO();
+//			cartPayDTO.setCartId(cartId);
+//			cartPayDTO.setPayNum(payDTO.getPayNum());
+//			cartPayService.add(cartPayDTO);
+//			
+//			cartDTO.setCartId(cartId);
+//			cartDTO = ocartService.detailCart(cartDTO);
+//			//재고 감소
+//			oproductService.stockSubtract(cartDTO);
+//			//판매 증가
+//			oproductService.saleAdd(cartDTO);
+//			//장바구니 payCheck update
+//			ocartService.payCheck(cartDTO);
+			
+			
+			//다시 살림
 			OproductDTO oproductDTO = new OproductDTO();
 
 			oproductDTO.setProductNum(productNum);
@@ -112,7 +147,7 @@ public class PayController {
 			//판매 증가
 			oproductService.saleAdd(productAmount);
 			//장바구니 payCheck update 없앰
-	//		ocartService.payCheck(oproductDTO);
+			//ocartService.payCheck(oproductDTO);
 			
 			
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -148,7 +183,7 @@ public class PayController {
 			mv.addObject("path", "../member/orderList");
 		}else {
 			mv.addObject("message", "구매에 실패했습니다. 다시 시도해주세요.");
-			mv.addObject("path", "ocart/list");
+			mv.addObject("path", "oproduct/detail?productNum="+productNum);
 		}
 	
 		return mv;
