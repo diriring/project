@@ -223,7 +223,7 @@
 	<form action="../pay/payFormDetail" method="post" id="pay_frm">
 		<input type="hidden" name="productNum" id="pay_pNum" value="${dto.productNum}">
 		<input type="hidden" name="productAmount" id="pay_pAmount">
-		<input type="hidden" name="id" value="${member.id}">
+		<input type="hidden" name="id" value="${member.id}" id="loginCheck">
 	</form>
 
 		

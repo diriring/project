@@ -2136,7 +2136,8 @@ ol {
 	border: 1px solid #ebebeb;
 	padding-left: 20px;
 	font-size: 16px;
-	color: #b2b2b2;
+	/* color: #b2b2b2;  색 어떻게 할지 고민*/
+	color: #6f6f6f;
 	border-radius: 4px;
 }
 
@@ -2902,6 +2903,25 @@ ol {
 	padding-top: 12px;
 	resize: none;
 }
+
+/*재석추가(0411)*/
+textarea{
+	width: 100%;
+	height: 300px;
+	font-size: 16px;
+	color: #6f6f6f;
+	/*color: #c0c0c0;  색 어떻게 할지 고민 */
+	padding-left: 20px;
+	margin-bottom: 24px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
+	padding-top: 12px;
+	resize: none;
+}
+textarea::placeholder{
+	color: #c0c0c0;
+}
+
 
 .contact-form form textarea::placeholder {
 	color: #6f6f6f;
