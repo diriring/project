@@ -44,8 +44,24 @@ public class Pager {
 		
 	}
 	
+	//0411 재석 리스트에 뿌려주는 총 갯수 가져오려고 생성
+	private Long totalCountC;
+	
+	
+	public Long getTotalCountC() {
+		return totalCountC;
+	}
+
+	public void setTotalCount(Long totalCountC) {
+		this.totalCountC = totalCountC;
+	}
+
+	
 	public void makeNum(Long totalCount) {
 		//1. 전체 row의 갯수는  위에 매개변수로 가져옴
+		
+		//갖고오려고 만들어봄
+		totalCountC = totalCount;
 		
 		//2. 전체 page의 갯수 
 		Long totalPage = totalCount/this.getPerPage();
@@ -95,7 +111,8 @@ public class Pager {
 
 	public Long getPerPage() {
 		if(this.perPage == null|| this.perPage<0){
-			this.perPage=10L;
+			//0411수정 10->9
+			this.perPage=9L;
 		}
 		return perPage;
 	}

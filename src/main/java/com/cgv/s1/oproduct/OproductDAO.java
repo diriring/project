@@ -146,6 +146,15 @@ public class OproductDAO {
     	return sqlSession.update(NAMESPACE+"saleSubtractD", productAmount);
     }
     
+    //이름 중복체크(0411)
+    public int nameCheck(OproductDTO oproductDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"nameCheck", oproductDTO);
+	}
+    
+	//oProduct list(pager 없이 - 리스트페이지에서 할인 항목 전체출력 위해) 0411 재석
+	public List<OproductDTO> saleList() throws Exception{
+		return sqlSession.selectList(NAMESPACE + "saleList");
+	}
 
     
     //file Deletelist(새로만든것 fileupdate 때문에)

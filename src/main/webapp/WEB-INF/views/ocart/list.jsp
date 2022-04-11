@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/ao_ocart.css">
 <style type="text/css">
@@ -20,6 +20,19 @@
 <body>
 
 	<c:import url="../template/header.jsp"></c:import>
+	
+	
+	<section class="breadcrumb-section set-bg" data-setbg="../resources/img/olive/banner/cart.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>${member.name}의 장바구니</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 	<div class="container">
 	
@@ -46,9 +59,9 @@
 
 			<form action="../pay/payForm" id="frm" method="post">
 
-				<div class="content_subject">
+				<%-- <div class="content_subject">
 					<span>${member.name}의 장바구니</span>
-				</div>
+				</div> --%>
 
 				<!-- 장바구니 리스트 -->
 				<div class="content_middle_section"></div>

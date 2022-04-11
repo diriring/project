@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <!-- <link rel="stylesheet" href="../resources/css/ao_type.css"> -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -94,8 +94,8 @@
 								<div class="type_wrap checkout__input">
 									<input type="text" name="productName" id="productName"
 										placeholder="제품의 이름을 입력해 주세요" value="${dto.productName}"
-										onkeyup="delHangleTrim(this);" onchange="delHangleTrim(this);"
-										class="col-lg-12">
+										class="col-lg-10">
+									<button type="button" id="nameCheckBtn" class="site-btn">중복확인</button>
 								</div>
 							</div>
 						</div>

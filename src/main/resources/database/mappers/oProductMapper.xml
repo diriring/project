@@ -63,8 +63,6 @@
 			 LIKE '%'||#{search}||'%')
 		</select>
 	
-	
-	
 		<!-- 전체 리스트 출력 -->
 		<select id="list" resultMap="detailResult" parameterType="Pager">
 			SELECT OP.*, OT.typeName, OPFT.* FROM
@@ -295,7 +293,26 @@
 			WHERE PRODUCTNUM=#{productNum}
 		</update>
 		
+		<!-- 이름 중복체크 0411 -->
+		<select id="nameCheck" parameterType="OproductDTO" resultType="int">
+			SELECT COUNT(PRODUCTNAME) FROM OPRODUCT WHERE PRODUCTNAME=#{productName}
+		</select>
 		
+	
+		<!-- 전체리스트 출력 PAGER 영향 없이 0411 재석-->
+		<select id="saleList"  resultMap="detailResult">
+			SELECT OP.*, OT.*, OPFT.*
+			FROM OPRODUCT OP
+				LEFT OUTER JOIN
+				  OPRODUCTFILETHUMB OPFT
+				  ON OP.PRODUCTNUM = OPFT.PRODUCTNUM  
+				 LEFT OUTER JOIN
+			      OPRODUCTTYPE OT
+	    		  ON OP.PRODUCTTYPE = OT.PRODUCTTYPE
+			ORDER BY OP.PRODUCTNUM DESC
+		</select>
+		
+	
 		<!-- 필요 없을거 같음 -->
 		<!-- <select id="listFileDelete" parameterType="OproductFileDTO" resultType="OproductFileDTO">
 			SELECT * FROM OPRODUCTFILE

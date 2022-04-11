@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Olive Young</title>
 <link rel="stylesheet" href="../resources/css/ao_detail.css">
 <c:import url="../template/header_css.jsp"></c:import>
 
@@ -14,6 +14,14 @@
 	#img {
 		width: 400px;
 		height: 400px;
+	}
+	*{
+		font-family: "Cairo", sans-serif;
+		color: black;
+	}
+	a {
+   		color: black;
+    	text-decoration: none;
 	}
 </style>
 
@@ -31,7 +39,7 @@
 	
 	
 	<div class="container">
-	<h1>상세페이지</h1>
+	<h1>제품 상세페이지</h1>
 	
 		<div class="content_area">
 			<div class="line">
@@ -60,6 +68,14 @@
 						 <span>|</span>
 						 <span>
 						 <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd"/>
+						 </span>
+						 
+						 <span>
+						 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;재고
+						 </span>
+						 <span>|</span>
+						 <span>
+						 <fmt:formatNumber value="${dto.productStock}" pattern="#,### 개"/>
 						 </span>
 					</div>
 					<div class="line">
@@ -98,12 +114,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="line">
-			</div>				
+			<div class="line"></div>
+							
 			<div class="content_middle">
 				<div class="product_intro">
 				<!-- 추가함 옆으로 옮기는것 생각 -->
-					<div style="white-space:pre;"><c:out value="${dto.productDetail}" /></div>
+					<div style="white-space:pre; font-size:larger"><c:out value="${dto.productDetail}" /></div>
 				</div>
 				<div class="line">
 				</div>
@@ -192,29 +208,30 @@
 		<hr>
 			
 		<!-- product Review 끝 -->		
-			
-			
-			<div class="content_bottom">
+
+			<div class="text-right content_bottom">
 				<c:if test="${member.id eq dto.writer}">
-					<a href="./update?productNum=${dto.productNum}&type=${type}">Update</a>
-					<a href="./delete?productNum=${dto.productNum}&type=${type}">Delete</a>
+					<div class="margin">
+						<a href="./update?productNum=${dto.productNum}&type=${type}">상품수정</a>
+					</div>
+					<div class="margin">
+						<a href="./delete?productNum=${dto.productNum}&type=${type}">상품삭제</a>
+					</div>
 				</c:if>
 				<!-- listType에서 넘겨준 type이 있으면 listType으로 가는 list 버튼 -->
 				<c:choose>
 					<c:when test="${type eq ''}">
-						<a href="./list">List</a>
+						<div class="margin">
+							<a href="./list">상품리스트</a>
+						</div>
 					</c:when>
 					<c:otherwise>
-						<a href="./listType?productType=${type}">List</a>
+						<div class="margin">
+							<a href="./listType?productType=${type}">상품리스트</a>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>	
-						
-			<!-- <div class="content_bottom">
-				리뷰
-			</div> -->
-			
-
 		</div>
 	
 	</div>
@@ -225,11 +242,6 @@
 		<input type="hidden" name="productAmount" id="pay_pAmount">
 		<input type="hidden" name="id" value="${member.id}" id="loginCheck">
 	</form>
-
-		
-		
-
-
 
 
 	<c:import url="../template/footer.jsp"></c:import>

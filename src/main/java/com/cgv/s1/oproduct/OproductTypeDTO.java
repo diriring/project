@@ -60,12 +60,27 @@ public class OproductTypeDTO {
 		private boolean next;
 		
 		
+		//0411 재석 리스트에 뿌려주는 총 갯수 가져오려고 생성
+		private Long totalCountC;
+		
+		
+		public Long getTotalCountC() {
+			return totalCountC;
+		}
+
+		public void setTotalCount(Long totalCountC) {
+			this.totalCountC = totalCountC;
+		}
+		
 		public void makeRow() {
 			this.startRow = (this.getPage()-1)*this.getPerPage() +1;
 			this.lastRow = this.getPage()*this.getPerPage();
 		}
 		
 		public void makeNum(Long totalCount) {
+			
+			//갖고오려고 만들어봄
+			totalCountC = totalCount;
 
 			Long totalPage = totalCount/this.getPerPage();
 			if(totalCount%getPerPage() != 0) {
@@ -107,7 +122,7 @@ public class OproductTypeDTO {
 		
 		public Long getPerPage() {
 			if(this.perPage == null || this.perPage < 1) {
-				this.perPage = 10L;
+				this.perPage = 9L;
 			}
 			return perPage;
 		}

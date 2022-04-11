@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cgv.s1.member.MemberDTO;
 import com.cgv.s1.ocart.OcartDTO;
 import com.cgv.s1.order.OrderDTO;
 import com.cgv.s1.util.FileManager;
@@ -33,6 +34,7 @@ public class OproductService {
 		return oproductDAO.typeList();
 	}
 	
+
 	//oProduct list
 	public List<OproductDTO> list(Pager pager) throws Exception{
 		pager.makeRow();
@@ -225,6 +227,16 @@ public class OproductService {
 	
 	public int saleSubtract(int productAmount) throws Exception {
 		return oproductDAO.saleSubtract(productAmount);
+	}
+	
+	//이름 중복체크(0411)
+	public int nameCheck(OproductDTO oproductDTO) throws Exception {
+		return oproductDAO.nameCheck(oproductDTO);
+	}
+	
+	//oProduct list(pager 없이 - 리스트페이지에서 할인 항목 전체출력 위해) 0411 재석
+	public List<OproductDTO> saleList() throws Exception{
+		return oproductDAO.saleList();
 	}
 	
 

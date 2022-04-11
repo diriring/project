@@ -105,6 +105,7 @@ productName.addEventListener("blur", function(){
                 productName.value = null;
                 productNameCheck = false;
             }else{
+                alert('중복체크 해주세요!');
                 productNameCheck = true;
             }
         }
@@ -149,15 +150,52 @@ productStock.addEventListener("blur", function(){
 
 btn.addEventListener("click", function(){
     if(!photoCheck){
-        alert('썸네일 파일은 꼭 입력해주셔야합니다')   
+        alert('썸네일 파일은 꼭 입력해주셔야합니다');
     }else{
-        if(photoCheck && typeCheck1 && typeCheck2 && typeCheck3 && writerCheck && productNameCheck && productDetailCheck && productPriceCheck && productDCCheck && productStockCheck){
+        if(uniqueName && photoCheck && typeCheck1 && typeCheck2 && typeCheck3 && writerCheck && productNameCheck && productDetailCheck && productPriceCheck && productDCCheck && productStockCheck){
             frm.submit();
         }else{
             alert('모두 입력해주세요');
         }
     }
 });
+
+//이름 중복체크(04.11)
+let uniqueName = false;
+const nameCheckBtn = document.querySelector("#nameCheckBtn");
+nameCheckBtn.addEventListener("click", function() {
+
+    if(productName.value == ''){
+        alert("이름을 입력해주세요.")
+        return;
+    }else{
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "./nameCheck");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //특수문자 인식시키기 위해 encodeURIComponent 추가
+        xhttp.send("productName="+encodeURIComponent(productName.value));
+    
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                let result = this.responseText.trim();
+                if(result == '0') {
+                    alert("사용 가능한 이름입니다.");
+                    uniqueName=true;
+                }else {
+                    alert("사용하실 수 없는 이름입니다.");
+                    uniqueName=false;
+                }
+            }
+        }  
+    }
+});
+
+
+
+
+
+
 
 // 공백사용못하게(04.05)
 // function delHangleTrim(obj) { 

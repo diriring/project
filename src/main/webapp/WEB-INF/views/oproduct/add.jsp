@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <!-- <link rel="stylesheet" href="../resources/css/ao_type.css"> -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -87,10 +87,10 @@
 									<label>ProductName</label>
 								</div> -->
 								<div class="form_section_content">
-									<div class="type_wrap checkout__input">
+									<div class="type_wrap checkout__input ">
 										<input type="text" name="productName" id="productName"
-											placeholder="제품의 이름을 입력해 주세요" onkeyup="delHangleTrim(this);"
-											onchange="delHangleTrim(this);" class="col-lg-12">
+											placeholder="제품의 이름을 입력해 주세요" class="col-lg-10">
+										<button type="button" id="nameCheckBtn" class="site-btn">중복확인</button>
 									</div>
 								</div>
 							</div>

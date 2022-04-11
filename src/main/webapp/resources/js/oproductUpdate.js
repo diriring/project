@@ -128,6 +128,7 @@ productName.addEventListener("blur", function(){
                 alert(' 공백만 입력되었습니다 ');
                 productNameCheck = false;
             }else{
+                alert('중복체크 해주세요!');
                 productNameCheck = true;
             }
         }
@@ -200,6 +201,41 @@ btn.addEventListener("click", function(){
     }
 
 });
+
+
+//이름 중복체크(04.11)
+let uniqueName = true;
+const nameCheckBtn = document.querySelector("#nameCheckBtn");
+nameCheckBtn.addEventListener("click", function() {
+
+    if(productName.value == ''){
+        alert("이름을 입력해주세요.")
+        return;
+    }else{
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "./nameCheck");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //특수문자 인식시키기 위해 encodeURIComponent 추가
+        xhttp.send("productName="+encodeURIComponent(productName.value));
+    
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                let result = this.responseText.trim();
+                if(result == '0') {
+                    alert("사용 가능한 이름입니다.");
+                    uniqueName=true;
+                }else {
+                    alert("사용하실 수 없는 이름입니다.");
+                    uniqueName=false;
+                }
+            }
+        }  
+    }
+});
+
+
+
 
 // 공백사용못하게(04.05) 공백체크 위에서그냥
 // function delHangleTrim(obj) { 
