@@ -44,7 +44,7 @@
                                 <a href="/s1/ocart/list">장바구니</a>
 							</div>
 							<div class="header__top__right__social">
-                                <a href="#">주문배송</a>
+                                <a href="/s1/member/orderList">주문배송</a>
 							</div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-6">
+                <div class="col-lg-6 text-center">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="/s1/">Home</a></li>

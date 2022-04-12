@@ -55,7 +55,7 @@
 					LEFT OUTER JOIN
 			    OPRODUCTFILETHUMB OPFT
 			    ON O.PRODUCTNUM = OPFT.PRODUCTNUM  
-			WHERE id=#{id}
+			WHERE id=#{id} AND PAYCHECK=0
 			ORDER BY O.CARTID DESC
 		</select>
 		
@@ -95,7 +95,7 @@
 		
 		<!-- 카트 확인 0411재석 order by 추가-->
  		<select id="checkCart" resultType="OcartDTO" parameterType="OcartDTO">
-			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum} ORDER BY CARTID DESC
+			SELECT * FROM OCART WHERE ID=#{id} and PRODUCTNUM=#{productNum} and PAYCHECK=0 ORDER BY CARTID DESC
 		</select>
 		
 		<!-- 결제페이지 관련 주영 추가 -->

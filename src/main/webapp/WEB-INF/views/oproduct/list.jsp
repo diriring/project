@@ -49,7 +49,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
-	background-image: url("../resources/img/olive/banner/flower.jpg")
+	background-image: url("/s1/resources/img/mypage_img.jpg")
 }
 </style>
 </head>
@@ -64,7 +64,7 @@
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<div class="breadcrumb__text">
-							<h2>전체 상품</h2>
+							<h2><br></h2>
 						</div>
 					</div>
 				</div>
@@ -74,6 +74,9 @@
 	
 	<section class="product spad">
 		<div class="container">
+			<div class="section-title">
+				<h2>전체 상품</h2>
+			</div>
 			<div class="row">
 
 				<!-- paging 처리 -->
@@ -161,26 +164,26 @@
 					<!-- 상품 갯수 보여주는거 빼고 없앨지 고민 -->
 					<div class="filter__item">
 						<div class="row">
-							<div class="col-lg-4 col-md-5">
+							<!-- <div class="col-lg-4 col-md-5">
 								<div class="filter__sort">
 									<span>Sort By</span> <select>
 										<option value="0">Default</option>
 										<option value="0">Default</option>
 									</select>
 								</div>
-							</div>
-							<div class="col-lg-4 col-md-4">
+							</div> -->
+							<div class="col-lg-12 col-md-4 text-center">
 								<div class="filter__found">
 									<h6>
 										<span>총 ${pager.totalCountC}</span>개의 상품이 있습니다
 									</h6>
 								</div>
 							</div>
-							<div class="col-lg-4 col-md-3">
+							<!-- <div class="col-lg-4 col-md-3">
 								<div class="filter__option">
 									<span class="icon_grid-2x2"></span> <span class="icon_ul"></span>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 
@@ -238,7 +241,7 @@
 					<div class="line"></div>
 					<br>
 					<div class="text-right" style="font-size:larger">
-						<c:if test="${not empty member}">
+						<c:if test="${member.memberType eq 1}">
 							<a href="./add">상품추가</a>
 						</c:if>
 					</div>

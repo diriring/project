@@ -39,7 +39,9 @@
 	
 	
 	<div class="container">
-	<h1>제품 상세페이지</h1>
+		<div class="section-title">
+			<h2>제품 상세페이지</h2>
+		</div>
 	
 		<div class="content_area">
 			<div class="line">

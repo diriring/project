@@ -79,7 +79,7 @@
                                 <a href="/s1/ocart/list">장바구니</a>
 							</div>
 							<div class="header__top__right__social">
-                                <a href="#">주문배송</a>
+                                <a href="/s1/member/orderList">주문배송</a>
 							</div>
 							<!-- <div class="header__top__right__social">
                                 <a href="/s1/qna/list">QNA</a>
