@@ -30,13 +30,30 @@
 			<div>
 				<textarea rows="" cols="" name="contents">${dto.contents}</textarea>
 			</div>
-				<button type="submit" class="site-btn">수정하기</button>	
-		
+
+			<div id="files">
+				<c:forEach items="${dto.fileDTOs}" var="f">
+				<div>
+					<img alt="" src="../resources/upload/${board}/${f.fileName}" class="img">
+					${f.oriName} <button type="button" class="fileDeleteBtn" data-num="${dto.num}" data-fileNum="${f.fileNum}" data-fileName="${f.fileName}">X</button>
+				</div>
+			</c:forEach>
+
+			</div>
+
+			<div id="fileResult"></div>
+
+			<div>
+				<button type="button" id="fileAdd" class="site-btn">파일 추가</button>	
+			</div>	
+
+			<button class="photoFile" type="button" id="btn">수정하기</button>
 		</form>
 	
 	</div>
 	
 <!-- 내가추가 -->
+<script src="../resources/js/boardFileUpdate.js"></script>
 <c:import url="../template/footer.jsp"></c:import>
 <c:import url="../template/header_js.jsp"></c:import>	
 </body>

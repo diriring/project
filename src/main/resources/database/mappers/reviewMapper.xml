@@ -17,6 +17,10 @@
 		WHERE FILENUM=#{fileNum}
 	</select>
 	
+	<delete id="deleteFile" parameterType="NoticeFileDTO">
+		DELETE OREVIEWFILE WHERE FILENUM=#{fileNum}
+	</delete>
+	
 	<select id="addFile" parameterType="NoticeFileDTO">
 		INSERT INTO OREVIEWFILE(FILENUM, NUM, FILENAME, ORINAME)
 		VALUES (opfile_seq.nextval,#{num}, #{fileName}, #{oriName})

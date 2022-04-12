@@ -98,8 +98,8 @@ public class QnaController {
 	}
 	
 	@PostMapping("update")
-	public String update(BoardDTO boardDTO,Model model)throws Exception{
-		int result = qnaService.update(boardDTO);
+	public String update(BoardDTO boardDTO,Model model, MultipartFile [] files)throws Exception{
+		int result = qnaService.update(boardDTO,files);
 		
 		return "redirect:./list";
 	}

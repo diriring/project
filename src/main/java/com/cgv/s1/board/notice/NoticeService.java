@@ -114,9 +114,24 @@ public class NoticeService implements BoardService {
 	
 
 	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.update(boardDTO);
+	public int update(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+		int result = noticeDAO.update(boardDTO);
+		
+		for(int i = 0;i<files.length;i++) {
+		if(files[i].isEmpty()) {
+			continue;
+		}
+		NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+		String fileName = fileManager.save(files[i], "resources/upload/notice/");
+		
+		noticeFileDTO.setFileNum(boardDTO.getNum());
+		noticeFileDTO.setFileName(fileName);
+		noticeFileDTO.setOriName(files[i].getOriginalFilename());
+		
+		result = noticeDAO.addFile(noticeFileDTO);
+		
+		}
+		return result;
 	}
 
 	@Override

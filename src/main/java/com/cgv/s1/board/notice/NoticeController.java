@@ -103,8 +103,8 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update")
-	public String update(BoardDTO boardDTO,Model model)throws Exception{
-		int result = noticeService.update(boardDTO);
+	public String update(BoardDTO boardDTO,Model model, MultipartFile [] files)throws Exception{
+		int result = noticeService.update(boardDTO, files);
 		
 		return "redirect:./list";
 	}

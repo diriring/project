@@ -86,9 +86,24 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
+	public int update(BoardDTO boardDTO,MultipartFile[] files) throws Exception {
 		// TODO Auto-generated method stub
-		return qnaDAO.update(boardDTO);
+		int result =qnaDAO.update(boardDTO);
+		
+		for(int i = 0;i<files.length;i++) {
+			if(files[i].isEmpty()) {
+				continue;
+			}
+			QnaFileDTO qnaFileDTO = new QnaFileDTO();
+			String fileName = fileManager.save(files[i], "resources/upload/qna/");
+			
+			qnaFileDTO.setNum(boardDTO.getNum());
+			qnaFileDTO.setFileName(fileName);
+			qnaFileDTO.setOriName(files[i].getOriginalFilename());
+			
+			result = qnaDAO.addFile(qnaFileDTO);
+		}
+		return result;
 	}
 
 	@Override
