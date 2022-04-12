@@ -42,11 +42,7 @@ public class OcartService {
 		//적용 안될시 0리턴
 		return ocartDAO.addCart(ocartDTO);
 	}
-	
-	//카트 추가(바로구매 버전 0411재석)
-	public int addCartD(OcartDTO ocartDTO) throws Exception{
-		return ocartDAO.addCart(ocartDTO);
-	}
+
 
 	//기존
 	//카트 목록(getCart)(member들어왔을때 ocartDTO로 member 넘겨줌)

@@ -119,7 +119,7 @@
 			<div class="content_middle">
 				<div class="product_intro">
 				<!-- 추가함 옆으로 옮기는것 생각 -->
-					<div style="white-space:pre; font-size:larger"><c:out value="${dto.productDetail}" /></div>
+					<div style="font-size: medium; white-space:pre-wrap"><c:out value="${dto.productDetail}" /></div>
 				</div>
 				<div class="line">
 				</div>

@@ -35,7 +35,8 @@
 .breadcrumb__text h2 {
 	font-size: 46px;
 	/*여기 색 수정 카트 배너부분*/
-	color: #ff51ff;
+	color: #00d700;
+/* 	color: #ff51ff; */
 	font-weight: 700;
 }
 
@@ -48,7 +49,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
-	background-image: url("../resources/img/olive/banner/cart.jpg")
+	background-image: url("../resources/img/olive/banner/flower.jpg")
 }
 </style>
 </head>
@@ -63,7 +64,7 @@
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<div class="breadcrumb__text">
-							<h2>${list[0].typeName} 상품 페이지</h2>
+							<h2>${list[0].typeName}</h2>
 						</div>
 					</div>
 				</div>
@@ -186,15 +187,15 @@
 					<br>
 					<div class="product__pagination text-center">
 						<c:if test="${oproductTypeDTO.pre}">
-							<a href="./list?page=${oproductTypeDTO.startNum-1}">PREVIEW</a>
+							<a href="./listType?productType=${list[0].productType}&page=${oproductTypeDTO.startNum-1}">PREVIEW</a>
 						</c:if>
 						<c:forEach begin="${oproductTypeDTO.startNum}" end="${oproductTypeDTO.lastNum}"
 							var="i">
 							<a
-								href="./list?page=${i}&kind=${oproductTypeDTO.kind} &search=${oproductTypeDTO.search}">${i}</a>
+								href="./listType?productType=${list[0].productType}&page=${i}&kind=${oproductTypeDTO.kind} &search=${oproductTypeDTO.search}">${i}</a>
 						</c:forEach>
 						<c:if test="${oproductTypeDTO.next}">
-							<a href="./list?page=${oproductTypeDTO.lastNum+1}">NEXT</a>
+							<a href="./listType?productType=${list[0].productType}&page=${oproductTypeDTO.lastNum+1}">NEXT</a>
 						</c:if>
 					</div>
 					<br>

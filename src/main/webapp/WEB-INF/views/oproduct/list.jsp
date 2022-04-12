@@ -35,7 +35,8 @@
 .breadcrumb__text h2 {
 	font-size: 46px;
 	/*여기 색 수정 카트 배너부분*/
-	color: #ff51ff;
+	color: #00d700;
+	/* color: #ff51ff; */
 	font-weight: 700;
 }
 
@@ -48,7 +49,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
-	background-image: url("../resources/img/olive/banner/cart.jpg")
+	background-image: url("../resources/img/olive/banner/flower.jpg")
 }
 </style>
 </head>

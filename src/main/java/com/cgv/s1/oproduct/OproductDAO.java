@@ -23,7 +23,7 @@ public class OproductDAO {
 		return sqlSession.selectList(NAMESPACE+"listType", oproductTypeDTO);
 	}
 	
-	//total oProductType별(검색 용도) - 이게 지금 사용중인건가?
+	//total oProductType별(검색 용도)
 	public Long totalType(OproductTypeDTO oproductTypeDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "totalType", oproductTypeDTO);
 	}

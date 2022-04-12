@@ -157,10 +157,12 @@
 .product_intro{
 	/* width: 10px; */
 	/* 상품 디테일 건드리는 부분 */
+	margin-right: 80px;
 	margin-left: 80px;
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
+
 .product_content{
 /* 	width: 20%;
 	margin: auto; */

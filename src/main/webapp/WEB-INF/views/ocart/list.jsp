@@ -22,7 +22,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	
-	<section class="breadcrumb-section set-bg" data-setbg="../resources/img/olive/banner/cart.jpg">
+	<section class="breadcrumb-section set-bg" data-setbg="../resources/img/olive/banner/flower.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
