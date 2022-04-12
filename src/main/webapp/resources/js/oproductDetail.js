@@ -56,10 +56,18 @@ button_set.addEventListener("click", function(event){
 // 주문탭 바로이동
 const pay_frm = document.querySelector("#pay_frm");
 const pay_pAmount = document.querySelector("#pay_pAmount");
+const loginCheck = document.querySelector("#loginCheck");
 let btn_buyT = document.querySelector("#btn_buyT");
 
 btn_buyT.addEventListener("click", function(event){
-    pay_pAmount.setAttribute("value", count_check.value);
-    pay_frm.submit();
+    if(loginCheck.value == ''){
+        alert("로그인이 필요합니다.")
+        window.location.reload();
+        window.location.href = "../member/login";
+    }else{
+        pay_pAmount.setAttribute("value", count_check.value);
+        pay_frm.submit();
+    }
+   
 });
 

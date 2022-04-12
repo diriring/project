@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/ao_ocart.css">
 <style type="text/css">
@@ -20,6 +20,19 @@
 <body>
 
 	<c:import url="../template/header.jsp"></c:import>
+	
+	
+	<section class="breadcrumb-section set-bg" data-setbg="/s1/resources/img/mypage_img.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2><br></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 	<div class="container">
 	
@@ -27,28 +40,16 @@
 		<!----------------------------------------------------------------------------->
 
 		<div class="content_area">
-
-			<!--이름,내용 별 검색 만들기 카테고리 미완성 아니면 가격을 넣어볼지 카트에서는 뺼지?  -->
-			<!-- 일단 빼봄 -->
-			<!-- 맵퍼에서 일단 뺴는거로 구현 -->
-<%-- 			<div class="search_wrap">
-				<form action="./list" class="search" method="get">
-					<fieldset>
-						<select name="kind">
-							<option value="col1">상품명</option>
-							<option value="col2">상품내용</option>
-						</select>
-						<input type="text" name="search" value="${ocartDTO.search}">
-						<button type="submit">검색</button>
-					</fieldset>
-				</form>
-			</div> --%>
+			<br><br><br>
+			<div class="section-title">
+				<h2>${member.name}의 장바구니</h2>
+			</div>
 
 			<form action="../pay/payForm" id="frm" method="post">
 
-				<div class="content_subject">
+				<%-- <div class="content_subject">
 					<span>${member.name}의 장바구니</span>
-				</div>
+				</div> --%>
 
 				<!-- 장바구니 리스트 -->
 				<div class="content_middle_section"></div>
@@ -90,6 +91,8 @@
 										<input type="hidden" class="individual_salePrice" id="individual_salePriceC${list.cartId}" value="${list.salePrice}">
 										<input type="hidden" class="individual_productAmount" id="individual_productAmountC${list.cartId}" value="${list.productAmount}"> 
 										<input type="hidden" class="individual_point" id="individual_pointC${list.cartId}" value="${list.point}">
+										<!-- point 1원 차이나는거 고민중에 만들어봄 -->
+										<%-- <input type="hidden" class="individual_totalPoint" id="individual_totalPointC${list.cartId}" value="${list.totalPoint}"> --%>
 									</td>
 									
 									<td class="td_width_2">
@@ -130,7 +133,7 @@
 
 				<!-- paging 처리 -->
 
-				<div class="paging">
+				<div class="paging text-center">
 					<c:if test="${ocartDTO.pre}">
 						<a href="./list?page=${ocartDTO.startNum-1}">PREVIEW</a>
 					</c:if>

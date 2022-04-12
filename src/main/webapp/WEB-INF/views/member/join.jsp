@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 | Olive Young</title>
 <!-- 내가추가 -->
 <c:import url="../template/header_css.jsp"></c:import>
 <style type="text/css">
@@ -25,10 +25,9 @@
 				<h2>${title}</h2>
 			</div>
 			<div class="row">
-				<div class="col-lg-8" style="float: none; margin: 0 auto;">
-					
+				<div class="col-lg-8" style="float: none; margin: 0 auto;">	
 					<h3>기본정보</h3>
-					
+					<br>
 					<form action="./join" method="post" id="joinfrm">
 						<input type="hidden" name="memberType" value="${memberType}">
 						
@@ -96,17 +95,17 @@
 							<h5>생년월일</h5>
 							<div class="row">
 								<div class="col-lg-4">
-									<select id="year">
+									<select id="year" class="form-control">
 										<option value="" selected disabled hidden>년도 선택</option>
 									</select>
 								</div>
 								<div class="col-lg-4">
-									<select id="month">
+									<select id="month" class="form-control">
 										<option value="" selected disabled hidden>달 선택</option>
 									</select>
 								</div>
 								<div class="col-lg-4">
-									<select id="day">
+									<select id="day" class="form-control">
 										<option value="" selected disabled hidden>일 선택</option>
 									</select>
 								</div>
@@ -121,7 +120,7 @@
 							<h5>휴대전화</h5>
 							<div class="row">
 								<div class="col-lg-4">
-									<select id="phone1">
+									<select id="phone1" class="form-control">
 										<option value="" selected disabled hidden>선택해주세요</option>
 									</select>
 								</div>
@@ -177,6 +176,12 @@
 	<script src="../resources/js/join.js"></script>
 <!-- 내가추가 -->
 <c:import url="../template/footer.jsp"></c:import>
-<c:import url="../template/header_js.jsp"></c:import>	
+ <script src="/s1/resources/js/jquery-3.3.1.min.js"></script>
+ <script src="/s1/resources/js/bootstrap.min.js"></script>
+ <script src="/s1/resources/js/jquery-ui.min.js"></script>
+ <script src="/s1/resources/js/jquery.slicknav.js"></script>
+ <script src="/s1/resources/js/mixitup.min.js"></script>
+ <script src="/s1/resources/js/owl.carousel.min.js"></script>
+ <script src="/s1/resources/js/main.js"></script>
 </body>
 </html>

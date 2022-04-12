@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Olive Young</title>
 <link rel="stylesheet" href="../resources/css/ao_detail.css">
 <c:import url="../template/header_css.jsp"></c:import>
 
@@ -14,6 +14,14 @@
 	#img {
 		width: 400px;
 		height: 400px;
+	}
+	*{
+		font-family: "Cairo", sans-serif;
+		color: black;
+	}
+	a {
+   		color: black;
+    	text-decoration: none;
 	}
 </style>
 
@@ -31,7 +39,9 @@
 	
 	
 	<div class="container">
-	<h1>상세페이지</h1>
+		<div class="section-title">
+			<h2>제품 상세페이지</h2>
+		</div>
 	
 		<div class="content_area">
 			<div class="line">
@@ -61,6 +71,14 @@
 						 <span>
 						 <fmt:formatDate value="${dto.regDate}" pattern="yyyy-MM-dd"/>
 						 </span>
+						 
+						 <span>
+						 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;재고
+						 </span>
+						 <span>|</span>
+						 <span>
+						 <fmt:formatNumber value="${dto.productStock}" pattern="#,### 개"/>
+						 </span>
 					</div>
 					<div class="line">
 					</div>	
@@ -74,8 +92,10 @@
 						</div>						
 						<div>
 							<!-- 포인트 판매가의 0.05 적립으로 설정 -->
+							<!-- 컨트롤러에서 직접 뿌려주는것으로 변경해볼것 04.08 -->
 							적립 포인트 : <span class="point"></span>
-							<fmt:formatNumber value="${(dto.productPrice - (dto.productPrice)*(dto.productDC*0.01))*0.05}" pattern="#,### 원"/>
+							<%-- <fmt:formatNumber value="${(dto.productPrice - (dto.productPrice)*(dto.productDC*0.01))*0.05}" pattern="#,### 원"/> --%>
+							<fmt:formatNumber value="${point}" pattern="#,### M"/>
 						</div>
 					</div>			
 					<div class="line">
@@ -96,12 +116,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="line">
-			</div>				
+			<div class="line"></div>
+							
 			<div class="content_middle">
 				<div class="product_intro">
 				<!-- 추가함 옆으로 옮기는것 생각 -->
-					<div style="white-space:pre;"><c:out value="${dto.productDetail}" /></div>
+					<div style="font-size: medium; white-space:pre-wrap"><c:out value="${dto.productDetail}" /></div>
 				</div>
 				<div class="line">
 				</div>
@@ -191,44 +211,40 @@
 		<hr>
 			
 		<!-- product Review 끝 -->		
-			
-			
-			<div class="content_bottom">
+
+			<div class="text-right content_bottom">
 				<c:if test="${member.id eq dto.writer}">
-					<a href="./update?productNum=${dto.productNum}&type=${type}">Update</a>
-					<a href="./delete?productNum=${dto.productNum}&type=${type}">Delete</a>
+					<div class="margin">
+						<a href="./update?productNum=${dto.productNum}&type=${type}">상품수정</a>
+					</div>
+					<div class="margin">
+						<a href="./delete?productNum=${dto.productNum}&type=${type}">상품삭제</a>
+					</div>
 				</c:if>
 				<!-- listType에서 넘겨준 type이 있으면 listType으로 가는 list 버튼 -->
 				<c:choose>
 					<c:when test="${type eq ''}">
-						<a href="./list">List</a>
+						<div class="margin">
+							<a href="./list">상품리스트</a>
+						</div>
 					</c:when>
 					<c:otherwise>
-						<a href="./listType?productType=${type}">List</a>
+						<div class="margin">
+							<a href="./listType?productType=${type}">상품리스트</a>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>	
-						
-			<!-- <div class="content_bottom">
-				리뷰
-			</div> -->
-			
-
 		</div>
 	
 	</div>
 	<!-- pay form -->
 	<!-- 현재 문제는 지금 paycontroller는 cartid로만 기능하게 되어있음  변수명 미선언 or 컨트롤러 작동 메서드 하나더 생성-->
-	<form action="../pay/payForm" method="post" id="pay_frm">
+	<form action="../pay/payFormDetail" method="post" id="pay_frm">
 		<input type="hidden" name="productNum" id="pay_pNum" value="${dto.productNum}">
 		<input type="hidden" name="productAmount" id="pay_pAmount">
-		<input type="hidden" name="id" value="${member.id}">
+		<input type="hidden" name="id" value="${member.id}" id="loginCheck">
 	</form>
-
-		
-		
-
-
 
 
 	<c:import url="../template/footer.jsp"></c:import>

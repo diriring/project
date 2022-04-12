@@ -43,7 +43,11 @@ public class OproductDAOTest extends MyJunitTest {
 		oproductDTO.setProductName("N");
 		oproductDTO.setProductDetail("D");
 		oproductDTO.setProductPrice(1000);
+
 		//oproductDTO.setProductDC(1);
+
+		//oproductDTO.setProductDC(1D);
+
 		oproductDTO.setProductStock(1);
 		int result = oproductDAO.add(oproductDTO);
 		assertEquals(1, result);

@@ -65,7 +65,7 @@ const email2 = document.getElementById("email2");
 joinbtn.addEventListener("click", function() {
     
     if(!nameconfirm) {
-        alert('필수입력 항목입니다.');
+        alert('이름을 입력해주세요.');
         name.focus();
         return;
     }
@@ -198,6 +198,12 @@ email2.addEventListener("change", function() {
 //중복 확인 ajax
 idCheckBtn.addEventListener("click", function() {
     // console.log("아이디 중복 체크")
+    if(id.value.length == 0) {
+        alert('아이디를 입력해주세요.');
+        id.focus();
+        return;
+    }
+
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("POST", "./idCheck");
@@ -222,6 +228,17 @@ idCheckBtn.addEventListener("click", function() {
 
 emailCheckBtn.addEventListener("click", function() {
     // console.log("이메일 중복 체크");
+    if(email1.value.length == 0) {
+        alert('이메일을 입력해주세요.');
+        email1.focus();
+        return;
+    }
+    if(email2.value.length == 0) {
+        alert('이메일을 입력해주세요.');
+        email2.focus();
+        return;
+    }
+    
     email.value = email1.value + "@" + email2.value;
     let xhttp = new XMLHttpRequest();
 

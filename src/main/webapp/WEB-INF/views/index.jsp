@@ -35,12 +35,7 @@
     .cateMenu a{cursor:pointer;}
     .cateMenu .hide{display:none;}
 	</style>
-
-
-
 </head>
-
-
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -84,7 +79,7 @@
                                 <a href="/s1/ocart/list">장바구니</a>
 							</div>
 							<div class="header__top__right__social">
-                                <a href="#">주문배송</a>
+                                <a href="/s1/member/orderList">주문배송</a>
 							</div>
 							<!-- <div class="header__top__right__social">
                                 <a href="/s1/qna/list">QNA</a>
@@ -236,8 +231,10 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="어떤게 필요하신가요?">
+                            <form action="./oproduct/list" class="search" method="get">
+                            	<!-- 상품명만 검색 가능하게 -->
+                           		<input type="hidden" name="kind" value="col1">
+                                <input type="text" placeholder="어떤게 필요하신가요?" name="search" value="${pager.search}">
                                 <button type="submit" class="site-btn">검 색</button>
                             </form>
                         </div>

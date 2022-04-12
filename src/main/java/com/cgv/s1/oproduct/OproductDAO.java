@@ -23,7 +23,7 @@ public class OproductDAO {
 		return sqlSession.selectList(NAMESPACE+"listType", oproductTypeDTO);
 	}
 	
-	//total oProductType별(검색 용도) - 이게 지금 사용중인건가?
+	//total oProductType별(검색 용도)
 	public Long totalType(OproductTypeDTO oproductTypeDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "totalType", oproductTypeDTO);
 	}
@@ -129,8 +129,33 @@ public class OproductDAO {
     }
     
     
+    //만들어보는중 0408 재석 위에 꺼 그대로
+    public int stockAdd(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"stockAddD", productAmount);
+    }
     
+    public int stockSubtract(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"stockSubtractD", productAmount);
+    }
     
+    public int saleAdd(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"saleAddD", productAmount);
+    }
+    
+    public int saleSubtract(int productAmount) throws Exception {
+    	return sqlSession.update(NAMESPACE+"saleSubtractD", productAmount);
+    }
+    
+    //이름 중복체크(0411)
+    public int nameCheck(OproductDTO oproductDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"nameCheck", oproductDTO);
+	}
+    
+	//oProduct list(pager 없이 - 리스트페이지에서 할인 항목 전체출력 위해) 0411 재석
+	public List<OproductDTO> saleList() throws Exception{
+		return sqlSession.selectList(NAMESPACE + "saleList");
+	}
+
     
     //file Deletelist(새로만든것 fileupdate 때문에)
     //public List<OproductFileDTO> listFileDelete(OproductFileDTO oproductFileDTO) throws Exception{

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cgv.s1.member.MemberDTO;
 import com.cgv.s1.util.Pager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,6 +45,12 @@ public class OproductController {
 	@RequestMapping(value="list", method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv, Pager pager) throws Exception{
 		List<OproductDTO> ar = oproductService.list(pager);
+		//할인되는거 출력때문에 새로 만듬 0411
+		List<OproductDTO> ar2 = oproductService.saleList();
+		//리스트 옆에 출력해보는거때문에 만듬
+		List<OproductTypeDTO> ar3 = oproductService.typeList();
+		mv.addObject("typeList", ar3);
+		mv.addObject("saleList", ar2);
 		mv.addObject("list", ar);
 		mv.setViewName("oproduct/list");
 		return mv;
@@ -53,6 +60,9 @@ public class OproductController {
 	@RequestMapping(value="listType", method = RequestMethod.GET)
 	public ModelAndView listType(ModelAndView mv, OproductTypeDTO oproductTypeDTO) throws Exception{
 		List<OproductDTO> ar = oproductService.listType(oproductTypeDTO);
+		//리스트 옆에 출력해보는거때문에 만듬
+		List<OproductTypeDTO> ar3 = oproductService.typeList();
+		mv.addObject("typeList", ar3);
 		mv.addObject("list", ar);
 		mv.setViewName("oproduct/listType");
 		return mv;
@@ -65,8 +75,11 @@ public class OproductController {
 		ModelAndView mv = new ModelAndView();
 		oproductDTO = oproductService.detail(oproductDTO);
 		mv.addObject("dto", oproductDTO);
-		//카테고리 탭으로 바로 가기위해 type변수 추가(04.07)
+		//카테고리 탭으로 바로 가기위해 type변수 추가(04.07) 재석수정
 		mv.addObject("type", type);
+		//포인트 controller에서 뿌려주기 1원단위 잡기(04.08) 재석수정
+		double point = (Math.floor(oproductDTO.getProductPrice() * (1 - (double)oproductDTO.getProductDC() / 100)*0.05));
+		mv.addObject("point", point);
 		mv.setViewName("oproduct/detail");
 		return mv;
 	}
@@ -160,6 +173,18 @@ public class OproductController {
 		return mv;
 	}
 
+	//중복 아이디 확인
+	@PostMapping("nameCheck")
+	public ModelAndView nameCheck(OproductDTO oproductDTO) throws Exception {
+		int result = oproductService.nameCheck(oproductDTO);
+		//System.out.println(oproductDTO.getProductName());
+		ModelAndView mv = new ModelAndView();
+		//System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;	
+	}
 
 	
 }

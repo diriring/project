@@ -68,7 +68,7 @@ function cal(){
             //console.log(price);
             // 포인트 변수
             let point = document.querySelector('#individual_pointC'+cartId).value;
-
+            //console.log("point : " + point);
             // 수량 변수
             let amount = document.querySelector('#individual_productAmountC'+cartId).value;
 
@@ -77,6 +77,13 @@ function cal(){
             totalPoint = totalPoint + point*amount;
             totalAmount = totalAmount*1 + amount*1;
            
+            //마일리지 차이나서 일단 최종값에 1 더해줘봄(04.08 재석)
+            //컨트롤러에서 직접 건드리는것으로 바꿈
+            // totalPoint = totalPoint+1;
+            // console.log(totalPoint);
+            // totalPoint = Math.ceil(totalPoint);
+            // console.log(totalPoint);
+
         }
         
     }

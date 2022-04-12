@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 확인 | Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>

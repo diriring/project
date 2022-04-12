@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>결제 | Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <style type="text/css">
    #img{
@@ -27,6 +27,9 @@
 			</div>
 			
 			<div class="checkout__form">
+				<!-- 재석 수정중 04.08 -->
+				<!-- controller에서 같이 써볼까 일단 실패해서 이걸 두개로 써보려고함-->
+				
 				<form action="./add" method="post" id="payFrm">
 				<div class="row">
 					<div class="col-lg-8">
@@ -91,21 +94,25 @@
 											<th>구매가</th>
 										</tr>
 									</thead>
-									<c:forEach items="${productList}" var="product" varStatus="status">
-										<tr>
-											<td>
-												<img alt="img" src="../resources/upload/oproduct/thumbnail/${product.oproductFileThumbDTO.fileNameThumb}" id="img">
-											</td>
-											<td>
-												<input type="hidden" name="idList" value="${cartList[status.index].cartId}">
-												${product.productName}
-											</td>
-											<td><fmt:formatNumber value="${product.productPrice}" pattern="#,###원"/></td>
-											<td>${cartList[status.index].productAmount}개</td>
-											<td><fmt:formatNumber value="${product.productPrice * (1 - product.productDC / 100)}" pattern="#,###원"/></td>
-										</tr>
-									</c:forEach>
-									
+									<!-- 04.08 재석 수정 바로구매 추가해보기 -->
+									<!-- 통째로 다르게 출력해보기 -->
+									<!-- 아마 결제에서 안될수 있음 밑에 결제 버튼 -->
+									<!-- 다른 변수가 들어올 경우 다르게 출력값을 넣어봄 -->
+										<c:forEach items="${productList}" var="product" varStatus="status">
+											<tr>
+												<td>
+													<img alt="img" src="../resources/upload/oproduct/thumbnail/${product.oproductFileThumbDTO.fileNameThumb}" id="img">
+												</td>
+												<td><!-- 여기랑 -->
+													<input type="hidden" name="idList" value="${cartList[status.index].cartId}">
+													${product.productName}
+												</td>
+												<td><fmt:formatNumber value="${product.productPrice}" pattern="#,###원"/></td>
+												<!-- 여기 수정해야할거같고 -->
+												<td>${cartList[status.index].productAmount}개</td>
+												<td><fmt:formatNumber value="${product.productPrice * (1 - product.productDC / 100)}" pattern="#,###원"/></td>
+											</tr>
+										</c:forEach>
 								</table>
 							</div>
 						</div>
@@ -114,8 +121,8 @@
 							<h4>마일리지 사용</h4>
 							<div class="col-lg-6">
 								<h5>보유 마일리지 <fmt:formatNumber value="${memberDTO.point}" pattern="#,###M"/></h5>
-								<div class="input-group mb-3">
-									<input id="pointUse" name="pointUse" type="number" min="0" max="${memberDTO.point}" class="form-control">
+								<div class="input-group mb-3">																<!-- value값 추가 04.08 재석 -->
+									<input id="pointUse" name="pointUse" type="number" min="0" max="${memberDTO.point}" class="form-control" value="0">
 									<button type="button" id="pointBtn" class="btn btn-outline-secondary">사용</button>
 								</div>
 								</div>
@@ -135,7 +142,15 @@
 								</tr>
 								<tr>
 									<td>총 배송비</td>
-									<td style="text-align: right;">2,500원</td>
+									<!-- 04.08 재석 수정중 c:choose사용 배송비 새로 계산하려고-->
+									<c:choose>
+										<c:when test="${totalPrice >= 30000}">
+											<td style="text-align: right;">0원</td>
+										</c:when>
+										<c:otherwise>
+											<td style="text-align: right;">3,000원</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 								<tr>
 									<td>마일리지 사용</td>
@@ -147,18 +162,32 @@
 									<td>최종 결제금액</td>
 									<td style="text-align: right;">
 										<input name="totalPrice" id="totalPrice" type="hidden" value="${totalPrice}" readonly="readonly">
-										<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice + 2500}" readonly>
-										<div id="totalPriceResult">
-											<fmt:formatNumber value="${totalPrice + 2500}" pattern="#,###원"/>
-										</div>
+											<!-- 04.08 재석 수정중 c:choose사용 배송비 새로 계산하려고-->	
+											<c:choose>
+												<c:when test="${totalPrice >= 30000}">
+													<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice}" readonly>
+													<div id="totalPriceResult">
+														<fmt:formatNumber value="${totalPrice}" pattern="#,###원"/>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<input name="payMoney" id="payMoney" type="hidden" value="${totalPrice + 3000}" readonly>
+													<div id="totalPriceResult">
+														<fmt:formatNumber value="${totalPrice + 3000}" pattern="#,###원"/>
+													</div>
+												</c:otherwise>
+											</c:choose>
 									</td>
 								</tr>
 								<tr>
 									<td>마일리지 적립</td>
 									<td style="text-align: right;">
 										<input id="pointSave" type="hidden" name="pointSave">
+										<!-- 04.08 재석 수정중 c:choose사용 배송비 새로 계산하려고-->
+										<!-- 생각해보니 마일리지는 배송비 영향 없이 진행이 맞는듯 -->
 										<div id="pointSaveResult">
-											<fmt:formatNumber value="${(totalPrice + 2500)*0.05}" pattern="#,###M"/>
+											<!-- totalPoint 바로 뿌려주는것으로 수정 -->
+											<fmt:formatNumber value="${totalPoint}" pattern="#,###M"/>
 										</div>
 									</td>
 								</tr>
@@ -168,6 +197,7 @@
 					</div>
 				</div>
 				</form>
+		
 				<!-- <a href="../ocart/list">취소</a> -->
 			</div>
 		</div>

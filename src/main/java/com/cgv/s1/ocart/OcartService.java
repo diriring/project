@@ -34,7 +34,6 @@ public class OcartService {
 	public int addCart(OcartDTO ocartDTO) throws Exception{
 		
 		//카트 데이터 체크
-		
 		OcartDTO checkCart = ocartDAO.checkCart(ocartDTO);
 		if(checkCart != null) {
 			//ajax에서 출력
@@ -43,8 +42,8 @@ public class OcartService {
 		//적용 안될시 0리턴
 		return ocartDAO.addCart(ocartDTO);
 	}
-	
-	
+
+
 	//기존
 	//카트 목록(getCart)(member들어왔을때 ocartDTO로 member 넘겨줌)
 	public List<OcartDTO> getCart(OcartDTO ocartDTO) throws Exception{
