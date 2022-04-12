@@ -45,27 +45,28 @@
 					<span style="float: right;">조회수 : ${dto.hit}</span>
 				</div>
 			<div style="border-top: 1px solid #e7e7e7; padding-top: 10px; padding-left: 10px;">${dto.contents}</div>
-	
+		
 		<div>
 			<c:forEach items="${dto.fileDTOs}" var="f">
 								<img id="board-img" alt="" src="../resources/upload/${board}/${f.fileName}" style="height: 400px;width: 300px;">
 			</c:forEach>
 		</div>
+		
 	
 	<hr style="background: #9bce26;">
+		<c:if test="${not empty member}">
 			
 			<input type="hidden" name="num" value="${dto.num}" id="num">
 			<input type="text" name="writer" id="writer" value="${member.id}" readonly><!-- value="${member.id}" readonly 멤버 추가되면 추가할것 -->
 			<textarea rows="" cols="" name="contents" id="contents"></textarea>
 			<button type="button" id="reply" class="site-btn">Reply</button>
-	
+
 	<hr>
-	
 			<table id="replyResult">
 	
 	
 			</table>
-	
+		</c:if>	
 	
 	<div>
 		<c:forEach items="${dto.fileDTOs}" var="f">

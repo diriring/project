@@ -24,11 +24,13 @@
 		제목<input type="text" name="title">
 		작성자<input type="text" name="writer" value="${member.id}" readonly>
 		<div>Contents<textarea name="contents" rows="" cols=""></textarea></div>
+		
 		<div>
 			<input type="file" name="files">
 			<input type="file" name="files">
 			<input type="file" name="files">
 		</div>
+		
 	
 	<input type="submit" value="글 등록" class="site-btn">
 	</form>
