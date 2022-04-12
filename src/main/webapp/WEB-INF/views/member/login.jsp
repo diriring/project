@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 | Olive Young</title>
 <!-- 내가추가 -->
 <c:import url="../template/header_css.jsp"></c:import>
 
@@ -20,7 +20,8 @@
 			<div class="row">
 				<div class="col-lg-6 text-center" style="float: none; margin: 0 auto;">
 					<div class="section-title">
-						<h3>로그인</h3>
+						<h2>로그인</h2>
+						<br>
 						<h5>올리브영의 다양한 서비스와 혜택을 누리세요</h5>
 					</div>
 					<c:if test="${result == '0'}">

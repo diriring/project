@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>결제 | Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <style type="text/css">
    #img{
