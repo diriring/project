@@ -33,7 +33,7 @@ public class OproductReviewService {
 	public int add(OproductReviewDTO oproductReviewDTO, MultipartFile [] files)throws Exception{
 		
 		int result = oproductReviewDAO.add(oproductReviewDTO);
-		System.out.println("여기까진되나 ?");
+		
 		for(int i = 0;i<files.length;i++) {
 			
 			if(files[i].isEmpty()) {
@@ -61,15 +61,17 @@ public class OproductReviewService {
 		
 		int result = oproductReviewDAO.delete(oproductReviewDTO);
 		
-		List<OproductReviewFileDTO> ar = oproductReviewDAO.listFile(oproductReviewDTO);
-		if(result>0) {
-			
-			for(OproductReviewFileDTO dto : ar) {
-				boolean check = fileManager.remove("resources/upload/oproductReview/", dto.getFileName());
-				
-			}
-			
-		}
+		/*
+		 * List<OproductReviewFileDTO> ar =
+		 * oproductReviewDAO.listFile(oproductReviewDTO); if(result>0) {
+		 * 
+		 * for(OproductReviewFileDTO dto : ar) { boolean check =
+		 * fileManager.remove("resources/upload/oproductReview/", dto.getFileName());
+		 * 
+		 * }
+		 * 
+		 * }
+		 */
 		
 		return result;
 	}

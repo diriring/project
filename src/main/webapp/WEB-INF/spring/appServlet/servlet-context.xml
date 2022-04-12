@@ -46,6 +46,8 @@
 			<mapping path="/member/*"/>
 			<mapping path="/member/address/*"/>
 			<mapping path="/oproduct/**"/>
+			<mapping path="/qna/**"/>
+			<mapping path="/notice/**"/>
 			<exclude-mapping path="/member/join"/>
 			<exclude-mapping path="/member/login"/>
 			<exclude-mapping path="/member/idCheck"/>
@@ -56,6 +58,13 @@
 			<!-- 새로추가 -->
 			<exclude-mapping path="/oproduct/listType"/>
 			<exclude-mapping path="/oproduct/detail"/>
+			
+			<!-- 추가 -->
+			<exclude-mapping path="/qna/list"/>
+			<exclude-mapping path="/qna/detail"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 		

@@ -10,8 +10,8 @@
         <td>
             <c:if test="${member.id eq dto.writer}">
 
-                <button class="update" type="button" data-index="${dto.replyNum}">UPDATE</button>
-                <button class="delete" type="button" data-num="${dto.replyNum}">DELETE</button>
+                <button class="update site-btn" type="button" data-index="${dto.replyNum}">UPDATE</button>
+                <button class="delete site-btn" type="button" data-num="${dto.replyNum}">DELETE</button>
             </c:if>
 
         </td>

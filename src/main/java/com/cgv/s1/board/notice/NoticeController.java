@@ -1,5 +1,7 @@
-package com.cgv.s1.board.review;
+package com.cgv.s1.board.notice;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +21,20 @@ import com.cgv.s1.board.BoardFileDTO;
 import com.cgv.s1.util.Pager;
 
 @Controller
-@RequestMapping("/review/*")
-public class ReviewController {
+@RequestMapping("/notice/*")
+public class NoticeController {
 	@Autowired
-	private ReviewService reviewService;
+	private NoticeService noticeService;
 	
 	@ModelAttribute("board")
 	public String board() {
-		return "review";
+		return "notice";
 	}
 	
 	@PostMapping("reply")
-	public ModelAndView reply(ReviewDTO reviewDTO)throws Exception{
+	public ModelAndView reply(NoticeDTO noticeDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = reviewService.reply(reviewDTO);
+		int result = noticeService.reply(noticeDTO);
 		mv.setViewName("redirect:./list");
 		
 		return mv;
@@ -50,17 +52,21 @@ public class ReviewController {
 	@GetMapping("fileDown")
 	public ModelAndView fileDown(BoardFileDTO boardFileDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReviewFileDTO reviewFileDTO = (ReviewFileDTO)reviewService.detailFile(boardFileDTO);
+		NoticeFileDTO noticeFileDTO = (NoticeFileDTO)noticeService.detailFile(boardFileDTO);
 		
 		mv.setViewName("fileDown");
-		mv.addObject("file", reviewFileDTO);
+		mv.addObject("file", noticeFileDTO);
 		return mv;
 	}
 	
 	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv, Pager pager)throws Exception{
 		
-		List<BoardDTO> ar = reviewService.list(pager);
+		List<BoardDTO> ar = noticeService.list(pager);
+		
+		
+		
+		
 		mv.addObject("list",ar);
 		mv.addObject("pager", pager);
 		
@@ -72,7 +78,7 @@ public class ReviewController {
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public ModelAndView detail(BoardDTO boardDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		boardDTO = reviewService.detail(boardDTO);
+		boardDTO = noticeService.detail(boardDTO);
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/detail");
 		return mv;
@@ -81,7 +87,7 @@ public class ReviewController {
 	@PostMapping("add")
 	public ModelAndView add(BoardDTO boardDTO, MultipartFile [] files)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = reviewService.add(boardDTO, files);
+		int result = noticeService.add(boardDTO, files);
 		mv.setViewName("redirect:./list");
 		
 		return mv;
@@ -98,7 +104,7 @@ public class ReviewController {
 	
 	@PostMapping("update")
 	public String update(BoardDTO boardDTO,Model model)throws Exception{
-		int result = reviewService.update(boardDTO);
+		int result = noticeService.update(boardDTO);
 		
 		return "redirect:./list";
 	}
@@ -106,7 +112,7 @@ public class ReviewController {
 	@GetMapping("update")
 	public ModelAndView update(BoardDTO boardDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		boardDTO = reviewService.detail(boardDTO);
+		boardDTO = noticeService.detail(boardDTO);
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/update");
 		return mv;
@@ -115,7 +121,7 @@ public class ReviewController {
 	@GetMapping("delete")
 	public ModelAndView delete(BoardDTO boardDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = reviewService.delete(boardDTO);
+		int result = noticeService.delete(boardDTO);
 		
 		mv.setViewName("redirect:./list");
 		return mv;

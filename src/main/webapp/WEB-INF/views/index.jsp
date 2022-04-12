@@ -115,7 +115,7 @@
                                 </ul> 
                             </li> -->
                             <li><a href="/s1/qna/list">QNA</a></li>
-                            <li><a href="#">NOTICE</a></li>
+                            <li><a href="/s1/notice/list">NOTICE</a></li>
                         </ul>
                     </nav>
                 </div>

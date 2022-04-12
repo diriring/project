@@ -15,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cgv.s1.board.BoardDTO;
 import com.cgv.s1.board.BoardFileDTO;
-import com.cgv.s1.board.review.ReviewFileDTO;
-import com.cgv.s1.board.review.ReviewService;
+import com.cgv.s1.board.notice.NoticeFileDTO;
+import com.cgv.s1.board.notice.NoticeService;
 import com.cgv.s1.util.Pager;
 
 @Controller

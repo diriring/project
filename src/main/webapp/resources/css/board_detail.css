@@ -1,0 +1,16 @@
+#board_date::before {
+
+  content: "";
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background: #ccc;
+    margin: 0 10px 0 6px;
+    vertical-align: -2px;
+}
+#board_title{
+  padding-left: 10px;
+}
+#board_writer{
+  padding-left: 20px;
+}

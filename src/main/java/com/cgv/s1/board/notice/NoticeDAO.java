@@ -1,4 +1,4 @@
-package com.cgv.s1.board.review;
+package com.cgv.s1.board.notice;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import com.cgv.s1.board.BoardFileDTO;
 import com.cgv.s1.util.Pager;
 
 @Repository
-public class ReviewDAO implements BoardDAO {
+public class NoticeDAO implements BoardDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private final String NAMESPACE = "com.cgv.s1.board.review.ReviewDAO.";
+	private final String NAMESPACE = "com.cgv.s1.board.notice.NoticeDAO.";
 
 	//listFile
 		public List<BoardFileDTO> listFile(BoardDTO boardDTO)throws Exception{

@@ -2,7 +2,7 @@ package com.cgv.s1.board;
 
 import java.util.List;
 
-import com.cgv.s1.board.review.ReviewDTO;
+import com.cgv.s1.board.notice.NoticeDTO;
 import com.cgv.s1.util.Pager;
 
 public interface BoardDAO {

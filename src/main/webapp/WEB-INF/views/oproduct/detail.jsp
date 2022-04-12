@@ -129,9 +129,9 @@
 	  				<div class="modal fade" id="loginModal" role="dialog">
 				   		<div class="modal-dialog">
 				    		<div class="modal-content">
-				     			<div class="modal-header">
+				     			<div class="modal-header text-center">
 				      				<button type="button" class="close" data-dismiss="modal">취소</button>
-				      				<h1 class="modal-title" align="center">Review</h1>
+				      				<h1 class="modal-title">Review</h1>
 				     			</div>
 				     			
 				     			<div class="modal-body">

@@ -1,5 +1,7 @@
-package com.cgv.s1.board.review;
+package com.cgv.s1.board.notice;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.reflection.SystemMetaObject;
@@ -16,15 +18,15 @@ import com.cgv.s1.board.BoardDTO;
 import com.cgv.s1.board.BoardFileDTO;
 
 @Service
-public class ReviewService implements BoardService {
+public class NoticeService implements BoardService {
 	@Autowired
-	private ReviewDAO reviewDAO;
+	private NoticeDAO noticeDAO;
 	@Autowired
 	private FileManager fileManager;
 	
 	public BoardFileDTO detailFile(BoardFileDTO boardFileDTO)throws Exception{
 		
-		return reviewDAO.detailFile(boardFileDTO);
+		return noticeDAO.detailFile(boardFileDTO);
 	}
 
 	
@@ -32,20 +34,20 @@ public class ReviewService implements BoardService {
 	
 	
 	
-	public int reply(ReviewDTO reviewDTO) throws Exception {
+	public int reply(NoticeDTO noticeDTO) throws Exception {
 		// TODO Auto-generated method stub
-		BoardDTO boardDTO = reviewDAO.detail(reviewDTO);
-		ReviewDTO parent = (ReviewDTO)boardDTO;
+		BoardDTO boardDTO = noticeDAO.detail(noticeDTO);
+		NoticeDTO parent = (NoticeDTO)boardDTO;
 		
-		reviewDTO.setRef(parent.getRef());
+		noticeDTO.setRef(parent.getRef());
 		
-		reviewDTO.setStep(parent.getStep()+1);
+		noticeDTO.setStep(parent.getStep()+1);
 		
-		reviewDTO.setDepth(parent.getDepth()+1);
+		noticeDTO.setDepth(parent.getDepth()+1);
 		
-		int result = reviewDAO.stepUpdate(parent);
+		int result = noticeDAO.stepUpdate(parent);
 		
-		result = reviewDAO.reply(reviewDTO);
+		result = noticeDAO.reply(noticeDTO);
 		
 		return result;
 	}
@@ -57,12 +59,19 @@ public class ReviewService implements BoardService {
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		
+		
+		
+		
+		
 		pager.makeRow();
 		
-		Long totalCount = reviewDAO.total(pager);
+		Long totalCount = noticeDAO.total(pager);
 		pager.makeNum(totalCount);
 		
-		List<BoardDTO> ar = reviewDAO.list(pager);
+		List<BoardDTO> ar = noticeDAO.list(pager);
+		
+		
+		
 		
 		return ar;
 	}
@@ -70,31 +79,31 @@ public class ReviewService implements BoardService {
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return reviewDAO.detail(boardDTO);
+		return noticeDAO.detail(boardDTO);
 	}
 
 	@Override
 	public int add(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		// TODO Auto-generated method stub
-		int result = reviewDAO.add(boardDTO);
+		int result = noticeDAO.add(boardDTO);
 		System.out.println("서비스 result아래");
 		//1.하드디스크 저장
 		for(int i = 0;i<files.length;i++) {
 			if(files[i].isEmpty()) {
 				continue;
 			}
-			String fileName = fileManager.save(files[i], "resources/upload/review/");
+			String fileName = fileManager.save(files[i], "resources/upload/notice/");
 			//2.DB저장
-			ReviewFileDTO reviewFileDTO = new ReviewFileDTO();
-			reviewFileDTO.setNum(boardDTO.getNum());
-			System.out.println("파일num"+reviewFileDTO.getNum());
-			reviewFileDTO.setFileName(fileName);
+			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+			noticeFileDTO.setNum(boardDTO.getNum());
+			System.out.println("파일num"+noticeFileDTO.getNum());
+			noticeFileDTO.setFileName(fileName);
 			
-			System.out.println("파일name"+reviewFileDTO.getFileName());
-			reviewFileDTO.setOriName(files[i].getOriginalFilename());
+			System.out.println("파일name"+noticeFileDTO.getFileName());
+			noticeFileDTO.setOriName(files[i].getOriginalFilename());
 			
-			System.out.println("오리name"+reviewFileDTO.getOriName());
-			result = reviewDAO.addFile(reviewFileDTO);
+			System.out.println("오리name"+noticeFileDTO.getOriName());
+			result = noticeDAO.addFile(noticeFileDTO);
 			System.out.println("여기서 에런가");
 		}
 		
@@ -107,13 +116,13 @@ public class ReviewService implements BoardService {
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return reviewDAO.update(boardDTO);
+		return noticeDAO.update(boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return reviewDAO.delete(boardDTO);
+		return noticeDAO.delete(boardDTO);
 	}
 	
 	

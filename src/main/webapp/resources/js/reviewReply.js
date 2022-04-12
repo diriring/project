@@ -121,7 +121,7 @@ replyResult.addEventListener("change",function(event){
 replyResult.addEventListener("click",function(event){
 
     if(event.target.classList.contains('delete')){
-        let replyNum = event.target.getAttribute("data-num");
+        let num = event.target.getAttribute("data-num");
         
         
         const xhttp = new XMLHttpRequest();
@@ -130,7 +130,7 @@ replyResult.addEventListener("click",function(event){
         //요청 header 정보 Post로 할때는 이걸 넣어줄것 !
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         
-        xhttp.send("num="+replyNum);
+        xhttp.send("num="+num);
 
 
         xhttp.onreadystatechange = function(){
