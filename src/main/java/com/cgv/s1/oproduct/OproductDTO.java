@@ -16,7 +16,7 @@ public class OproductDTO {
 	private String productDetail;
 	private Integer productPrice;
 	//퍼센트 double에서 integer로 바꿈
-	private Integer productDC;
+	private Double productDC;
 	private Integer productStock;
 	private Integer productSale;
 	private Date regDate;
@@ -98,10 +98,10 @@ public class OproductDTO {
 	public void setProductPrice(Integer productPrice) {
 		this.productPrice = productPrice;
 	}
-	public Integer getProductDC() {
+	public Double getProductDC() {
 		return productDC;
 	}
-	public void setProductDC(Integer productDC) {
+	public void setProductDC(Double productDC) {
 		this.productDC = productDC;
 	}
 	public Integer getProductStock() {

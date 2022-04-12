@@ -46,6 +46,8 @@
 			<mapping path="/member/*"/>
 			<mapping path="/member/address/*"/>
 			<mapping path="/oproduct/**"/>
+			<mapping path="/pay/*"/>
+			<mapping path="/order/*"/>
 			<exclude-mapping path="/member/join"/>
 			<exclude-mapping path="/member/login"/>
 			<exclude-mapping path="/member/idCheck"/>

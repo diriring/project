@@ -61,16 +61,16 @@ public class OproductReviewService {
 		
 		int result = oproductReviewDAO.delete(oproductReviewDTO);
 		
-		List<OproductReviewFileDTO> ar = oproductReviewDAO.listFile(oproductReviewDTO);
-		if(result>0) {
-			
-			for(OproductReviewFileDTO dto : ar) {
-				boolean check = fileManager.remove("resources/upload/oproductReview/", dto.getFileName());
-				
-			}
-			
-		}
-		
+//		List<OproductReviewFileDTO> ar = oproductReviewDAO.listFile(oproductReviewDTO);
+//		if(result>0) {
+//			
+//			for(OproductReviewFileDTO dto : ar) {
+//				boolean check = fileManager.remove("resources/upload/oproductReview/", dto.getFileName());
+//				
+//			}
+//			
+//		}
+//		
 		return result;
 	}
 }

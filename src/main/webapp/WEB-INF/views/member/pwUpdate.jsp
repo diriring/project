@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 변경 | Olive Young</title>
 <!-- 내가추가 -->
 <c:import url="../template/header_css.jsp"></c:import>
 </head>
@@ -17,7 +17,8 @@
 	<div class="container">
 		<div class="checkout__form spad">
 			<div class="section-title">
-				<h3>비밀번호 변경</h3>
+				<h2>비밀번호 변경</h2>
+				<br>
 				<h5>고객님의 소중한 정보를 보호하기 위하여 새로운 비밀번호로 변경 후 서비스를 이용해 주세요.</h5>
 			</div>
 			<div class="row">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보 수정 | Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
@@ -16,7 +16,8 @@
 			<div class="row">
 				<div class="col-lg-6 text-center" style="float: none; margin: 0 auto;">
 					<div class="section-title">
-						<h3>회원정보 수정</h3>
+						<h2>회원정보 수정</h2>
+						<br>
 						<h5>회원정보를 수정하시려면 비밀번호를 입력하셔야 합니다.</h5>
 					</div>
 	

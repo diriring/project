@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기 | Olive Young</title>
 <c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
@@ -16,7 +16,8 @@
 			<div class="row">
 				<div class="col-lg-6 text-center" style="float: none; margin: 0 auto;">
 					<div class="section-title">
-						<h3>아이디 찾기</h3>
+						<h2>아이디 찾기</h2>
+						<br>
 						<h5>아이디가 기억나지 않으세요?</h5>
 						<h5>가입하실 때 사용하신 이메일을 통해 아이디를 확인하실 수 있습니다.</h5>
 					</div>
