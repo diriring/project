@@ -121,17 +121,17 @@
 			
 		<!-- product Review -->	
 		<hr>
-		
 		<!-- Modal  -->
+		<c:if test="${not empty member}">
 		<ul class="nav">
  			<li>
   				<a data-toggle="modal" href="#loginModal">Review 작성</a>
 	  				<div class="modal fade" id="loginModal" role="dialog">
 				   		<div class="modal-dialog">
 				    		<div class="modal-content">
-				     			<div class="modal-header text-center">
-				      				<button type="button" class="close" data-dismiss="modal">취소</button>
-				      				<h1 class="modal-title">Review</h1>
+				     			<div class="modal-header" style="text-align: center;">
+				      				<button type="button" class="close" data-dismiss="modal" style="text-align: left;">취소</button>
+				      				<h1 class="modal-title" style="text-align: center;">Review</h1>
 				     			</div>
 				     			
 				     			<div class="modal-body">
@@ -146,12 +146,13 @@
 									<div id="fileResult">
 									
 									</div>
-											<div>
+											<!--<div>
 												<hr>
 												<button type="button" id="fileAdd">파일추가</button>
 												<button type="button" class="del">파일삭제</button>
 												<hr>
 											</div>
+											-->
 												<button type="submit">리뷰등록</button>
 				     				
 				     				</form>
@@ -179,7 +180,7 @@
 				  	</div>
 				 </li>
 			</ul>
-
+		</c:if>	
 		<!-- Modal 끝 -->
 			
 			<table id="productReview">
