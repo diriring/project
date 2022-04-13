@@ -351,7 +351,7 @@
                         <div class="featured__item__text">
                         	<!-- 이 부분 -->
 							<!-- 연습용 db임 -->
-                        	<h6><a href="./oproduct/detail?productNum=798">아누아 수딩 토너 350ml</a></h6>
+                        	<h6><a href="./oproduct/detail?productNum=142">아누아 수딩 토너 350ml</a></h6>
                             <!-- <h6><a href="#">아누아 수딩 토너 350ml</a></h6> -->
                             <h5>30,500원</h5>
                         </div>
@@ -367,7 +367,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">센시안 압박밴드 1켤레</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=161">센시안 압박밴드 1켤레</a></h6>
                             <h5>21,900원</h5>
                         </div>
                     </div>
@@ -382,7 +382,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">아비브 토너 스킨부스터 1+1</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=143">아비브 토너 스킨부스터 1+1</a></h6>
                             <h5>39,000원</h5>
                         </div>
                     </div>
@@ -397,7 +397,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">리큅 3in1 미니믹서기</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=170">리큅 3in1 미니믹서기</a></h6>
                             <h5>49,000원</h5>
                         </div>
                     </div>
@@ -412,7 +412,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">쿠캣 쭈꾸미볶음 280g 2종 택1</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=166">쿠캣 쭈꾸미볶음 280g 2종 택1</a></h6>
                             <h5>7,500원</h5>
                         </div>
                     </div>
@@ -427,7 +427,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">스킨푸드 캐롯 카로틴 카밍 워터 패드</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=153">스킨푸드 캐롯 카로틴 카밍 워터 패드</a></h6>
                             <h5>26,000원</h5>
                         </div>
                     </div>
@@ -442,7 +442,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">바닐라코 클렌징밤 오리지널 125ml</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=157">바닐라코 클렌징밤 오리지널 125ml</a></h6>
                             <h5>18,000원</h5>
                         </div>
                     </div>
@@ -457,7 +457,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">눅스멀티 플로럴오일(본품100ml+멀티오일10ml*2 증정)</a></h6>
+                            <h6><a href="./oproduct/detail?productNum=152">눅스멀티 플로럴오일(본품100ml+멀티오일10ml*2 증정)</a></h6>
                             <h5>49,000원</h5>
                         </div>
                     </div>
