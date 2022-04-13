@@ -4,7 +4,9 @@
 
 <c:forEach items="${reviewReply}" var="dto">
 	<tr class="bgg">
-		<td id="up${dto.replyNum}">${dto.contents}</td>
+		<td id="up${dto.replyNum}">
+			<div style="font-size: medium; white-space:pre-wrap"><c:out value="${dto.contents}" /></div>
+		</td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.writer}</td>
 
         <td>

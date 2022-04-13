@@ -72,7 +72,9 @@
 					<span id="board_date"><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regDate}"/></span>
 					<span style="float: right;">조회수 : ${dto.hit}</span>
 				</div>
-			<div style="border-top: 1px solid #e7e7e7; padding-top: 10px; padding-left: 10px;">${dto.contents}</div>
+			<div style="border-top: 1px solid #e7e7e7; padding-top: 10px; font-size: medium; white-space:pre-wrap">
+				<c:out value="${dto.contents}" />
+			</div>
 		
 		<div>
 			<c:forEach items="${dto.fileDTOs}" var="f">
