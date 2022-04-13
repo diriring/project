@@ -6,6 +6,10 @@ import com.cgv.s1.util.Pager;
 
 public interface BoardService {
 		
+		//fileDelete
+		public int fileDelete(BoardFileDTO boardFileDTO)throws Exception;
+		
+	
 		//list
 		public List<BoardDTO> list(Pager pager)throws Exception;
 		

@@ -20,6 +20,14 @@ public class QnaDAO implements BoardDAO{
 	
 	private final String NAMESPACE = "com.cgv.s1.board.qna.QnaDAO.";
 	
+	
+	
+	@Override
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"fileDelete", boardFileDTO);
+	}
+
 	public List<BoardFileDTO> listFile(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
 	}

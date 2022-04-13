@@ -19,7 +19,14 @@ public class NoticeDAO implements BoardDAO {
 	
 	private final String NAMESPACE = "com.cgv.s1.board.notice.NoticeDAO.";
 
-	//listFile
+		
+	
+		@Override
+		public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"fileDelete", boardFileDTO);
+		}
+		//listFile
 		public List<BoardFileDTO> listFile(BoardDTO boardDTO)throws Exception{
 			return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
 		}

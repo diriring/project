@@ -5,11 +5,15 @@ import java.util.List;
 import com.cgv.s1.board.notice.NoticeDTO;
 import com.cgv.s1.util.Pager;
 
+
 public interface BoardDAO {
 	
 	public int reply(BoardDTO boardDTO)throws Exception;
 	
 	public int stepUpdate(BoardDTO boardDTO)throws Exception;
+	
+	//FileDelete
+	public int fileDelete(BoardFileDTO boardFileDTO)throws Exception;
 	
 	//addFile
 	public int addFile(BoardFileDTO boardFileDTO)throws Exception;

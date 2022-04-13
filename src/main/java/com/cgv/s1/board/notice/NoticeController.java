@@ -31,6 +31,17 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(BoardFileDTO boardFileDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.fileDelete(boardFileDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
+		
+	}
+	
 	@PostMapping("reply")
 	public ModelAndView reply(NoticeDTO noticeDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();

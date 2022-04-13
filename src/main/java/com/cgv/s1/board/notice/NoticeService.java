@@ -24,6 +24,20 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	
+	
+	
+	
+	@Override
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDAO.fileDelete(boardFileDTO);
+	}
+
+
+
+
+
+
 	public BoardFileDTO detailFile(BoardFileDTO boardFileDTO)throws Exception{
 		
 		return noticeDAO.detailFile(boardFileDTO);
@@ -115,14 +129,26 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return noticeDAO.update(boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeDAO.delete(boardDTO);
+		List<BoardFileDTO> ar = noticeDAO.listFile(boardDTO);
+		
+		int result = noticeDAO.delete(boardDTO);
+		
+		if(result>0) {
+			for(BoardFileDTO dto: ar) {
+				boolean check = fileManager.remove("resources/upload/notice/", dto.getFileName());
+			}
+		}
+		
+		return result;
 	}
 	
 	

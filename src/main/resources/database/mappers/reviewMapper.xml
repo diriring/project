@@ -5,6 +5,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cgv.s1.board.notice.NoticeDAO">
+
+	<delete id="fileDelete" parameterType="NoticeFileDTO">
+		delete OREVIEWFILE WHERE FILENUM = #{fileNum}
+	</delete>
 	
 	<select id="listFile" parameterType="BoardDTO" resultType="NoticeFileDTO">
 		SELECT * FROM OREVIEWFILE

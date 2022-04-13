@@ -74,12 +74,12 @@
 		</c:forEach>
 	</div>
 	
-	
-	<c:if test="${member.id eq dto.writer}">
-	<a href="./delete?num=${dto.num}">삭제</a>
-	<a href="./update?num=${dto.num}">수정</a>
-	</c:if>
-	
+		<div >
+			<c:if test="${member.id eq dto.writer}">
+				<a href="./delete?num=${dto.num}" style="text-align: right;">삭제</a>
+				<a href="./update?num=${dto.num}"style="text-align: right;">수정</a>
+			</c:if>
+		</div>
 	</div>
 	</div>
 </section>

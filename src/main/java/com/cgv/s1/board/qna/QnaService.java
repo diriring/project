@@ -12,6 +12,7 @@ import com.cgv.s1.board.BoardService;
 import com.cgv.s1.util.FileManager;
 import com.cgv.s1.util.Pager;
 
+
 @Service
 public class QnaService implements BoardService {
 
@@ -20,6 +21,14 @@ public class QnaService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	
+	
+	
+	@Override
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.fileDelete(boardFileDTO);
+	}
+
 	public BoardFileDTO detailFile(BoardFileDTO boardFileDTO)throws Exception{
 		
 		return qnaDAO.detailFile(boardFileDTO);
@@ -88,13 +97,26 @@ public class QnaService implements BoardService {
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
+		
 		return qnaDAO.update(boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return qnaDAO.delete(boardDTO);
+		List<BoardFileDTO> ar = qnaDAO.listFile(boardDTO);
+		
+		int result = qnaDAO.delete(boardDTO);
+		
+		if(result>0) {
+			for(BoardFileDTO dto: ar) {
+				boolean check = fileManager.remove("resources/upload/qna/", dto.getFileName());
+				
+			}
+			
+		}
+		
+		return result;
 	}
 	
 	

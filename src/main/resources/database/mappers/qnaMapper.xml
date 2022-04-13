@@ -6,6 +6,10 @@
     
     <mapper namespace="com.cgv.s1.board.qna.QnaDAO">
     
+    <delete id="fileDelete" parameterType="QnaFileDTO">
+		delete OQNAFILE WHERE FILENUM = #{fileNum}
+	</delete>
+    
     <select id="listFile" parameterType="BoardDTO" resultType="QnaFileDTO">
 		SELECT * FROM OQNA
 		WHERE NUM=#{num}

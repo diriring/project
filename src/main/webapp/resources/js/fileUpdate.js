@@ -15,10 +15,13 @@ let result = '';
 //img 숫자세는 함수 - 총 2번실행
 imgCount();
 
+
 function imgCount(){
     //imgCountC = count;
+    
     if(result == '1'){
         count--;
+        
     }else{
         for(i of imgDetail){
             count++;
