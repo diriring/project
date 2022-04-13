@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
     <c:forEach items="${productReview}" var="dto">
-	<tr class="bg">
+	<tr class="bgg">
 
 		<td id="up${dto.replyNum}">${dto.contents}</td>
 		

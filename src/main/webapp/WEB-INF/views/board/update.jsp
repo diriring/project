@@ -9,16 +9,44 @@
 <!-- 내가추가 -->
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/board_update.css">
+<style type="text/css">
+	.set-bg {
+		background-repeat: no-repeat;
+		/* background-size: cover; */
+		/*상품리스트 이미지 들어오게 수정*/
+		background-size: contain;
+		background-position: top center;
+	}
+	.bg {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: top center;
+		background-image: url("/s1/resources/img/mypage_img.jpg")
+	}
+	</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <!-- -- 기존 --
 </head>
 <body> -->
+	<div class="bg">
+		<section class="breadcrumb-section set-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="breadcrumb__text">
+							<h2><br></h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
  
  	<div class="container">
  
-		<div class="section-title">
+		<div class="section-title" style="padding-top: 50px;">
 			<h2>${board} 수정</h2>
 		</div>
 		

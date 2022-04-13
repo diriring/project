@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:forEach items="${reviewReply}" var="dto">
-	<tr class="bg">
+	<tr class="bgg">
 		<td id="up${dto.replyNum}">${dto.contents}</td>
-        <td>${dto.writer}</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.writer}</td>
 
         <td>
             <c:if test="${member.id eq dto.writer}">
