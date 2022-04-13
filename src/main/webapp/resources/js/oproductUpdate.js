@@ -129,6 +129,7 @@ productName.addEventListener("blur", function(){
                 productNameCheck = false;
             }else{
                 alert('중복체크 해주세요!');
+                uniqueName = false;
                 productNameCheck = true;
             }
         }
@@ -193,10 +194,10 @@ btn.addEventListener("click", function(){
     if(imgCheck == false){
          alert('썸네일 파일은 꼭 입력해주셔야합니다')   
     }else{
-        if(imgCheck && typeCheck1 && typeCheck2 && typeCheck3 && productNameCheck && productDetailCheck && productPriceCheck && productDCCheck && productStockCheck){
+        if(uniqueName && imgCheck && typeCheck1 && typeCheck2 && typeCheck3 && productNameCheck && productDetailCheck && productPriceCheck && productDCCheck && productStockCheck){
             frm.submit();
         }else{
-            alert('모두 입력해주세요');
+            alert('모든 항목 확인 부탁드립니다');
         }
     }
 
